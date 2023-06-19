@@ -9,3 +9,5 @@ spring:
     resources:
       static-locations:
         - classpath:/html/dummy
+        - classpath:/js/dummy
+        - classpath:/css/dummy
