@@ -1,3 +1,11 @@
 server:
   servlet:
     context-path: /blogi
+spring:
+  mvc:
+    view:
+      suffix: .html
+  web:
+    resources:
+      static-locations:
+        - classpath:/html/dummy

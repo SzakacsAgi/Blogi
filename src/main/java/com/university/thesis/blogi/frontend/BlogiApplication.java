@@ -1,4 +1,4 @@
-package com.university.thesis.blogi.blogifrontend;
+package com.university.thesis.blogi.frontend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
