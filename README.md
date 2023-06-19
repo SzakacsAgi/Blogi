@@ -23,3 +23,9 @@ The project is an application that simulates a blog.
 # Technologies: 
 1. Backend uses Spring-Boot, Java 17, Maven, and Docker
 2. Frontend uses HTML, CSS, JavaScript, and Bootstrap framework
+
+# How to build the application (via Maven command line):
+``mvn clean install`` 
+
+# How to start the application (via Maven command line):
+``mvn spring-boot:run``
