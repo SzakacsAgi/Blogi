@@ -11,3 +11,4 @@ spring:
         - classpath:/html/dummy
         - classpath:/js/dummy
         - classpath:/css/dummy
+        - classpath:/html/home-page
