@@ -29,3 +29,12 @@ The project is an application that simulates a blog.
 
 # How to start the application (via Maven command line):
 ``mvn spring-boot:run``
+
+# How to build the application (via Docker compose, command line):
+``sudo docker compose build``
+
+# How to start the application (via Docker compose, command line):
+``sudo docker compose up``
+
+# After you start the application with one of the command above, you can reach it at:
+``http://localhost:8080/blogi/home``

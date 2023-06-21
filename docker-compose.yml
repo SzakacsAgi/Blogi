@@ -1,0 +1,9 @@
+services:
+  blogi-frontend:
+    container_name: blogi-frontend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: blogi-frontend:latest
+    ports:
+      - '8080:8080'
