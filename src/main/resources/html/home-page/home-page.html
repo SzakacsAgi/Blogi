@@ -1,12 +1,478 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Blogi</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css-reset.css">
+    <link rel="stylesheet" href="home-page.css">
 </head>
+
 <body>
-<p>I am the home page of the Blogi!</p>
+<!-- HEADER -->
+<header class="container-fluid">
+    <div class="mygrid header-content p-4">
+        <div class="col logo fs-1">Blogi</div>
+        <a href="" class="col sign-in-button welcome-text p-2">Bejelentkezés</a>
+    </div>
+    <hr class="header-nav-separator mt-0 mb-0">
+    <nav class="navbar navbar-expand-lg p-0">
+        <div class="container-fluid">
+            <button class="navbar-toggler mt-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-lg-flex justify-content-lg-center" id="navbarNav">
+                <ul class="navbar-nav d-md-flex justify-content-center">
+                    <li class="nav-item p-2 p-lg-0 mt-2 mt-lg-0">
+                        <a class="nav-link active" aria-current="page" href="#">Főoldal</a>
+                    </li>
+                    <li class="nav-item p-2 p-lg-0 ms-lg-3">
+                        <a class="nav-link" href="#">Vega receptek</a>
+                    </li>
+                    <li class="nav-item p-2 p-lg-0 ms-lg-3">
+                        <a class="nav-link" href="#">Legjobb választás édesszájúaknak</a>
+                    </li>
+                    <li class="nav-item p-2 p-lg-0 ms-lg-3">
+                        <a class="nav-link" href="#">Húsimádóknak</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- MAIN -->
+<main>
+
+    <!-- ABPUT ME PART -->
+    <div class="container about-me-part mt-5">
+        <div class="row title">Ki vagyok?</div>
+        <div class="row image-from-me-and-text-container">
+            <div class="col image">
+                <img
+                        src="https://blissaesthetics.la/wp-content/uploads/2020/09/young-female-with-beautiful-pink-lips-posing-against-a-purple-background.jpg"
+                        alt="Image from me">
+            </div>
+            <div class="col text">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis non tincidunt risus. Maecenas tristique nulla
+                    vel molestie tristique. Phasellus blandit dignissim condimentum.</p>
+                <p> Donec a nunc libero. Nunc rutrum fermentum lectus nec dapibus. Aenean a accumsan nisl.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- LATEST ARTICLES SEARCH BAR AND FILTER PART -->
+    <div class="container latest-aricles-searcbar-and-filter-part mt-5">
+        <div class="row title-and-searcbar-container d-flex justify-content-between">
+            <div class="col title">Legújabb cikkek</div>
+            <div class="col-auto serachbar d-flex">
+                <form class="d-flex" role="search">
+                    <input class="form-control " type="search" placeholder="Keresés" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Keresés</button>
+                </form>
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#filter-body"
+                        aria-expanded="false" aria-controls="collapseExample">
+                    Szűrés
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- NEW ARTICLE BUTTON -->
+    <div class="container new-article-button">
+        <button type="button" class="btn btn-primary">Új cikk</button>
+    </div>
+
+    <!-- FILTER BODY -->
+    <div class="collapse" id="filter-body">
+        <div class="container filter-body-part my-4">
+            <div class="filter d-flex justify-content-end mt-3">
+                <div class="filter-body-continer" style="width: 385px">
+                    <div class="filter-body">
+
+                        <!-- ORDER FIELDS -->
+                        <div class="row order-fields">
+                            <div class="col order-by">
+                                <div class="order-title">Rendezés</div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="order-fields" id="last-modification-date"
+                                           value="option1" checked>
+                                    <label class="form-check-label" for="last-modification-date">
+                                        Módosítás dátuma
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="order-fields" id="minutes-to-read"
+                                           value="option2">
+                                    <label class="form-check-label" for="minutes-to-read">
+                                        Olvasási idő
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- ORDER DIRECTION -->
+                            <div class="col order-direction">
+                                <div class="order-title">Rendezés sorrendje</div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="order-direction" id="desc" value="option1"
+                                           checked>
+                                    <label class="form-check-label" for="desc">
+                                        Csökkenő
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="order-direction" id="asc" value="option2">
+                                    <label class="form-check-label" for="asc">
+                                        Növekvő
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FILTERS -->
+                        <div class="row filters">
+                            <div class="mt-2 filter-title">Szűrés</div>
+
+                            <!-- BY AUTHOR -->
+                            <div class="col filter-by-author-name mb-3">
+                                <input class="form-control" list="author-options" id="author-searc-bar" placeholder="Szerző">
+                                <datalist id="author-options">
+                                    <option value="Szakács Ágnes">
+                                    <option value="Szakács Boglárka">
+                                    <option value="Kis Béla">
+                                </datalist>
+                            </div>
+
+                            <!-- BY LAST MODIFICATION DATE -->
+                            <div class="row filter-by-last-modification-date mb-4">
+                                <div class="filter-title">Létrehozás itervalluma</div>
+                                <div class="col start-of-the-last-modification-date">
+                                    <label for="modification-date-range-start" class="form-label mb-0 filter-title">Intervallum
+                                        kezdete</label>
+                                    <input type="date" class="form-control" id="modification-date-range-start">
+                                </div>
+                                <div class="col end-of-the-last-modification-date">
+                                    <label for="modification-date-range-end" class="form-label mb-0 filter-title">Intervallum
+                                        vége</label>
+                                    <input type="date" class="form-control" id="modification-date-range-end">
+                                </div>
+                            </div>
+
+                            <!-- BY MINUTES TO READ -->
+                            <div class="row filter-by-minutes-to-read mb-2">
+                                <div class="row d-flex justify-content-between align-items-center">
+                                    <div class="col filter-title">Olvasási idő</div>
+                                    <select class="col form-select">
+                                        <option class="less-than">&#60;</option>
+                                        <option class="greater-than">&#62;</option>
+                                        <option class="equal">&#61;</option>
+                                    </select>
+                                    <input class="col minutes" type="number" placeholder="perc">
+                                </div>
+                            </div>
+
+                            <!-- BY CATEGORY -->
+                            <div class="row filter-by-category mb-2">
+                                <div class="mb-1 filter-title">Kategóriák</div>
+                                <div class="row category-options">
+
+                                    <!-- COL1 -->
+                                    <div class="col category-col px-4">
+                                        <div class="row category">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="Vega">
+                                                <div>Vega</div>
+                                            </div>
+                                        </div>
+                                        <div class="row category">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="Főétel">
+                                                <div>Főétel</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- COL2 -->
+                                    <div class="col category-col">
+                                        <div class="row category">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="Desszert">
+                                                <div>Desszert</div>
+                                            </div>
+                                        </div>
+                                        <div class="row category">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="Cukormentes">
+                                                <div>Cukormentes</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- COL3 -->
+                                    <div class="col category-col">
+                                        <div class="row category">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="Rakott">
+                                                <div>Rakott</div>
+                                            </div>
+                                        </div>
+                                        <div class="row category">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="Előétel">
+                                                <div>Előétel</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FILTER BUTTONS -->
+                        <button type="button" class="btn btn-primary mx-2">Szűrés</button>
+                        <button type="button" class="btn btn-primary">Szűrők törlése</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ARTICLES PART -->
+    <div class="container articles-part my-5">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+
+            <!-- ARTICLE1 -->
+            <div class="col aricle">
+                <div class="card mx-2">
+                    <img
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png"
+                            class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <div class="article-infos d-flex">
+                            <div class="col date-and-viewers-col">
+                                <div class="col date d-flex align-items-end">
+                                    <i class="bi bi-app"></i>
+                                    <div class="date-container">2021.12.30.</div>
+                                </div>
+                                <div class="col viewers d-flex">
+                                    <i class="bi bi-app"></i>
+                                    <div class="viewers-container ">5</div>
+                                </div>
+                            </div>
+                            <div class="col author-and-minutes-to-read-col">
+                                <div class="col author d-flex">
+                                    <i class="bi bi-app"></i>
+                                    <div class="author-container">Szakács Ágnes</div>
+                                </div>
+                                <div class="col minutes-to-read d-flex">
+                                    <i class="bi bi-app"></i>
+                                    <div class="minutes-to-read-container">5 perc</div>
+                                </div>
+                            </div>
+                        </div>
+                        <h5 class="card-title py-3">Palatial, palatable Portugal: a long weekend in Porto</h5>
+                        <a href="#">Olvass tovább</a>
+                        <div class="card-categories d-flex mt-3">
+                            <div class="col">
+                                <div class="row">#vega</div>
+                            </div>
+                            <div class="col">
+                                <div class="row">#főétel</div>
+                            </div>
+                            <div class="col">
+                                <div class="row">#kezdő</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container row edit-buttons mb-2">
+                    <div class="col d-flex align-items-center justify-content-center">
+                        <i class="edit-button bi bi-app mx-1"></i>
+                        <i class="delete-button bi bi-app"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ARTICLE2 -->
+            <div class="col aricle">
+                <div class="card mx-2">
+                    <img
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png"
+                            class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <div class="article-infos d-flex">
+                            <div class="col date-and-viewers-col">
+                                <div class="col date d-flex">
+                                    <i class="bi bi-app"></i>
+                                    <div class="date-container">2021.12.30.</div>
+                                </div>
+                                <div class="col viewers d-flex">
+                                    <i class="bi bi-app"></i>
+                                    <div class="viewers-container ">5</div>
+                                </div>
+                            </div>
+                            <div class="col author-and-minutes-to-read-col">
+                                <div class="col author d-flex">
+                                    <i class="bi bi-app"></i>
+                                    <div class="author-container">Szakács Ágnes</div>
+                                </div>
+                                <div class="col minutes-to-read d-flex">
+                                    <i class="bi bi-app"></i>
+                                    <div class="minutes-to-read-container">5 perc</div>
+                                </div>
+                            </div>
+                        </div>
+                        <h5 class="card-title py-3">Palatial, palatable Portugal: a long weekend in Porto</h5>
+                        <a href="#">Olvass tovább</a>
+                        <div class="card-categories d-flex mt-3">
+                            <div class="col">
+                                <div class="row">#vega</div>
+                            </div>
+                            <div class="col">
+                                <div class="row">#főétel</div>
+                            </div>
+                            <div class="col">
+                                <div class="row">#kezdő</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container row edit-buttons">
+                    <div class="col d-flex align-items-center justify-content-center">
+                        <i class="edit-button bi bi-app mx-1"></i>
+                        <i class="delete-button bi bi-app"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ARTICLE3 -->
+            <div class="col article">
+                <div class="card mx-2">
+                    <img
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png"
+                            class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <div class="article-infos d-flex">
+                            <div class="col date-and-viewers-col">
+                                <div class="col date d-flex">
+                                    <i class="bi bi-app"></i>
+                                    <div class="date-container">2021.12.30.</div>
+                                </div>
+                                <div class="col viewers d-flex">
+                                    <i class="bi bi-app"></i>
+                                    <div class="viewers-container ">5</div>
+                                </div>
+                            </div>
+                            <div class="col author-and-minutes-to-read-col">
+                                <div class="col author d-flex">
+                                    <i class="bi bi-app"></i>
+                                    <div class="author-container">Szakács Ágnes</div>
+                                </div>
+                                <div class="col minutes-to-read d-flex">
+                                    <i class="bi bi-app"></i>
+                                    <div class="minutes-to-read-container">5 perc</div>
+                                </div>
+                            </div>
+                        </div>
+                        <h5 class="card-title py-3">Palatial, palatable Portugal: a long weekend in Porto</h5>
+                        <a href="#">Olvass tovább</a>
+                        <div class="card-categories d-flex mt-3">
+                            <div class="col">
+                                <div class="row">#vega</div>
+                            </div>
+                            <div class="col">
+                                <div class="row">#főétel</div>
+                            </div>
+                            <div class="col">
+                                <div class="row">#kezdő</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container row edit-buttons">
+                    <div class="col d-flex align-items-center justify-content-center">
+                        <i class="edit-button bi bi-app mx-1"></i>
+                        <i class="delete-button bi bi-app"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ARTICLE4 -->
+            <div class="col article">
+                <div class="card mx-2">
+                    <img
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png"
+                            class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <div class="article-infos d-flex">
+                            <div class="col date-and-viewers-col">
+                                <div class="col date d-flex">
+                                    <i class="bi bi-app"></i>
+                                    <div class="date-container">2021.12.30.</div>
+                                </div>
+                                <div class="col viewers d-flex">
+                                    <i class="bi bi-app"></i>
+                                    <div class="viewers-container ">5</div>
+                                </div>
+                            </div>
+                            <div class="col author-and-minutes-to-read-col">
+                                <div class="col author d-flex">
+                                    <i class="bi bi-app"></i>
+                                    <div class="author-container">Szakács Ágnes</div>
+                                </div>
+                                <div class="col minutes-to-read d-flex">
+                                    <i class="bi bi-app"></i>
+                                    <div class="minutes-to-read-container">5 perc</div>
+                                </div>
+                            </div>
+                        </div>
+                        <h5 class="card-title py-3">Palatial, palatable Portugal: a long weekend in Porto</h5>
+                        <a href="#">Olvass tovább</a>
+                        <div class="card-categories d-flex mt-3">
+                            <div class="col">
+                                <div class="row">#vega</div>
+                            </div>
+                            <div class="col">
+                                <div class="row">#főétel</div>
+                            </div>
+                            <div class="col">
+                                <div class="row">#kezdő</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container row edit-buttons">
+                    <div class="col d-flex align-items-center justify-content-center">
+                        <i class="edit-button bi bi-app mx-1"></i>
+                        <i class="delete-button bi bi-app"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="container-fluid">
+    <div class="row">
+        <div class="col d-flex justify-content-center p-5">
+            <i class="bi bi-app"></i>
+            <div class="name">2022 Szakács Ágnes</div>
+            <i class="bi bi-app"></i>
+            <i class="bi bi-app"></i>
+            <i class="bi bi-app"></i>
+        </div>
+    </div>
+</footer>
 </body>
+
 </html>
