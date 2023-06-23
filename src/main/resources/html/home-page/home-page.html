@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -13,13 +12,22 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="css-reset.css">
     <link rel="stylesheet" href="home-page.css">
+    <!-- FONTS -->
+    <a href="http://www.eaglefonts.com/bodoni-bd-bt-bold-ttf-10544.htm"></a>
+    <link href="https://fonts.cdnfonts.com/css/proxima-nova-rg-2" rel="stylesheet">
+    <!-- ICONS -->
+    <script src="https://kit.fontawesome.com/df226d5321.js" crossorigin="anonymous"></script>
+
+
 </head>
 
 <body>
 <!-- HEADER -->
 <header class="container-fluid">
-    <div class="mygrid header-content p-4">
-        <div class="col logo fs-1">Blogi</div>
+    <div class="header-content p-2">
+        <a href="#" id="logo-link">
+            <div class="col logo">Blogi</div>
+        </a>
         <a href="" class="col sign-in-button welcome-text p-2">Bejelentkezés</a>
     </div>
     <hr class="header-nav-separator mt-0 mb-0">
@@ -32,7 +40,7 @@
             <div class="collapse navbar-collapse d-lg-flex justify-content-lg-center" id="navbarNav">
                 <ul class="navbar-nav d-md-flex justify-content-center">
                     <li class="nav-item p-2 p-lg-0 mt-2 mt-lg-0">
-                        <a class="nav-link active" aria-current="page" href="#">Főoldal</a>
+                        <a class="nav-link active" href="#" aria-current="page">Főoldal</a>
                     </li>
                     <li class="nav-item p-2 p-lg-0 ms-lg-3">
                         <a class="nav-link" href="#">Vega receptek</a>
@@ -48,10 +56,8 @@
         </div>
     </nav>
 </header>
-
 <!-- MAIN -->
 <main>
-
     <!-- ABPUT ME PART -->
     <div class="container about-me-part mt-5">
         <div class="row title">Ki vagyok?</div>
@@ -68,7 +74,6 @@
             </div>
         </div>
     </div>
-
     <!-- LATEST ARTICLES SEARCH BAR AND FILTER PART -->
     <div class="container latest-aricles-searcbar-and-filter-part mt-5">
         <div class="row title-and-searcbar-container d-flex justify-content-between">
@@ -87,19 +92,16 @@
             </div>
         </div>
     </div>
-
     <!-- NEW ARTICLE BUTTON -->
     <div class="container new-article-button">
         <button type="button" class="btn btn-primary">Új cikk</button>
     </div>
-
     <!-- FILTER BODY -->
     <div class="collapse" id="filter-body">
         <div class="container filter-body-part my-4">
             <div class="filter d-flex justify-content-end mt-3">
                 <div class="filter-body-continer" style="width: 385px">
                     <div class="filter-body">
-
                         <!-- ORDER FIELDS -->
                         <div class="row order-fields">
                             <div class="col order-by">
@@ -119,7 +121,6 @@
                                     </label>
                                 </div>
                             </div>
-
                             <!-- ORDER DIRECTION -->
                             <div class="col order-direction">
                                 <div class="order-title">Rendezés sorrendje</div>
@@ -138,11 +139,9 @@
                                 </div>
                             </div>
                         </div>
-
                         <!-- FILTERS -->
                         <div class="row filters">
                             <div class="mt-2 filter-title">Szűrés</div>
-
                             <!-- BY AUTHOR -->
                             <div class="col filter-by-author-name mb-3">
                                 <input class="form-control" list="author-options" id="author-searc-bar" placeholder="Szerző">
@@ -152,7 +151,6 @@
                                     <option value="Kis Béla">
                                 </datalist>
                             </div>
-
                             <!-- BY LAST MODIFICATION DATE -->
                             <div class="row filter-by-last-modification-date mb-4">
                                 <div class="filter-title">Létrehozás itervalluma</div>
@@ -167,7 +165,6 @@
                                     <input type="date" class="form-control" id="modification-date-range-end">
                                 </div>
                             </div>
-
                             <!-- BY MINUTES TO READ -->
                             <div class="row filter-by-minutes-to-read mb-2">
                                 <div class="row d-flex justify-content-between align-items-center">
@@ -180,12 +177,10 @@
                                     <input class="col minutes" type="number" placeholder="perc">
                                 </div>
                             </div>
-
                             <!-- BY CATEGORY -->
                             <div class="row filter-by-category mb-2">
                                 <div class="mb-1 filter-title">Kategóriák</div>
                                 <div class="row category-options">
-
                                     <!-- COL1 -->
                                     <div class="col category-col px-4">
                                         <div class="row category">
@@ -194,6 +189,7 @@
                                                 <div>Vega</div>
                                             </div>
                                         </div>
+
                                         <div class="row category">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" value="Főétel">
@@ -203,6 +199,7 @@
                                     </div>
 
                                     <!-- COL2 -->
+
                                     <div class="col category-col">
                                         <div class="row category">
                                             <div class="form-check">
@@ -210,6 +207,7 @@
                                                 <div>Desszert</div>
                                             </div>
                                         </div>
+
                                         <div class="row category">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" value="Cukormentes">
@@ -217,7 +215,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                     <!-- COL3 -->
                                     <div class="col category-col">
                                         <div class="row category">
@@ -226,6 +223,7 @@
                                                 <div>Rakott</div>
                                             </div>
                                         </div>
+
                                         <div class="row category">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" value="Előétel">
@@ -236,7 +234,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <!-- FILTER BUTTONS -->
                         <button type="button" class="btn btn-primary mx-2">Szűrés</button>
                         <button type="button" class="btn btn-primary">Szűrők törlése</button>
@@ -245,11 +242,9 @@
             </div>
         </div>
     </div>
-
     <!-- ARTICLES PART -->
     <div class="container articles-part my-5">
         <div class="row row-cols-1 row-cols-md-3 g-4">
-
             <!-- ARTICLE1 -->
             <div class="col aricle">
                 <div class="card mx-2">
@@ -301,7 +296,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- ARTICLE2 -->
             <div class="col aricle">
                 <div class="card mx-2">
@@ -353,7 +347,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- ARTICLE3 -->
             <div class="col article">
                 <div class="card mx-2">
@@ -405,7 +398,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- ARTICLE4 -->
             <div class="col article">
                 <div class="card mx-2">
@@ -464,15 +456,16 @@
 <!-- FOOTER -->
 <footer class="container-fluid">
     <div class="row">
-        <div class="col d-flex justify-content-center p-5">
-            <i class="bi bi-app"></i>
-            <div class="name">2022 Szakács Ágnes</div>
-            <i class="bi bi-app"></i>
-            <i class="bi bi-app"></i>
-            <i class="bi bi-app"></i>
+        <div class="col d-flex justify-content-center align-items-center footer-content">
+            <i class="fa-regular fa-copyright mx-2"></i>
+            <div class="name">2023 Szakács Ágnes</div>
+            <i class="fa-brands fa-square-facebook footer-icons"></i>
+            <i class="fa-brands fa-twitter footer-icons"></i>
+            <i class="fa-brands fa-instagram footer-icons"></i>
         </div>
     </div>
 </footer>
+
 </body>
 
 </html>
