@@ -16,7 +16,7 @@ services:
     ports:
       - '8081:8081'
   blogi-backend-article-service:
-    image: gabichelsea/blogi-article-service:1.1
+    image: gabichelsea/blogi-article-service:1.10
     ports:
       - '8082:8082'
   blogi-backend-file-service:

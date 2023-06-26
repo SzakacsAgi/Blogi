@@ -13,3 +13,7 @@ spring:
         - classpath:/css/dummy
         - classpath:/html/home-page
         - classpath:/css
+        - classpath:/js/home-page
+        - classpath:/css/home-page
+        - classpath:/js/rest-api-caller
+        - classpath:/js/page-components-generator
