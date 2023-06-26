@@ -27,7 +27,7 @@ class RESTAPICaller {
         let queryParamFormatter = new QueryParamFormatter();
         let formattedQueryParams = queryParamFormatter.format(queryParams);
 
-        return await fetch(this.url + formattedQueryParams, { method: 'GET' })
+        return await fetch(this.url + "/?" + formattedQueryParams, { method: 'GET' })
             .then(errorChecker.check)
             .then(response => response.json())
             .then(function (json) { return { status: 200, payload: json }; })
