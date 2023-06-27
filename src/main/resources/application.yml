@@ -24,3 +24,6 @@ spring:
         - classpath:/js/events
         - classpath:/html/editor-page
         - classpath:/js/editor-page
+        - classpath:/html/single-article-page
+        - classpath:/js/single-article-page
+        - classpath:/css/single-article-page

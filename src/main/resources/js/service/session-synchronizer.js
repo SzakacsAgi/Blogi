@@ -6,9 +6,6 @@ class SessionSynchronizer {
 
     sync() {
         this.copyStoredDataToSessionStorage();
-        let articleId;
-        articleId = this.storedDataProvider.getItemFromSessionStorage("articleId");
-        document.getElementById('article-id').innerHTML = articleId;
     }
 
     copyStoredDataToSessionStorage() {

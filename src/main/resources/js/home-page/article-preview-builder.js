@@ -75,7 +75,7 @@ class ArticlePreviewBuilder {
     createArticlePreviewBodyComponents() {
         this.createArticlePreviewInfosComponents();
         this.articleTitle = this.elementCreator.createElement('h5', ['card-title']);
-        this.readMoreButton = this.elementCreator.createElement('a', ['read-more-button']);
+        this.readMoreButton = this.buttonCreator.createReadMoreButton(this.articleInfo.getId())
         this.categoryDivContainer = this.elementCreator.createElement('div', ['card-categories', 'd-flex', 'row']);
     }
 
