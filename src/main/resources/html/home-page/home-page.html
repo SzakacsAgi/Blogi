@@ -128,16 +128,16 @@
                             <div class="col order-by">
                                 <div class="order-title">Rendezés</div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="order-fields" id="last-modification-date"
+                                    <input class="form-check-input default" type="radio" name="order-fields" id="LAST_MODIFICATION_DATE"
                                            value="option1" checked>
-                                    <label class="form-check-label" for="last-modification-date">
+                                    <label class="form-check-label" for="LAST_MODIFICATION_DATE">
                                         Módosítás dátuma
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="order-fields" id="minutes-to-read"
+                                    <input class="form-check-input" type="radio" name="order-fields" id="MINUTES_TO_READ"
                                            value="option2">
-                                    <label class="form-check-label" for="minutes-to-read">
+                                    <label class="form-check-label" for="MINUTES_TO_READ">
                                         Olvasási idő
                                     </label>
                                 </div>
@@ -147,15 +147,15 @@
                             <div class="col order-direction">
                                 <div class="order-title">Rendezés sorrendje</div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="order-direction" id="desc" value="option1"
+                                    <input class="form-check-input default" type="radio" name="order-direction" id="DESC" value="option1"
                                            checked>
-                                    <label class="form-check-label" for="desc">
+                                    <label class="form-check-label" for="DESC">
                                         Csökkenő
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="order-direction" id="asc" value="option2">
-                                    <label class="form-check-label" for="asc">
+                                    <input class="form-check-input" type="radio" name="order-direction" id="ASC" value="option2">
+                                    <label class="form-check-label" for="ASC">
                                         Növekvő
                                     </label>
                                 </div>
@@ -195,71 +195,22 @@
                             <div class="filter-by-minutes-to-read mb-2">
                                 <div class="row d-flex justify-content-between align-items-center">
                                     <div class="col filter-title">Olvasási idő</div>
-                                    <select class="col form-select">
-                                        <option class="less-than">&#60;</option>
-                                        <option class="greater-than">&#62;</option>
-                                        <option class="equal">&#61;</option>
+                                    <select class="col form-select" id="minutes-to-read-select">
+                                        <option id="filterByMinutesToReadLessThan" class="default" selected>&#60;</option>
+                                        <option id="filterByMinutesToReadMoreThan">&#62;</option>
+                                        <option id="filterByMinutesToReadEqualTo">&#61;</option>
                                     </select>
-                                    <input class="col minutes" type="number" placeholder="perc">
+                                    <input id="how-many-minutes" class="col minutes" type="number" placeholder="perc">
                                 </div>
                             </div>
 
                             <!-- BY CATEGORY -->
                             <div class="row filter-by-category mb-3">
                                 <div class="mb-1 filter-title">Kategóriák</div>
-                                <div class="row category-options">
-
-                                    <!-- COL1 -->
-                                    <div class="col category-col">
-                                        <div class="row category">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="Vega">
-                                                <div>Vega</div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row category">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="Főétel">
-                                                <div>Főétel</div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- COL2 -->
-
-                                    <div class="col category-col">
-                                        <div class="row category">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="Desszert">
-                                                <div>Desszert</div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row category">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="Cukormentes">
-                                                <div>Cukormentes</div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- COL3 -->
-                                    <div class="col category-col">
-                                        <div class="row category">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="Rakott">
-                                                <div>Rakott</div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row category">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="Előétel">
-                                                <div>Előétel</div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="row d-flex justify-content-between" id="category-options">
+                                    <div class="col col-auto category-col"></div>
+                                    <div class="col col-auto category-col"></div>
+                                    <div class="col col-auto category-col"></div>
                                 </div>
                             </div>
                         </div>
@@ -318,8 +269,14 @@
 <script src="element-creator.js"></script>
 <script src="button-creator.js"></script>
 <script src="article-info.js"></script>
+<script src="element-modifier.js"></script>
 <script src="article-preview-builder.js"></script>
+<script src="filter-builder.js"></script>
+<script src="filter-field-provider.js"></script>
+<script src="filter-methods.js"></script>
+<script src="button-click-event.js"></script>
 <script src="article-preview-displayer.js"></script>
+<script src="event-listeners.js"></script>
 <script src="home-page-dynamic-components-displayer.js"></script>
 </body>
 </html>
