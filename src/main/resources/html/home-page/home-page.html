@@ -128,15 +128,13 @@
                             <div class="col order-by">
                                 <div class="order-title">Rendezés</div>
                                 <div class="form-check">
-                                    <input class="form-check-input default" type="radio" name="order-fields" id="LAST_MODIFICATION_DATE"
-                                           value="option1" checked>
+                                    <input class="form-check-input default" type="radio" name="order-fields" id="LAST_MODIFICATION_DATE"checked>
                                     <label class="form-check-label" for="LAST_MODIFICATION_DATE">
                                         Módosítás dátuma
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="order-fields" id="MINUTES_TO_READ"
-                                           value="option2">
+                                    <input class="form-check-input" type="radio" name="order-fields" id="MINUTES_TO_READ">
                                     <label class="form-check-label" for="MINUTES_TO_READ">
                                         Olvasási idő
                                     </label>
@@ -147,14 +145,13 @@
                             <div class="col order-direction">
                                 <div class="order-title">Rendezés sorrendje</div>
                                 <div class="form-check">
-                                    <input class="form-check-input default" type="radio" name="order-direction" id="DESC" value="option1"
-                                           checked>
+                                    <input class="form-check-input default" type="radio" name="order-direction" id="DESC"checked>
                                     <label class="form-check-label" for="DESC">
                                         Csökkenő
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="order-direction" id="ASC" value="option2">
+                                    <input class="form-check-input" type="radio" name="order-direction" id="ASC">
                                     <label class="form-check-label" for="ASC">
                                         Növekvő
                                     </label>
@@ -247,7 +244,8 @@
 </footer>
 
 <!-- MODALS -->
-<div class="modal fade" id="delete-article-modal" tabindex="-1" aria-labelledby="delete-article-modal-label" aria-hidden="true">
+<div class="modal fade" id="delete-article-modal" tabindex="-1" aria-labelledby="delete-article-modal-label"
+     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body">
@@ -256,8 +254,8 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="mt-3">
-                    <button type="button" class="button confirm-yes" id="delete-article">Igen</button>
-                    <button type="button" class="button confirm-no mr-2"  data-bs-dismiss="modal">Nem</button>
+                    <button type="button" class="button confirm-yes" data-bs-dismiss="modal" id="delete-article">Igen</button>
+                    <button type="button" class="button confirm-no mr-2" id="delete-article-cancel" data-bs-dismiss="modal">Nem</button>
                 </div>
             </div>
         </div>
@@ -267,16 +265,21 @@
 <script src="rest-api-helper.js"></script>
 <script src="rest-api-caller.js"></script>
 <script src="element-creator.js"></script>
+<script src="url-provider.js"></script>
 <script src="button-creator.js"></script>
 <script src="article-info.js"></script>
 <script src="element-modifier.js"></script>
+<script src="partial-reloader.js"></script>
 <script src="article-preview-builder.js"></script>
 <script src="filter-builder.js"></script>
 <script src="filter-field-provider.js"></script>
 <script src="filter-methods.js"></script>
-<script src="button-click-event.js"></script>
 <script src="article-preview-displayer.js"></script>
+<script src="stored-data-provider.js"></script>
+<script src="wait.js"></script>
+<script src="button-event-listener-provider.js"></script>
 <script src="event-listeners.js"></script>
 <script src="home-page-dynamic-components-displayer.js"></script>
 </body>
+
 </html>
