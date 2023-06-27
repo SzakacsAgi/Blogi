@@ -1,29 +1,30 @@
 class ButtonEventListenerProvider {
 
     storedDataProvider = new StoredDataProvider();
-    caller = new ArticleRESTAPICaller();
-    wait = new Wait();
-    
+
     constructor() { }
-    
+
     clickOnFilterSearchButton() {
-        let displayer = new ArticlePreviewDisplayer();
         document.getElementById('article-row').innerHTML = '';
+        let displayer = new ArticlePreviewDisplayer();
         displayer.displayFilteredArticles();
     }
-    
+
     clickOnResetFilterButton() {
         let filterMethods = new FilterMethods();
         filterMethods.resetFilters();
     }
 
     clickOnDeleteArticleConfirmButton() {
-        let articleId = this.storedDataProvider.getItemFromSessionStorage("articleId");
+        console.log("clicked")
+        let caller = new ArticleRESTAPICaller();
+        let articleToDelete = this.storedDataProvider.getItemFromLocalStorage("articleId");
         let displayer = new ArticlePreviewDisplayer();
-        this.caller.sendDELETESingleRequest(articleId);
-        this.wait.forServerResponse(() => {
+        caller.sendDELETESingleRequest(articleToDelete);
+        setTimeout(function () {
             document.getElementById('article-row').innerHTML = '';
             displayer.displayAllArticles();
-        });
+        }, 500);
+
     }
 }

@@ -5,10 +5,12 @@ class ButtonCreator {
     eventListeners = new EventListeners();
     URLProvider = new URLProvider();
 
+
     constructor(){}
 
     createEditButton(id){
-        let editButton = this.elementCreator.createElement('a', ['edit-button']);
+        let editButton = this.elementCreator.createElement('a', ['edit-button'])
+        this.elementModifier.setElementAttributes(editButton, {oncontextmenu:"return false;"});
         this.elementModifier.setElementAttributes(editButton, {href:this.URLProvider.getArticleEditorURL(), target:"_blank"});
         let editButtonIcon =  this.elementCreator.createElement('i', ['fa-solid', 'fa-pen-to-square']);
         editButton.appendChild(editButtonIcon);

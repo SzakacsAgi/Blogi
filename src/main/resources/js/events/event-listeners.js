@@ -3,9 +3,9 @@ class EventListeners {
     buttonEventListenerProvider = new ButtonEventListenerProvider();
     storedDataProvider = new StoredDataProvider();
 
-    constructor() { }
+    constructor() {}
 
-    registerEventListeners() {
+    registerEventListeners(){
         this.addFilterSearchListener();
         this.addResetFilterSearchListener();
         this.addDeleteArticleConfirmButtonListener();
@@ -22,27 +22,28 @@ class EventListeners {
     }
 
     addDeleteButtonListener(button, id) {
-        button.addEventListener("click", () => {
-            this.storedDataProvider.setItemToSessionStorage("articleId", id);
+            button.addEventListener("click", () => {
+                this.storedDataProvider.setItemToLocalStorage("articleId", id);
         })
     }
 
     addDeleteArticleConfirmButtonListener() {
         let deleteArticleConfirmButton = document.getElementById("delete-article");
-        deleteArticleConfirmButton.addEventListener("click", () => this.buttonEventListenerProvider.clickOnDeleteArticleConfirmButton());
+        deleteArticleConfirmButton.addEventListener("click", this.buttonEventListenerProvider.clickOnDeleteArticleConfirmButton);
     }
 
     addEditButtonListener(button, id) {
         button.addEventListener("click", () => {
             this.storedDataProvider.setItemToLocalStorage("articleId", id);
-        })
-    }
+    })
+}
 
 }
 
 let eventListeners = new EventListeners();
-let wait = new Wait();
 
 window.onload = function afterWebPageLoad() {
-    wait.forPageLoad(eventListeners.registerEventListeners());
+    setTimeout(function(){
+        eventListeners.registerEventListeners();
+    }, 1000);
 }
