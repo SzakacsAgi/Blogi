@@ -89,8 +89,8 @@ class ArticlePreviewBuilder {
     createArticlePreviewEditButtonComponents() {
         this.editButtonsRow = this.elementCreator.createElement('div', ['edit-buttons', 'container', 'row', 'mb-2']);
         this.editButtonsContainer = this.elementCreator.createElement('div', ['edit-buttons-container', 'col', 'd-flex', 'justify-content-center']);
-        this.editButton = this.buttonCreator.createEditButton();
-        this.deleteButton = this.buttonCreator.createDeleteButton('#delete-article-modal');
+        this.editButton = this.buttonCreator.createEditButton(this.articleInfo.getId());
+        this.deleteButton = this.buttonCreator.createDeleteButton('#delete-article-modal', this.articleInfo.getId());
     }
 
     addElementsToArticlePreviewEditButtonPart() {

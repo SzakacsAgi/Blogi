@@ -35,6 +35,21 @@ class RESTAPICaller {
                 return { status: error.status };
             });
     }
+
+    async sendDELETESingleRequest(id) {
+        let errorChecker = new RESTAPIErrorChecker();
+
+        return await fetch(this.url + "/" + id, { method: 'DELETE' })
+           .then(errorChecker.check)
+           .then(response => response.json())
+           .then(function (json) {
+                return { status: 204, payload: json };
+            })
+           .catch(function (error) {
+                return { status: error.status };
+            });
+    }
+
 }
 
 class ArticleRESTAPICaller extends RESTAPICaller {

@@ -11,11 +11,16 @@ spring:
         - classpath:/html/dummy
         - classpath:/js/dummy
         - classpath:/css/dummy
-        - classpath:/html/home-page
+        - classpath:/css/home-page
         - classpath:/css
+        - classpath:/html/home-page
+        - classpath:/js/data
+        - classpath:/js/service
         - classpath:/js/home-page
         - classpath:/css/home-page
-        - classpath:/js/rest-api-caller
         - classpath:/js/home-page/filter
+        - classpath:/js/rest-api-caller
         - classpath:/js/page-components-generator
         - classpath:/js/events
+        - classpath:/html/editor-page
+        - classpath:/js/editor-page
