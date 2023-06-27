@@ -3,6 +3,7 @@ class ArticlePreviewBuilder {
     mainParent = document.getElementById('article-row');
     cardBodysParent;
     editButtonsParent;
+    elementModifier = new ElementModifier();
     elementCreator = new ElementCreator();
     buttonCreator = new ButtonCreator();
     articleInfo;
@@ -138,14 +139,14 @@ class ArticlePreviewBuilder {
     }
 
     setArticlePreviewData() {
-        this.articleImage.src = this.articleInfo.getImageURL();
-        this.date.innerText = this.articleInfo.getLastModificationDate();
-        this.viewers.innerText = '0';
-        this.author.innerText = this.articleInfo.getAuthorName();
-        this.minutesToRead.innerText = this.articleInfo.getMinutesToRead();
-        this.articleTitle.innerText = this.articleInfo.getTitle();
-        this.readMoreButton.innerHTML = 'Olvass tovább';
-        this.readMoreButton.href = '#';
+        this.elementModifier.setElementAttributes(this.articleImage, {'src' : this.articleInfo.getImageURL()});
+        this.elementModifier.setElementText(this.date, this.articleInfo.getLastModificationDate())
+        this.elementModifier.setElementText(this.viewers, 0);
+        this.elementModifier.setElementText(this.author, this.articleInfo.getAuthorName());
+        this.elementModifier.setElementText(this.minutesToRead, this.articleInfo.getMinutesToRead());
+        this.elementModifier.setElementText(this.articleTitle, this.articleInfo.getTitle());
+        this.elementModifier.setElementText(this.readMoreButton, 'Olvass tovább');
+        this.elementModifier.setElementAttributes(this.readMoreButton, {'src' : '#'});
     }
 
     addCategories() {

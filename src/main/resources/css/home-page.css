@@ -186,8 +186,9 @@ main{
   padding-left: 4px;
 }
 
-.category-options .col:first-child {
-  padding-left:22px;
+#category-options .col{
+  padding: 0;
+  padding-left: 12px;
 }
 
 .button {

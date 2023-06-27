@@ -1,18 +1,27 @@
 class ArticlePreviewDisplayer {
 
+    queryParams = new FilterMethods().getFilterQueryParams();
+    articlePreviewBuilder = new ArticlePreviewBuilder();
+    caller = new ArticleRESTAPICaller();
+
     constructor() { }
 
-    async getAllArticles() {
-        let caller = new ArticleRESTAPICaller();
-        let response = await caller.sendGETAllRequest({});
+    async getArticles(queryParams = {}) {
+        let response = await this.caller.sendGETAllRequest(queryParams);
         return response.payload;
     }
 
-    async display() {
-        let articlePreviewBuilder = new ArticlePreviewBuilder();
-        let allArticles = await this.getAllArticles();
+    async displayAllArticles() {
+        let allArticles = await this.getArticles();
         allArticles.forEach(article => {
-            articlePreviewBuilder.build(article);
+            this.articlePreviewBuilder.build(article);
+        })
+    }
+
+    async displayFilteredArticles() {
+        let filteredArticles = await this.getArticles(this.queryParams);
+        filteredArticles.forEach(article => {
+            this.articlePreviewBuilder.build(article);
         })
     }
 

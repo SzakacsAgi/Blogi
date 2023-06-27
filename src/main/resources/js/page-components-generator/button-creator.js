@@ -1,6 +1,8 @@
 class ButtonCreator {
 
     elementCreator = new ElementCreator();
+    elementModifier = new ElementModifier();
+
 
     constructor(){}
 
@@ -18,8 +20,7 @@ class ButtonCreator {
         deleteButton.classList.add('edit-button');
         deleteButton.href = '#';
         let deleteButtonIcon =  this.elementCreator.createElement('i', ['fa-solid', 'fa-trash']);
-        deleteButton.setAttribute('data-bs-toggle', 'modal');
-        deleteButton.setAttribute('data-bs-target', modalId);
+        this.elementModifier.setElementAttributes(deleteButton, {'data-bs-toggle': 'modal', 'data-bs-target': modalId});
         deleteButton.appendChild(deleteButtonIcon);
         return deleteButton;
     }
