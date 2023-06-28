@@ -14,7 +14,7 @@ class ButtonCreator {
         this.elementModifier.setElementAttributes(editButton, {href:this.URLProvider.getArticleEditorURL(), target:"_blank"});
         let editButtonIcon =  this.elementCreator.createElement('i', ['fa-solid', 'fa-pen-to-square']);
         editButton.appendChild(editButtonIcon);
-        this.eventListeners.addEditButtonListener(editButton, id);
+        this.eventListeners.copyArticleId(editButton, id);
         return editButton;
     }
 
@@ -25,6 +25,14 @@ class ButtonCreator {
         deleteButton.appendChild(deleteButtonIcon);
         this.eventListeners.addDeleteButtonListener(deleteButton, id);
         return deleteButton;
+    }
+
+    createReadMoreButton(id){
+        let readMoreButton = this.elementCreator.createElement('a', ['read-more-button']);
+        this.elementModifier.setElementAttributes(readMoreButton, {href:this.URLProvider.getArticlePageURL(), target:"_blank"});
+        this.elementModifier.setElementAttributes(readMoreButton, {oncontextmenu:"return false;"});
+        this.eventListeners.copyArticleId(readMoreButton, id);
+        return readMoreButton;
     }
 
 }

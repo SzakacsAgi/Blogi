@@ -12,7 +12,7 @@ class URLProvider {
         return this.getBaseURL() + "/article";
     }
 
-    getHomePgageURL() {
+    getHomePageURL() {
         return this.getBaseURL() + "/home";
     }
 

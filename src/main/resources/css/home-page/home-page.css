@@ -263,6 +263,9 @@ main{
 
 .read-more-button:hover{
   text-decoration: underline;
+  cursor: pointer;
+  font-weight: 600;
+  color: #CB849C;
 }
 
 .card-categories .col-auto{
