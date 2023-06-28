@@ -8,6 +8,13 @@ main #article-title{
     filter: drop-shadow(0 1.3mm 1px #d3d3d3);
 }
 
+main #article-image{
+    height: 660px;
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
 main .container #article-content{
     margin: 60px 0px;
 }

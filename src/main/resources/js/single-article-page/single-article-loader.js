@@ -26,20 +26,12 @@ class SingleArticleLoader {
 
     loadArticleImage(imageURL){
         let imageContainer = this.findElement('#article-image');
-        this.modifyImageProperty(imageContainer, imageURL);
+        imageContainer.style.backgroundImage = "url("+imageURL+")";
      }
 
     loadArticleContent(articleContent){
         let contentContainer = this.findElement('.container #article-content');
         this.elementModifier.setElementText(contentContainer, articleContent);
-    }
-
-    modifyImageProperty(imageContainer, imageURL){
-        imageContainer.style.backgroundImage = "url("+imageURL+")";
-        imageContainer.style.height = "660px";
-        imageContainer.style.backgroundSize = "100% 100%";
-        imageContainer.style.backgroundPosition = "center";
-        imageContainer.style.backgroundRepeat = "no-repeat";
     }
 
     findElement(id){
