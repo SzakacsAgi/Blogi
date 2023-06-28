@@ -18,45 +18,10 @@
     <link href="https://fonts.cdnfonts.com/css/proxima-nova-rg-2" rel="stylesheet">
     <!-- ICONS -->
     <script src="https://kit.fontawesome.com/df226d5321.js" crossorigin="anonymous"></script>
-
-
 </head>
 
 <body>
-<!-- HEADER -->
-<header class="container-fluid">
-    <div class="header-content p-2">
-        <a href="#" id="logo-link">
-            <div class="col logo">Blogi</div>
-        </a>
-        <a href="" class="col sign-in-button welcome-text p-2">Bejelentkezés</a>
-    </div>
-    <hr class="header-nav-separator mt-0 mb-0">
-    <nav class="navbar navbar-expand-lg p-0">
-        <div class="container-fluid">
-            <button class="navbar-toggler mt-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse d-lg-flex justify-content-lg-center" id="navbarNav">
-                <ul class="navbar-nav d-md-flex justify-content-center">
-                    <li class="nav-item p-2 p-lg-0 mt-2 mt-lg-0">
-                        <a class="nav-link active" href="#" aria-current="page">Főoldal</a>
-                    </li>
-                    <li class="nav-item p-2 p-lg-0 ms-lg-3">
-                        <a class="nav-link" href="#">Vega receptek</a>
-                    </li>
-                    <li class="nav-item p-2 p-lg-0 ms-lg-3">
-                        <a class="nav-link" href="#">Legjobb választás édesszájúaknak</a>
-                    </li>
-                    <li class="nav-item p-2 p-lg-0 ms-lg-3">
-                        <a class="nav-link" href="#">Húsimádóknak</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-</header>
+<my-header></my-header>
 
 <!-- MAIN -->
 <main>
@@ -230,18 +195,7 @@
     </div>
 </main>
 
-<!-- FOOTER -->
-<footer class="container-fluid">
-    <div class="row">
-        <div class="col d-flex justify-content-center align-items-center footer-content">
-            <i class="fa-regular fa-copyright mx-2"></i>
-            <div class="name">2023 Szakács Ágnes</div>
-            <i class="fa-brands fa-square-facebook footer-icons"></i>
-            <i class="fa-brands fa-twitter footer-icons"></i>
-            <i class="fa-brands fa-instagram footer-icons"></i>
-        </div>
-    </div>
-</footer>
+<my-footer></my-footer>
 
 <!-- MODALS -->
 <div class="modal fade" id="delete-article-modal" tabindex="-1" aria-labelledby="delete-article-modal-label"
@@ -263,6 +217,8 @@
 </div>
 
 <script src="rest-api-helper.js"></script>
+<script src="footer.js"></script>
+<script src="header.js"></script>
 <script src="rest-api-caller.js"></script>
 <script src="element-creator.js"></script>
 <script src="url-provider.js"></script>
