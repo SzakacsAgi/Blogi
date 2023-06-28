@@ -6,7 +6,7 @@ class SingleArticleDataProvider {
 
       async createArticle(articleId) {
         const articleData = await this.fetchArticleData(articleId);
-        return new SingleArticle(articleId, articleData);
+        return new ArticleInfo(articleData);
       }
 
       async fetchArticleData(articleId) {
