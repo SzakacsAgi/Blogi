@@ -32,7 +32,7 @@ class EventListeners {
         deleteArticleConfirmButton.addEventListener("click", () => this.buttonEventListenerProvider.clickOnDeleteArticleConfirmButton());
     }
 
-    migrateArticleId(button, id) {
+    copyArticleId(button, id) {
         button.addEventListener("click", () => {
             this.storedDataProvider.setItemToLocalStorage("articleId", id);
         })

@@ -12,7 +12,7 @@ class ButtonCreator {
         this.elementModifier.setElementAttributes(editButton, {href:this.URLProvider.getArticleEditorURL(), target:"_blank"});
         let editButtonIcon =  this.elementCreator.createElement('i', ['fa-solid', 'fa-pen-to-square']);
         editButton.appendChild(editButtonIcon);
-        this.eventListeners.migrateArticleId(editButton, id);
+        this.eventListeners.copyArticleId(editButton, id);
         return editButton;
     }
 
@@ -29,7 +29,7 @@ class ButtonCreator {
         let readMoreButton = this.elementCreator.createElement('a', ['read-more-button']);
         this.elementModifier.setElementAttributes(readMoreButton, {href:this.URLProvider.getArticlePageURL(), target:"_blank"});
         this.elementModifier.setElementAttributes(readMoreButton, {oncontextmenu:"return false;"});
-        this.eventListeners.migrateArticleId(readMoreButton, id);
+        this.eventListeners.copyArticleId(readMoreButton, id);
         return readMoreButton;
     }
 
