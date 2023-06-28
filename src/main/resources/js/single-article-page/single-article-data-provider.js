@@ -1,41 +1,17 @@
 class SingleArticleDataProvider {
 
-    articleId;
-    article;
-    articleInfo;
-    caller;
-    storedDataProvider;
-
-    constructor(){
+      constructor() {
         this.caller = new ArticleRESTAPICaller();
-        this.storedDataProvider = new StoredDataProvider();
-        this.setArticleId();
-    }
+      }
 
-    getArticleId(){
-        return this.articleId;
-    }
+      async createArticle(articleId) {
+        const articleData = await this.fetchArticleData(articleId);
+        return new SingleArticle(articleId, articleData);
+      }
 
-    setArticleId(){
-        this.articleId = this.storedDataProvider.getItemFromSessionStorage("articleId");
-    }
-
-    getArticle(){
-        return this.article;
-    }
-
-    async getArticleResponse(){
-        let response = await this.caller.sendGETSingleRequest(this.articleId);
+      async fetchArticleData(articleId) {
+        const response = await this.caller.sendGETSingleRequest(articleId);
         return response.payload;
-    }
-
-    getArticleInfo(){
-        return this.articleInfo;
-    }
-
-    async setArticleInfo(){
-        this.article = await this.getArticleResponse();
-        this.articleInfo = new ArticleInfo(this.article);
-    }
+      }
 
 }

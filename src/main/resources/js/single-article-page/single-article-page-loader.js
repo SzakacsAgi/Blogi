@@ -1,14 +1,15 @@
 class SingleArticlePageLoader {
 
-    storedDataProvider = new StoredDataProvider();
-    sessionSynchronizer = new SessionSynchronizer();
+    sessionSynchronizer;
     singleArticleLoader;
 
-    constructor() { }
-
-    load() {
+    constructor() {
+        this.sessionSynchronizer = new SessionSynchronizer();
         this.sessionSynchronizer.sync();
         this.singleArticleLoader = new SingleArticleLoader();
+    }
+
+    load() {
         this.singleArticleLoader.load();
     }
 

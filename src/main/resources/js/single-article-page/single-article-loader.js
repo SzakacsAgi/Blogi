@@ -1,34 +1,42 @@
 class SingleArticleLoader {
 
     elementModifier = new ElementModifier();
-    singleArticleDataProvider = new SingleArticleDataProvider();
+    storedDataProvider = new StoredDataProvider();
+    articleId = this.storedDataProvider.getItemFromSessionStorage("articleId");
 
     constructor() { }
 
     async load(){
-        await this.singleArticleDataProvider.setArticleInfo();
-        this.loadArticleTitle();
-        this.loadArticleImage();
-        this.loadArticleContent();
+        let singleArticleDataProvider = new SingleArticleDataProvider();
+        singleArticleDataProvider.createArticle(this.articleId)
+          .then(article => {
+            let articleInfo = article.getArticleInfo();
+            this.loadArticleTitle(articleInfo.getTitle());
+            this.loadArticleImage(articleInfo.getImageURL());
+            this.loadArticleContent(articleInfo.getContent());
+          })
+          .catch(error => {
+            console.error("Error fetching article:", error);
+          });
     }
 
-    loadArticleTitle(){
+    loadArticleTitle(articleTitle){
        let titleContainer = this.findElement('#article-title');
-       this.elementModifier.setElementText(titleContainer, this.singleArticleDataProvider.getArticleInfo().getTitle());
+       this.elementModifier.setElementText(titleContainer, articleTitle);
     }
 
-    loadArticleImage(){
+    loadArticleImage(imageURL){
         let imageContainer = this.findElement('#article-image');
-        this.modifyImageProperty(imageContainer);
+        this.modifyImageProperty(imageContainer, imageURL);
      }
 
-    loadArticleContent(){
+    loadArticleContent(articleContent){
         let contentContainer = this.findElement('.container #article-content');
-        this.elementModifier.setElementText(contentContainer, this.singleArticleDataProvider.getArticleInfo().getContent());
+        this.elementModifier.setElementText(contentContainer, articleContent);
     }
 
-    modifyImageProperty(imageContainer){
-        imageContainer.style.backgroundImage = "url("+this.singleArticleDataProvider.getArticleInfo().getImageURL();+")";
+    modifyImageProperty(imageContainer, imageURL){
+        imageContainer.style.backgroundImage = "url("+imageURL+")";
         imageContainer.style.height = "660px";
         imageContainer.style.backgroundSize = "100% 100%";
         imageContainer.style.backgroundPosition = "center";
