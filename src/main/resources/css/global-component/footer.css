@@ -1,0 +1,31 @@
+footer {
+  background-color: #EBE1E8;
+  position: absolute;
+}
+
+.footer-content{
+  font-size:xx-large;
+  padding: 91px 0;
+}
+
+footer .name {
+  color: #707070;
+  font-style: italic;
+  font-family: 'Proxima Nova Rg', sans-serif;
+}
+
+.footer-icons {
+  margin-left: 10px;
+}
+
+.bi-facebook {
+  color: #0B84EE;
+}
+
+.bi-twitter {
+  color: #1DA1F2;
+}
+
+.bi-instagram {
+  color: #9136be;
+}
