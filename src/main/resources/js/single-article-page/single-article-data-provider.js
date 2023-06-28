@@ -6,11 +6,11 @@ class SingleArticleDataProvider {
     caller;
     storedDataProvider;
 
-     constructor(){
-         this.caller = new ArticleRESTAPICaller();
-         this.storedDataProvider = new StoredDataProvider();
-         this.setArticleId();
-     }
+    constructor(){
+        this.caller = new ArticleRESTAPICaller();
+        this.storedDataProvider = new StoredDataProvider();
+        this.setArticleId();
+    }
 
     getArticleId(){
         return this.articleId;

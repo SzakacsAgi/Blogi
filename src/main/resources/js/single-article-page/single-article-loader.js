@@ -12,31 +12,32 @@ class SingleArticleLoader {
         this.loadArticleContent();
     }
 
-    findElement(id){
-        let main = document.body.querySelector('main');
-        return main.querySelector(id);
+    loadArticleTitle(){
+       let titleContainer = this.findElement('#article-title');
+       this.elementModifier.setElementText(titleContainer, this.singleArticleDataProvider.getArticleInfo().getTitle());
     }
 
-     loadArticleTitle(){
-        let titleContainer = this.findElement('#article-title');
-        this.elementModifier.setElementText(titleContainer, this.singleArticleDataProvider.getArticleInfo().getTitle());
-     }
-
-     loadArticleImage(){
+    loadArticleImage(){
         let imageContainer = this.findElement('#article-image');
         this.modifyImageProperty(imageContainer);
      }
 
-     modifyImageProperty(imageContainer){
+    loadArticleContent(){
+        let contentContainer = this.findElement('.container #article-content');
+        this.elementModifier.setElementText(contentContainer, this.singleArticleDataProvider.getArticleInfo().getContent());
+    }
+
+    modifyImageProperty(imageContainer){
         imageContainer.style.backgroundImage = "url("+this.singleArticleDataProvider.getArticleInfo().getImageURL();+")";
         imageContainer.style.height = "660px";
         imageContainer.style.backgroundSize = "100% 100%";
         imageContainer.style.backgroundPosition = "center";
         imageContainer.style.backgroundRepeat = "no-repeat";
-     }
+    }
 
-     loadArticleContent(){
-         let contentContainer = this.findElement('.container #article-content');
-         this.elementModifier.setElementText(contentContainer, this.singleArticleDataProvider.getArticleInfo().getContent());
-     }
+    findElement(id){
+        let main = document.body.querySelector('main');
+        return main.querySelector(id);
+    }
+    
 }
