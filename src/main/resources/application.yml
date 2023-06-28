@@ -27,3 +27,6 @@ spring:
         - classpath:/html/single-article-page
         - classpath:/js/single-article-page
         - classpath:/css/single-article-page
+        - classpath:/css/global-component
+        - classpath:/js/global-component
+        - classpath:/html/global-component
