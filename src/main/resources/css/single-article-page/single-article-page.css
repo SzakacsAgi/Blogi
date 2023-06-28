@@ -1,0 +1,13 @@
+main #article-title{
+    font-size: 50px;
+    text-transform: uppercase;
+    padding-top: 66px;
+    padding-bottom: 61px;
+    color: #707070;
+    -webkit-text-stroke: 1px black;
+    filter: drop-shadow(0 1.3mm 1px #d3d3d3);
+}
+
+main .container #article-content{
+    margin: 60px 0px;
+}
