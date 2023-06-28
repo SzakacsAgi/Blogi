@@ -9,8 +9,7 @@ class SingleArticleLoader {
     async load(){
         let singleArticleDataProvider = new SingleArticleDataProvider();
         singleArticleDataProvider.createArticle(this.articleId)
-          .then(article => {
-            let articleInfo = article.getArticleInfo();
+          .then(articleInfo => {
             this.loadArticleTitle(articleInfo.getTitle());
             this.loadArticleImage(articleInfo.getImageURL());
             this.loadArticleContent(articleInfo.getContent());
