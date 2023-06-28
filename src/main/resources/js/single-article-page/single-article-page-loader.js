@@ -1,15 +1,16 @@
 class SingleArticlePageLoader {
 
-    articleId;
-    storedDataProvider = new StoredDataProvider();
-    sessionSynchronizer = new SessionSynchronizer();
+    sessionSynchronizer;
+    singleArticleLoader;
 
-    constructor() { }
+    constructor() {
+        this.sessionSynchronizer = new SessionSynchronizer();
+        this.sessionSynchronizer.sync();
+        this.singleArticleLoader = new SingleArticleLoader();
+    }
 
     load() {
-        this.sessionSynchronizer.sync();
-        this.articleId = this.storedDataProvider.getItemFromSessionStorage("articleId");
-
+        this.singleArticleLoader.load();
     }
 
 }
