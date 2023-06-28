@@ -32,4 +32,8 @@ class ArticleInfo {
         return this.article.categories;
     }
 
+    getContent() {
+        return this.article.content;
+    }
+
 }
