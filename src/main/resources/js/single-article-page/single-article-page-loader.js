@@ -6,7 +6,7 @@ class SingleArticlePageLoader {
 
     constructor() { }
 
-     load() {
+    load() {
         this.sessionSynchronizer.sync();
         this.singleArticleLoader = new SingleArticleLoader();
         this.singleArticleLoader.load();

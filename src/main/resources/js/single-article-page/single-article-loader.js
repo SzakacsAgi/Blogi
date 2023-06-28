@@ -39,5 +39,5 @@ class SingleArticleLoader {
         let main = document.body.querySelector('main');
         return main.querySelector(id);
     }
-    
+
 }
