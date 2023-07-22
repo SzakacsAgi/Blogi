@@ -1,0 +1,93 @@
+html, body{
+    height: 100%;
+}
+
+body{
+    display: flex;
+    align-items: center;
+    position:relative;
+}
+
+body::before{
+    content: "";
+    position:absolute;
+    top:0;
+    left:0;
+    height:100%;
+    width:100%;
+    background-image: url("Sign-in-page-background.webp");
+    background-size: cover;
+    opacity:0.7;
+}
+
+main{
+    opacity: 0.99;
+}
+
+main div div #favicon{
+    width: 70px;
+    height: 75px;
+}
+
+main #sign-in-form {
+    flex-direction: column;
+    min-height:200px;
+    background-color: white;
+    padding: 20px 70px;
+}
+
+main #sign-in-text div #title{
+    font-size: 55px;
+    margin-left: 11px;
+    margin-bottom: 0;
+    color: #B92941;
+    font-weight: 700;
+}
+
+main #sign-in-text p{
+    font-size: 22px;
+    margin-top: 14px;
+    margin-bottom: 0;
+}
+
+main #sign-in-form p{
+    font-size: 50px;
+    font-weight: 700;
+    margin-top: 60px;
+    margin-bottom: 80px;
+}
+
+main #sign-in-form #social-media-buttons{
+    margin: 20px 0;
+    margin-bottom: 105px;
+}
+
+main #sign-in-form #social-media-buttons a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+main #sign-in-form #social-media-buttons a iconify-icon{
+    margin-right: 9px;
+}
+
+main #sign-in-form #social-media-buttons #facebook-log-in{
+    background-color: #1877F2;
+    color: white;
+}
+
+main #sign-in-form #social-media-buttons #google-log-in{
+    color: rgb(0, 0, 0, 0.54);
+    box-shadow: 5px 2px 9px 5px rgb(0, 0, 0, 0.25);
+}
+
+.social-sign-in-button{
+    padding: 15px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 20px;
+    text-decoration: none;
+    cursor: pointer;
+    margin-bottom: 35px;
+}
