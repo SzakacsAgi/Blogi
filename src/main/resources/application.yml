@@ -25,6 +25,8 @@ spring:
         - classpath:/html/editor-page
         - classpath:/js/editor-page
         - classpath:/html/single-article-page
+        - classpath:/html/sign-in-page
+        - classpath:/css/sign-in-page
         - classpath:/js/single-article-page
         - classpath:/css/single-article-page
         - classpath:/css/global-component
