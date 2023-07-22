@@ -90,4 +90,9 @@ main #sign-in-form #social-media-buttons #google-log-in{
     text-decoration: none;
     cursor: pointer;
     margin-bottom: 35px;
+    transition: all .2s ease-in-out;
+}
+
+.social-sign-in-button:hover{
+    transform: scale(1.1);
 }
