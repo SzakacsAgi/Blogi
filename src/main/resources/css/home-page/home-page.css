@@ -190,6 +190,10 @@ main{
   font-weight: 100;
 }
 
+.date-container i, .viewers-container i, .author i, .minutes-to-read-container i{
+    margin-right:3px;
+}
+
 .card-title{
   font-family: 'Proxima Nova Rg', sans-serif;
   font-size:30px;
