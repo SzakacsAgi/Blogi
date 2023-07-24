@@ -143,7 +143,7 @@ class ArticlePreviewBuilder {
         this.elementModifier.setElementText(this.date, this.articleInfo.getLastModificationDate())
         this.elementModifier.setElementText(this.viewers, 0);
         this.elementModifier.setElementText(this.author, this.articleInfo.getAuthorName());
-        this.elementModifier.setElementText(this.minutesToRead, this.articleInfo.getMinutesToRead());
+        this.elementModifier.setElementText(this.minutesToRead, this.articleInfo.getMinutesToRead()+' perc');
         this.elementModifier.setElementText(this.articleTitle, this.articleInfo.getTitle());
         this.elementModifier.setElementText(this.readMoreButton, 'Olvass tovább');
         this.elementModifier.setElementAttributes(this.readMoreButton, {'src' : '#'});
