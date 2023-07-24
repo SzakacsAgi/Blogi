@@ -104,18 +104,18 @@ class ArticlePreviewBuilder {
         this.bodyParent = this.elementCreator.createElement('div', ['card-body']);
         this.articleInfosDiv = this.elementCreator.createElement('div', ['article-infos', 'd-flex']);
         this.dateAndViewersCol = this.elementCreator.createElement('div', ['date-and-viewers-col', 'col']);
-        this.dateDivContainer = this.elementCreator.createElement('div', ['date-container', 'd-flex', 'align-items-end']);
-        this.dateIcon = this.elementCreator.createElement('i', ['bi', 'bi-app']);
+        this.dateDivContainer = this.elementCreator.createElement('div', ['date-container', 'd-flex', 'align-items-center']);
+        this.dateIcon = this.elementCreator.createElement('i', ['fa-regular', 'fa-calendar']);
         this.date = this.elementCreator.createElement('div', ['date']);
-        this.viewersDivContainer = this.elementCreator.createElement('div', ['viewers-container', 'd-flex', 'col']);
-        this.viewersIcon = this.elementCreator.createElement('i', ['bi', 'bi-app']);
+        this.viewersDivContainer = this.elementCreator.createElement('div', ['viewers-container', 'd-flex', 'col', 'align-items-center']);
+        this.viewersIcon = this.elementCreator.createElement('i', ['fa-regular', 'fa-eye']);
         this.viewers = this.elementCreator.createElement('div', ['viewers']);
         this.authorAndMinutesToReadCol = this.elementCreator.createElement('div', ['author-and-minutes-to-read', 'col']);
-        this.authorDivContainer = this.elementCreator.createElement('div', ['author', 'd-flex', 'col']);
-        this.authorIcon = this.elementCreator.createElement('i', ['bi', 'bi-app']);
+        this.authorDivContainer = this.elementCreator.createElement('div', ['author', 'd-flex', 'col', 'align-items-center']);
+        this.authorIcon = this.elementCreator.createElement('i', ['fa-regular', 'fa-user']);
         this.author = this.elementCreator.createElement('div', ['author']);
-        this.minutesToReadDivContainer = this.elementCreator.createElement('div', ['minutes-to-read-container', 'd-flex', 'col']);
-        this.minutesToReadIcon = this.elementCreator.createElement('i', ['bi', 'bi-app'],);
+        this.minutesToReadDivContainer = this.elementCreator.createElement('div', ['minutes-to-read-container', 'd-flex', 'col', 'align-items-center']);
+        this.minutesToReadIcon = this.elementCreator.createElement('i', ['fa-regular', 'fa-clock'],);
         this.minutesToRead = this.elementCreator.createElement('div', ['minutes-to-read']);
     }
 
