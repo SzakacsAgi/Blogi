@@ -7,34 +7,26 @@ class ArticleSearcher {
     currentSearchResult;
     previousSearchResult;
     articlePreviewDisplayer;
+    elementModifier = new ElementModifier();
 
     constructor(){
         this.searchBar = document.getElementById('input-search');
         this.articleSection = document.getElementById('article-row');
         this.waitTimeInMilliseconds = 800;
         this.articlePreviewDisplayer = new ArticlePreviewDisplayer();
-        this.removeBuiltInEnterEventListenerFromSearchBar();
-    }
-
-    removeBuiltInEnterEventListenerFromSearchBar(){
-        this.searchBar.addEventListener('keypress', (event) => {
-            if (event.which == 13) {
-               event.preventDefault();
-            }
-        })
     }
 
     async search() {
         this.currentSearchResult = await this.articlePreviewDisplayer.getArticles({filterByTitle:this.currentSearchText, orderField:"LAST_MODIFICATION_DATE"});
-        if(!this.isPreviousSearchedResultIsTheSameAsTheCurrent()){
-            this.articleSection.innerHTML = '';
+        if(!this.isEqual(this.previousSearchResult, this.currentSearchResult)){
+            this.deleteArticleSection();
             this.thereIsNoMatchingArticle() ? this.handleThereIsNoMatchingArticle() : this.handleThereIsMatchingArticle(this.currentSearchResult);
         }
         this.previousSearchResult = this.currentSearchResult;
     }
 
-    isPreviousSearchedResultIsTheSameAsTheCurrent(){
-        return this.previousSearchResult === this.currentSearchResult;
+    isEqual(first, second){
+        return first === second;
     }
 
     thereIsNoMatchingArticle(){
@@ -43,11 +35,11 @@ class ArticleSearcher {
 
     handleThereIsNoMatchingArticle(){
         this.displayNoMatchingArticleText();
-        this.styleArticleSectionIfThereIsNoMatchingArticle();
+        this.changeArticleSectionAppearance();
     }
 
     handleThereIsMatchingArticle(){
-        this.styleArticleSectionIfThereIsMatchingArticle();
+        this.removeChangesFromArticleSectionAppearance();
         this.displayMatchedArticle();
     }
 
@@ -55,14 +47,14 @@ class ArticleSearcher {
         this.articleSection.innerHTML = "Nincs a keresésnek megfelelő cikk!";
     }
 
-    styleArticleSectionIfThereIsNoMatchingArticle(){
-        this.articleSection.classList.add("justify-content-center", "fs-5", "fw-medium", "py-5");
-        this.articleSection.classList.remove("justify-content-between");
+    changeArticleSectionAppearance(){
+        this.elementModifier.addElementClass(this.articleSection, ["justify-content-center", "fs-5", "fw-medium", "py-5"]);
+        this.elementModifier.removeElementClass(this.articleSection, ["justify-content-between"]);
     }
 
-    styleArticleSectionIfThereIsMatchingArticle(){
-        this.articleSection.classList.remove("justify-content-center", "fs-5", "fw-medium", "py-5");
-        this.articleSection.classList.add("justify-content-between");
+    removeChangesFromArticleSectionAppearance(){
+        this.elementModifier.removeElementClass(this.articleSection, ["justify-content-center", "fs-5", "fw-medium", "py-5"]);
+        this.elementModifier.addElementClass(this.articleSection, ["justify-content-between"]);
     }
 
     displayMatchedArticle(){
@@ -73,6 +65,10 @@ class ArticleSearcher {
 
     getCurrentSearchText(event){
         return event.currentTarget.value.trim();
+    }
+
+    deleteArticleSection(){
+        this.articleSection.innerHTML = '';
     }
 
 }
