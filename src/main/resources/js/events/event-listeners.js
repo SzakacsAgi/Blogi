@@ -9,6 +9,7 @@ class EventListeners {
         this.addFilterSearchListener();
         this.addResetFilterSearchListener();
         this.addDeleteArticleConfirmButtonListener();
+        this.addSearchBarListener();
     }
 
     addFilterSearchListener() {
@@ -35,8 +36,20 @@ class EventListeners {
     copyArticleId(button, id) {
         button.addEventListener("click", () => {
             this.storedDataProvider.setItemToLocalStorage("articleId", id);
-    })
-}
+        })
+    }
+    addSearchBarListener(){
+        let articleSearcher = new ArticleSearcher();
+        let searchBar = articleSearcher.searchBar;
+
+        searchBar.addEventListener('keyup', (event) => {
+            articleSearcher.currentSearchText = articleSearcher.getCurrentSearchText(event);
+            setTimeout(() => {
+                articleSearcher.search(articleSearcher.currentSearchText);
+            }, articleSearcher.waitTimeInMilliseconds);
+        });
+    }
+
 
 }
 

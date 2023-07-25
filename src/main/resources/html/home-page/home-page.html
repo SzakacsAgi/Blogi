@@ -42,11 +42,11 @@
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eget dui ut ante pulvinar rhoncus. Nunc
                         aliquam non nisi sit amet dictum. Nunc varius mauris eu lectus blandit dignissim. In ut consectetur
                         tellus. Curabitur sapien mauris, vestibulum ut tempus nec, finibus nec lorem.
+                    </p>
                     <p> Curabitur vestibulum nisl at dolor pretium tincidunt id in quam. Fusce sed dictum mauris, in dictum ex.
                         Nam vitae nunc volutpat, ultricies libero rutrum, sodales turpis. Suspendisse potenti. Donec eu justo a
                         metus pulvinar vulputate id et dolor. In maximus neque risus, eget tincidunt elit sagittis sit amet.
                         Suspendisse potenti.
-                    </p>
                     </p>
                 </div>
             </div>
@@ -59,12 +59,9 @@
             <div class="col-auto title">Legújabb cikkek</div>
             <div class="col d-flex justify-content-end serachbar-and-filter-container">
                 <div class="col-auto serachbar d-flex">
-                    <form class="d-flex search-form" role="search">
-                        <input class="search-text" type="search" placeholder="Keresés" aria-label="Search">
-                        <button class="search-button" type="submit">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                        </button>
-                    </form>
+                    <div class="d-flex">
+                        <input id="input-search" class="search-text" placeholder="A kereséshez kezdjen el írni" aria-label="Search">
+                    </div>
                 </div>
                 <div class="col-auto d-flex align-items-center filter-button-container">
                     <button class="filter-button p-0" type="button" data-bs-toggle="collapse" data-bs-target="#filter-body"
@@ -93,7 +90,7 @@
                             <div class="col order-by">
                                 <div class="order-title">Rendezés</div>
                                 <div class="form-check">
-                                    <input class="form-check-input default" type="radio" name="order-fields" id="LAST_MODIFICATION_DATE"checked>
+                                    <input class="form-check-input default" type="radio" name="order-fields" id="LAST_MODIFICATION_DATE" checked>
                                     <label class="form-check-label" for="LAST_MODIFICATION_DATE">
                                         Módosítás dátuma
                                     </label>
@@ -110,7 +107,7 @@
                             <div class="col order-direction">
                                 <div class="order-title">Rendezés sorrendje</div>
                                 <div class="form-check">
-                                    <input class="form-check-input default" type="radio" name="order-direction" id="DESC"checked>
+                                    <input class="form-check-input default" type="radio" name="order-direction" id="DESC" checked>
                                     <label class="form-check-label" for="DESC">
                                         Csökkenő
                                     </label>
@@ -236,6 +233,7 @@
 <script src="button-event-listener-provider.js"></script>
 <script src="event-listeners.js"></script>
 <script src="home-page-dynamic-components-displayer.js"></script>
+<script src="article-searcher.js"></script>
 </body>
 
 </html>

@@ -83,8 +83,9 @@ main{
   font-size: larger;
 }
 
-[placeholder="Keresés"]{
-  color:#CB849C;
+#input-search::placeholder{
+    color:#CB849C;
+    font-size:15px;
 }
 
 .filter-button-container{

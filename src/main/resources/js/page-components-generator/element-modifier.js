@@ -12,4 +12,16 @@ class ElementModifier {
         })
     }
 
+    removeElementClass(element, listOfClasses){
+        listOfClasses.forEach(property => {
+           element.classList.remove(property);
+        })
+    }
+
+    addElementClass(element, listOfClasses){
+        listOfClasses.forEach(property => {
+           element.classList.add(property);
+        })
+    }
+
 }
