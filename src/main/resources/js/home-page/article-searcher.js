@@ -53,8 +53,7 @@ class ArticleSearcher {
     }
 
     removeChangesFromArticleSectionAppearance(){
-        this.elementModifier.removeElementClass(this.articleSection, ["justify-content-center", "fs-5", "fw-medium", "py-5"]);
-        this.elementModifier.addElementClass(this.articleSection, ["justify-content-between"]);
+        this.elementModifier.removeElementClass(this.articleSection, ["fs-5", "fw-medium", "py-5"]);
     }
 
     displayMatchedArticle(){

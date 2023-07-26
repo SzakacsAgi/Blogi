@@ -19,7 +19,7 @@ class ButtonCreator {
     }
 
     createDeleteButton(modalId, id){
-        let deleteButton = this.elementCreator.createElement('button', ['delete-button'])
+        let deleteButton = this.elementCreator.createElement('a', ['delete-button'])
         let deleteButtonIcon =  this.elementCreator.createElement('i', ['fa-regular', 'fa-trash-can']);
         this.elementModifier.setElementAttributes(deleteButton, { 'data-bs-toggle': 'modal', 'data-bs-target': modalId });
         deleteButton.appendChild(deleteButtonIcon);

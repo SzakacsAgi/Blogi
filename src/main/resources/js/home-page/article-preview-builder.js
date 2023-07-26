@@ -62,7 +62,7 @@ class ArticlePreviewBuilder {
 
     createArticlePreviewHeadComponents() {
         this.articleDiv = this.elementCreator.createElement('div', ['col-auto', 'article']);
-        this.cardDiv = this.elementCreator.createElement('div', ['card', 'mx-2']);
+        this.cardDiv = this.elementCreator.createElement('div', ['card']);
         this.articleImage = this.elementCreator.createElement('img', ['card-img-top']);
     }
 
