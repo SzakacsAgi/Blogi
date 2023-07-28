@@ -1,9 +1,23 @@
+.logo{
+  --logo-font-size: 1.6rem;
+}
+
+.sign-in-button{
+  --sign-in-button-font-size: 0.55rem;
+  --sign-in-button-padding: 0.6rem 0.6rem;
+}
+
+.nav-link{
+  --nav-link-font-size: 1rem;
+}
+
 .header-content {
   display: grid;
   align-items: center;
   justify-items: end;
   grid-template-columns: 2fr 1.66fr 0;
-  margin: 0 20px;
+  margin: 0 1.25rem;
+  padding: 0.4rem;
 }
 
 .header-content .logo {
@@ -13,50 +27,99 @@
 }
 
 .logo {
-  font-size: 52px;
+  font-size: var(--logo-font-size);
   font-weight: 700;
-  color: #CB849C;
-  padding: 5px 0;
+  color: #cb849c;
+  padding: 0.3rem 0;
 }
 
-#logo-link{
+#logo-link {
   text-decoration: none;
 }
 
 .sign-in-button {
   font-weight: 550;
-  font-size: 15px;
+  font-size: var(--sign-in-button-font-size);
   color: white !important;
-  font-family: 'Proxima Nova Rg', sans-serif;
+  font-family: "Proxima Nova Rg", sans-serif;
   text-decoration: none;
-  background-image: linear-gradient(to right, #ebe1e8, #CB849C);
-  border-radius: 4px;
-  padding: 12px 15px !important;
+  background-image: linear-gradient(to right, #ebe1e8, #cb849c);
+  border-radius: 0.25rem;
+  padding: var(--sign-in-button-padding);
 }
 
 .header-nav-separator {
-  margin: 0 20px;
-  border-top-width: 2px;
+  margin: 0 1.25rem;
+  border-top-width: 0.125rem;
   border-top: solid #D9D9D9;
   opacity: 100%;
 }
 
-header nav{
-  margin-top: 10px;
+.my-navigaton-bar {
+  margin-top: 1rem;
 }
 
-.nav-link, .nav-link:visited, .nav-link:active {
-  font-family: 'Minion';
+.navbar-toggler-icon{
+  font-size: 1rem;
+}
+
+.nav-link,
+.nav-link:visited,
+.nav-link:active {
+  font-family: "Minion";
   color: black !important;
+  font-size: 0.9rem;
+  padding: 0.5rem 0.8rem;
 }
 
-.nav-link:hover{
-  color:#cb849c !important;
+.nav-link:hover {
+  color: #cb849c !important;
 }
 
-.nav-link[aria-current="page"]{
-  color: #CB849C !important;
-  text-decoration: underline #B3B3B3 2px;
-  text-underline-offset: 5px;
+.nav-link[aria-current="page"] {
+  color: #cb849c !important;
+  text-decoration: underline #b3b3b3 0.125rem;
+  text-underline-offset: 0.5rem;
   font-weight: 600;
+}
+
+@media (min-width: 550px) {
+   .logo {
+     font-size: calc(var(--logo-font-size) + 0.5rem);
+   }
+
+   .sign-in-button {
+     font-size: calc(var(--sign-in-button-font-size) + 0.2rem);
+   }
+
+   .nav-link,
+   .nav-link:visited,
+   .nav-link:active {
+     font-size: var(--nav-link-font-size);
+     padding: 0.5rem 0.8rem;
+   }
+}
+
+@media (min-width: 992px) {
+  .logo {
+    font-size: calc(var(--logo-font-size) + 0.7rem);
+  }
+
+  .sign-in-button {
+    font-size: calc(var(--sign-in-button-font-size) + 0.3rem);
+  }
+}
+
+@media (min-width: 1200px) {
+  .logo {
+    font-size: calc(var(--logo-font-size) + 0.8rem);
+  }
+
+  .sign-in-button {
+    font-size: calc(var(--sign-in-button-font-size) + 0.37rem);
+  }
+
+  .navbar-collapse ul li a{
+     font-size: calc(var(--nav-link-font-size) + 0.1rem);
+  }
 }

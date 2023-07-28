@@ -1,31 +1,57 @@
 footer {
-  background-color: #EBE1E8;
+  --font-size: 1rem;
+  --content-padding: 3.2rem;
+}
+
+footer {
+  background-color: #ebe1e8;
   position: absolute;
 }
 
-.footer-content{
-  font-size:xx-large;
-  padding: 91px 0;
+.footer-content {
+  font-size: var(--font-size);
+  padding: var(--content-padding) 0;
 }
 
 footer .name {
   color: #707070;
   font-style: italic;
-  font-family: 'Proxima Nova Rg', sans-serif;
+  font-family: "Proxima Nova Rg", sans-serif;
 }
 
 .footer-icons {
-  margin-left: 10px;
+  margin-left: 0.6rem;
 }
 
 .bi-facebook {
-  color: #0B84EE;
+  color: #0b84ee;
 }
 
 .bi-twitter {
-  color: #1DA1F2;
+  color: #1da1f2;
 }
 
 .bi-instagram {
   color: #9136be;
+}
+
+@media (min-width: 550px) {
+  .footer-content {
+    font-size: calc(var(--font-size) + 0.3rem);
+    padding: calc(var(--content-padding) + 0.4rem) 0;
+  }
+}
+
+@media (min-width: 992px) {
+  .footer-content {
+    font-size: calc(var(--font-size) + 0.5rem);
+    padding: calc(var(--content-padding) + 0.5rem) 0;
+  }
+}
+
+@media (min-width: 1200px) {
+  .footer-content {
+    font-size: calc(var(--font-size) + 0.8rem);
+    padding: calc(var(--content-padding) + 0.9rem) 0;
+  }
 }
