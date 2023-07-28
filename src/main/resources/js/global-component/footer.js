@@ -3,21 +3,26 @@ class MyFooter extends HTMLElement {
     constructor(){
         super();
         this.template = document.createElement("template");
-        this.cssStyleSheet = new CSSStyleSheet();
+        this.cssStyleSheet = document.createElement("style");
         this.displayFooter();
     }
 
     async displayFooter(){
+        await this.addFooterHtmlContent();
+        await this.applyStyles();
+        this.appendChild(this.template.content.cloneNode(true));
+    }
+
+     async addFooterHtmlContent(){
         let footerHtmlContent = await this.getFooterHtmlContent();
         this.template.innerHTML = footerHtmlContent;
+     }
 
+     async applyStyles() {
         let footerCssContent = await this.getFooterCssContent();
-        let shadowRoot = this.attachShadow({ mode: "open" });
-        await this.cssStyleSheet.replace(footerCssContent);
-
-        shadowRoot.adoptedStyleSheets = [this.cssStyleSheet];
-        shadowRoot.appendChild(this.template.content.cloneNode(true));
-    }
+        this.cssStyleSheet.textContent = footerCssContent;
+        this.appendChild(this.cssStyleSheet);
+     }
 
     async getFooterHtmlContent(){
         return await fetch('footer.html').then(response =>response.text());
