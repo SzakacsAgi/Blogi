@@ -33,3 +33,5 @@ spring:
         - classpath:/js/global-component
         - classpath:/html/global-component
         - classpath:/images
+        - classpath:/html/new-article-page
+        - classpath:/css/new-article-page
