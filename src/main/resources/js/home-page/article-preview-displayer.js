@@ -3,6 +3,7 @@ class ArticlePreviewDisplayer {
     queryParams = new FilterMethods().getFilterQueryParams();
     articlePreviewBuilder = new ArticlePreviewBuilder();
     caller = new ArticleRESTAPICaller();
+    latestArticlesNumber = 6;
 
     constructor() { }
 
@@ -16,6 +17,18 @@ class ArticlePreviewDisplayer {
         allArticles.forEach(article => {
             this.articlePreviewBuilder.build(article);
         })
+    }
+
+    async displayLatestArticles() {
+        let allArticles = await this.getArticles();
+        if(allArticles.length > this.latestArticlesNumber){
+            for(let i=0; i<this.latestArticlesNumber; i++){
+                this.articlePreviewBuilder.build(allArticles[i]);
+            }
+        }
+        else{
+            this.displayAllArticles();
+        }
     }
 
     async displayFilteredArticles() {

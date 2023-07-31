@@ -3,13 +3,13 @@ class HomePageDynamicComponentsDisplayer {
     constructor() {}
 
     display(){
-        this.displayArticlePreview();
+        this.displayLatestArticlePreview();
         this.displayCategoriesInFilterBody();
     }
 
-    async displayArticlePreview(){
+    async displayLatestArticlePreview(){
         let articlePreviewDisplayer = new ArticlePreviewDisplayer();
-        articlePreviewDisplayer.displayAllArticles();
+        articlePreviewDisplayer.displayLatestArticles();
     }
 
     async displayCategoriesInFilterBody(){
