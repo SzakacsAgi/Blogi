@@ -164,7 +164,9 @@ main {
   padding: 0;
 }
 
-.new-article-button {
+.new-article-button,
+.new-article-button:visited,
+.new-article-button:active{
   border: 0.075rem #707070 solid;
   border-radius: 0.6rem;
   font-family: "Proxima Nova Rg", sans-serif;
@@ -173,6 +175,7 @@ main {
   padding: 0.4rem 0.4rem;
   margin-top: 0.5rem;
   font-size: 0.8rem;
+  text-decoration: none;
 }
 
 .filter-button {
