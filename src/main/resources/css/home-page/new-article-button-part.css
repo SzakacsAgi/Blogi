@@ -1,0 +1,21 @@
+.new-article-button-container {
+  padding: 0;
+}
+
+.new-article-button {
+  border: 0.075rem #707070 solid;
+  border-radius: 0.6rem;
+  font-family: "Proxima Nova Rg", sans-serif;
+  color: #cb849c;
+  font-weight: 700 !important;
+  padding: 0.4rem 0.4rem;
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+}
+
+@media (min-width: 1200px) {
+  .new-article-button {
+    padding: 0.55rem 0.55rem;
+    font-size: 1.05rem;
+  }
+}

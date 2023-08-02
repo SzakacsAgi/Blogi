@@ -1,0 +1,106 @@
+.about-me-part .text {
+  --about-me-text-font-size: 0.7rem;
+}
+
+.about-me-part img {
+  --about-me-image-width: 11rem;
+  --about-me-image-height: 11rem;
+}
+
+.about-me-part {
+  margin-top: 1.2rem;
+}
+
+.about-me-part .title {
+  border-top: 0.3rem solid #b3b3b3;
+  padding: 0;
+}
+
+.about-me-part img {
+  width: var(--about-me-image-width);
+  height: var(--about-me-image-height);
+  border-radius: 50%;
+  border: #000000 0.125rem solid;
+}
+
+.about-me-part .image {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem;
+}
+
+.text-container {
+  padding: 0;
+}
+
+.image-from-me-and-text-container {
+  padding: 0 2rem;
+}
+
+.about-me-part .text-container {
+  flex: none;
+  margin-top: 1rem;
+}
+
+.about-me-part .text {
+  font-family: "Minion";
+  background-color: #ebe1e8;
+  border-radius: 1.87rem;
+  padding: 0.9rem 1.25rem;
+  color: #cb849c;
+  font-weight: 550;
+  line-height: 1.125rem;
+  font-size: var(--about-me-text-font-size);
+}
+
+.about-me-part .text p {
+  margin-bottom: 0;
+}
+
+.about-me-part .text p:first-of-type, .about-me-part .text p:last-of-type {
+  margin-bottom: 1rem;
+}
+
+#signature{
+  font-weight:600;
+  font-style: italic;
+  font-size: calc(var(--about-me-text-font-size) + 0.4rem);
+}
+
+@media (min-width: 550px) {
+ .about-me-part .text {
+    font-size: calc(var(--about-me-text-font-size) + 0.2rem);
+  }
+
+  .about-me-part img {
+      width: calc(var(--about-me-image-width) + 0.6rem);
+      height: calc(var(--about-me-image-height) + 0.6rem);
+    }
+}
+
+@media (min-width: 776px) {
+  .about-me-part .text-container {
+    margin-left: 1.3rem;
+    flex: 1;
+    margin-top: 1.25rem;
+  }
+
+  .about-me-part .image {
+    width: auto;
+    display: flex;
+    margin-top: 1rem;
+  }
+}
+
+@media (min-width: 1200px) {
+ .about-me-part .text {
+    font-size: calc(var(--about-me-text-font-size) + 0.25rem);
+  }
+
+  .about-me-part img {
+    width: calc(var(--about-me-image-width) + 1.2rem);
+    height: calc(var(--about-me-image-height) + 1.2rem);
+  }
+}

@@ -1,6 +1,6 @@
 class ArticlePreviewBuilder {
 
-    mainParent = document.getElementById('article-row');
+    mainParent;
     cardBodysParent;
     editButtonsParent;
     elementModifier = new ElementModifier();
@@ -45,6 +45,9 @@ class ArticlePreviewBuilder {
     constructor() { }
 
     build(article) {
+
+        let articlePart = document.getElementsByTagName('article-part')[0];
+        this.mainParent = articlePart.querySelector(".articles-part .articles #article-row");
         this.articleInfo = new ArticleInfo(article);
         this.createArticlePreviewHeadComponents();
         this.addElementsToArticlePreviewHead();

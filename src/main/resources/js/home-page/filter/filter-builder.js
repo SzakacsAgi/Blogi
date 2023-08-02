@@ -1,15 +1,20 @@
 class FilterBuilder {
 
-    elementCreator = new ElementCreator();
-    elementModifier = new ElementModifier();
+    elementCreator;
+    elementModifier;
     category;
     checkboxAndCategoryNameContainer;
     checkbox;
     categoryName;
-    mainParents = document.getElementsByClassName("category-col");
+    mainParents;
     parentId;
 
-    constructor() { }
+    constructor() {
+        this.elementCreator = new ElementCreator();
+        this.elementModifier = new ElementModifier();
+        let filterBody = document.getElementsByTagName("filter-body-part")[0];
+        this.mainParents = filterBody.querySelectorAll(".category-col");
+    }
 
     build(category, parentId) {
         this.category = category;
