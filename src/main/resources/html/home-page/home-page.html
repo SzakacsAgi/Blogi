@@ -23,171 +23,12 @@
 <body>
 <my-header></my-header>
 
-<!-- MAIN -->
 <main>
-
-    <!-- ABOUT ME PART -->
-    <div class="container about-me-part">
-        <div class="row">
-            <div class="col-auto title">Ki vagyok?</div>
-        </div>
-        <div class="row image-from-me-and-text-container">
-            <div class="col-auto image p-0 m-0 mt-3">
-                <img
-                        src="https://blissaesthetics.la/wp-content/uploads/2020/09/young-female-with-beautiful-pink-lips-posing-against-a-purple-background.jpg"
-                        alt="Image from me" class="m-0 p-0">
-            </div>
-            <div class="col text-container d-flex align-items-center">
-                <div class="text">
-                    <p>Üdvözöllek az én kis receptes kuckómban! 😊</p>
-                    <p class="mb-2">Itt, a blogomon, felfedezhetsz egy csomó ínycsiklandó receptet, amelyekkel garantáltan elvarázsolod majd a konyhádat, és azokat is akik kóstolják majd a főztöd!</p>
-                    <p class="mb-2">Jómagam már gyerekkorom óta tevékenykedem a konyhába, így több mint 30 év tapasztalattal a hátam mögött alkottam meg ezeket a recepteket.
-                        Fedezd fel velem a könnyen követhető és barátságos recepteket, melyek mögött történetek és emlékek bújnak meg.</p>
-                    <p>Kívánok sok-sok ízletes pillanatot és vidám főzőcskézést!</p>
-                    <p>Köszönöm, hogy itt vagy, bögéssz bártan a receptek között és írd le kommentbe a véleményed az egyes receptekről! :)</p>
-                    <div id="signature">Ízzel-lélekkel</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- LATEST ARTICLES SEARCH BAR AND FILTER PART -->
-    <div class="container latest-aricles-searchbar-and-filter-part mt-4">
-        <div class="row title-and-searchbar-container d-flex align-items-center">
-            <div class="col-auto title">Legújabb cikkek</div>
-            <div class="col d-flex justify-content-start searchbar-and-filter-container">
-                <div class="col-auto searchbar d-flex">
-                    <div class="d-flex">
-                        <input id="input-search" class="search-text" placeholder="A kereséshez kezdjen el írni" aria-label="Search">
-                    </div>
-                </div>
-                <div class="col-auto d-flex align-items-center filter-button-container">
-                    <button class="filter-button p-0" type="button" data-bs-toggle="collapse" data-bs-target="#filter-body"
-                            aria-expanded="false" aria-controls="collapseExample">
-                        <i class="fa-solid fa-filter fa-xl"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- NEW ARTICLE BUTTON -->
-    <div class="container new-article-button-container">
-        <a href="/blogi/new-article" class="button new-article-button">Új cikk</a>
-    </div>
-
-    <!-- FILTER BODY -->
-    <div class="collapse" id="filter-body">
-        <div class="container filter-body-part my-4">
-            <div class="filter d-flex justify-content-end mt-3">
-                <div class="filter-body-container">
-                    <div class="filter-body">
-
-                        <!-- ORDER FIELDS -->
-                        <div class="row order-fields">
-                            <div class="col order-by">
-                                <div class="order-title">Rendezés</div>
-                                <div class="form-check">
-                                    <input class="form-check-input default" type="radio" name="order-fields" id="LAST_MODIFICATION_DATE" checked>
-                                    <label class="form-check-label" for="LAST_MODIFICATION_DATE">
-                                        Módosítás dátuma
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="order-fields" id="MINUTES_TO_READ">
-                                    <label class="form-check-label" for="MINUTES_TO_READ">
-                                        Olvasási idő
-                                    </label>
-                                </div>
-                            </div>
-
-                            <!-- ORDER DIRECTION -->
-                            <div class="col order-direction">
-                                <div class="order-title">Rendezés sorrendje</div>
-                                <div class="form-check">
-                                    <input class="form-check-input default" type="radio" name="order-direction" id="DESC" checked>
-                                    <label class="form-check-label" for="DESC">
-                                        Csökkenő
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="order-direction" id="ASC">
-                                    <label class="form-check-label" for="ASC">
-                                        Növekvő
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- FILTERS -->
-                        <div class="filters">
-                            <div class="mt-2 filter-title">Szűrés</div>
-
-                            <!-- BY AUTHOR -->
-                            <div class="row filter-by-author-name mb-1 p-2">
-                                <input class="form-control" list="author-options" id="author-searc-bar" placeholder="Szerző">
-                                <datalist id="author-options">
-                                    <option value="Szakács Ágnes">
-                                    <option value="Szakács Boglárka">
-                                    <option value="Kis Béla">
-                                </datalist>
-                            </div>
-
-                            <!-- BY LAST MODIFICATION DATE -->
-                            <div class="row filter-by-last-modification-date mb-4">
-                                <div class=" filter-title">Létrehozás intervalluma</div>
-                                <div class="col start-of-the-last-modification-date">
-                                    <label for="modification-date-range-start" class="form-label mb-0 filter-title">Intervallum
-                                        kezdete</label>
-                                    <input type="date" class="form-control" id="modification-date-range-start">
-                                </div>
-                                <div class="col end-of-the-last-modification-date">
-                                    <label for="modification-date-range-end" class="form-label mb-0 filter-title">Intervallum
-                                        vége</label>
-                                    <input type="date" class="form-control" id="modification-date-range-end">
-                                </div>
-                            </div>
-
-                            <!-- BY MINUTES TO READ -->
-                            <div class="filter-by-minutes-to-read mb-2">
-                                <div class="row d-flex justify-content-between align-items-center">
-                                    <div class="col filter-title">Olvasási idő</div>
-                                    <select class="col form-select" id="minutes-to-read-select">
-                                        <option id="filterByMinutesToReadLessThan" class="default" selected>&#60;</option>
-                                        <option id="filterByMinutesToReadMoreThan">&#62;</option>
-                                        <option id="filterByMinutesToReadEqualTo">&#61;</option>
-                                    </select>
-                                    <input id="how-many-minutes" class="col minutes" type="number" placeholder="perc">
-                                </div>
-                            </div>
-
-                            <!-- BY CATEGORY -->
-                            <div class="row filter-by-category mb-3">
-                                <div class="mb-1 filter-title">Kategóriák</div>
-                                <div class="row d-flex justify-content-between" id="category-options">
-                                    <div class="col col-auto category-col"></div>
-                                    <div class="col col-auto category-col"></div>
-                                    <div class="col col-auto category-col"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- FILTER BUTTONS -->
-                        <button type="button" class="button" id="filter-search">Szűrés</button>
-                        <button type="button" class="button" id="delete-filters">Szűrők törlése</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ARTICLES PART -->
-    <div class="container articles-part mt-5">
-        <div class="articles">
-            <div class="row d-flex justify-content-center" id="article-row">
-            </div>
-        </div>
-    </div>
+    <about-me-part></about-me-part>
+    <search-bar-and-filter-part></search-bar-and-filter-part>
+    <filter-body-part></filter-body-part>
+    <new-article-button-part></new-article-button-part>
+    <article-part></article-part>
 </main>
 
 <my-footer></my-footer>
@@ -214,6 +55,11 @@
 <script src="rest-api-helper.js"></script>
 <script src="footer.js"></script>
 <script src="header.js"></script>
+<script src="about-me-part.js"></script>
+<script src="filter-body-part.js"></script>
+<script src="search-bar-and-filter-part.js"></script>
+<script src="new-article-button-part.js"></script>
+<script src="article-part.js"></script>
 <script src="rest-api-caller.js"></script>
 <script src="element-creator.js"></script>
 <script src="url-provider.js"></script>

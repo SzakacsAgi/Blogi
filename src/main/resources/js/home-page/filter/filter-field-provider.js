@@ -13,7 +13,7 @@ class FilterFieldProvider {
     }
 
     getFilteredAuthorName() {
-        return document.getElementById("author-searc-bar").value;
+        return document.getElementById("author-search-bar").value;
     }
 
     getLastModificationDateRange(value) {

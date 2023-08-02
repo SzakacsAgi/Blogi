@@ -1,0 +1,110 @@
+.search-text{
+  --search-text:0.8rem;
+}
+
+.searchbar{
+  --searchbar-padding: 0.3rem 0.5rem;
+}
+
+.filter-button-container {
+   --filter-padding-size: 0rem;
+}
+
+.title-and-searchbar-container{
+  align-items: center;
+}
+
+.title-and-searchbar-container .title {
+  padding: 0.25rem 0;
+}
+
+.searchbar-and-filter-container {
+  justify-content: start;
+  padding: 0;
+  margin: 0.2rem 0;
+}
+
+.searchbar {
+  border: 0.075rem #707070 solid;
+  border-radius: 1.8rem;
+  padding: var(--searchbar-padding);
+  margin-right: 0.6rem;
+}
+
+.search-text {
+  margin-right: 0;
+  font-family: "Minion";
+  font-size: var(--search-text);
+}
+
+.filter-button {
+  display: flex;
+  flex-direction: column;
+}
+
+.fa-filter {
+  flex-grow: 1;
+  padding: 0.38rem;
+}
+
+#input-search::placeholder{
+  color:#CB849C;
+}
+
+.filter-button-container {
+  border: 0.075rem #707070 solid;
+  border-radius: 0.6rem;
+  padding: var(--filter-padding-size);
+}
+
+.filter-button {
+  padding: 0.6rem;
+}
+
+.fa-filter::before {
+  color: #cb849c;
+  font-size: 1.2rem;
+}
+
+@media (min-width: 485px) {
+  .searchbar-and-filter-container{
+    justify-content: end !important;
+  }
+}
+
+@media (min-width: 503px) {
+  .searchbar-and-filter-container {
+    justify-content: end;
+    padding: 0;
+    margin: 0.7rem 0;
+  }
+}
+
+@media (min-width: 550px) {
+  .search-text{
+    font-size: calc(var(--search-text) + 0.2rem);
+  }
+
+  .searchbar{
+    font-size: calc(var(--searchbar-padding:) + 0.2rem)
+  }
+
+  .filter-button-container {
+    padding: calc(var(--filter-padding-size) + 0.1rem);
+  }
+}
+
+@media (min-width: 1200px) {
+  .search-text{
+    font-size: calc(var(--search-text) + 0.25rem);
+  }
+
+  .searchbar{
+    font-size: calc(var(--searchbar-padding:) + 0.25rem)
+  }
+
+  .filter-button-container {
+    padding: calc(var(--filter-padding-size) + 0.15rem);
+  }
+
+}

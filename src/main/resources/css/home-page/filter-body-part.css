@@ -1,0 +1,42 @@
+.filter-body-container {
+  padding: 1.25rem;
+  border-radius: 5%;
+  background-color: #b3b3b33e;
+  width: auto;
+}
+
+.filter-title,
+.order-title {
+  color: #cb849c;
+  font-family: "Minion";
+  font-weight: 700;
+}
+
+#author-search-bar {
+  padding-left: 0.25rem;
+}
+
+.category-options .col:first-child {
+  padding-left: 1.38rem;
+}
+
+.button {
+  border:1.2px #707070 solid;
+  border-radius: 10px;
+  padding:6px;
+  font-weight: 500;
+}
+
+.confirm-yes, #filter-search{
+  background-color:#cb849cd2;
+  color: gray;
+}
+
+.confirm-no, #delete-filters{
+  color:#CB849C;
+  margin-left: 0.62rem;
+}
+
+#delete-filters {
+  margin-left: 0.6rem;
+}

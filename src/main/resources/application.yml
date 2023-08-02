@@ -35,3 +35,4 @@ spring:
         - classpath:/images
         - classpath:/html/new-article-page
         - classpath:/css/new-article-page
+        - classpath:/js/home-page/components
