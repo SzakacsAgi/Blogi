@@ -38,7 +38,7 @@ body::before{
     left:0;
     height:100%;
     width:100%;
-    background-image: url("../../images/Sign-in-page-background.webp");
+    background-image: url("Sign-in-page-background.webp");
     background-size: cover;
     opacity:0.7;
 }
