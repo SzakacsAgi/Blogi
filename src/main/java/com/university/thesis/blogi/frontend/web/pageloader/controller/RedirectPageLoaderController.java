@@ -6,7 +6,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class RedirectPageLoaderController {
 
-    private static final String HTML_PAGE_VIEW_NAME = "redirect";
+    private static final String HTML_PAGE_VIEW_NAME = "redirector";
 
 
     @GetMapping("/redirect")

@@ -1,4 +1,4 @@
-class Redirect {
+class Redirector {
 
     tokenSaver;
 
@@ -11,8 +11,6 @@ class Redirect {
         this.redirectToTheHomePage();
     }
 
-
-
     redirectToTheHomePage(){
         let homeButton = document.getElementById("home-button");
         homeButton.click();
@@ -20,4 +18,4 @@ class Redirect {
 
 }
 
-new Redirect().redirect();
+new Redirector().redirect();

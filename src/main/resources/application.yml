@@ -36,5 +36,5 @@ spring:
         - classpath:/html/new-article-page
         - classpath:/css/new-article-page
         - classpath:/js/home-page/components
-        - classpath:/js/redirect
-        - classpath:/html/redirect
+        - classpath:/js/redirector
+        - classpath:/html/redirector
