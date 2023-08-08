@@ -11,8 +11,6 @@ class Redirect {
         this.redirectToTheHomePage();
     }
 
-
-
     redirectToTheHomePage(){
         let homeButton = document.getElementById("home-button");
         homeButton.click();
