@@ -1,3 +1,26 @@
+#title{
+  --title-font-size: 2.5rem;
+}
+
+#favicon{
+    --width: 3rem;
+    --height: 3rem;
+}
+
+#sign-in-form{
+    --sign-in-form-margin: 2rem;
+    --sign-in-form-padding: 3rem;
+}
+
+#sign-in-title, #sign-in-cause{
+    --sign-in-title-font-size: 2.5rem;
+}
+
+#social-media-buttons{
+    --social-media-buttons-margin-top: 2.5rem;
+    --social-media-buttons-margin-bottom: 5.63rem;
+}
+
 html, body{
     height: 100%;
 }
@@ -21,58 +44,63 @@ body::before{
 }
 
 main{
+    flex-direction: column;
     opacity: 0.99;
 }
 
-main div div #favicon{
-    width: 70px;
-    height: 75px;
+#favicon{
+    width: var(--width);
+    height: var(--height);
 }
 
-main #sign-in-form {
-    flex-direction: column;
-    min-height:200px;
-    background-color: white;
-    padding: 20px 70px;
-}
-
-main #sign-in-text div #title{
-    font-size: 55px;
-    margin-left: 11px;
+#title{
+    font-size: var(--title-font-size);
+    margin-left: 0.7rem;
     margin-bottom: 0;
     color: #B92941;
     font-weight: 700;
 }
 
-main #sign-in-text p{
-    font-size: 22px;
-    margin-top: 14px;
+#sign-in-cause{
+    font-size: calc(var(--sign-in-title-font-size) - 1.3rem);
+    margin-top: 0.9rem;
+    margin-bottom: 0;
+    display: none;
+}
+
+#sign-in-form{
+    flex-direction: column;
+    min-height:200px;
+    background-color: white;
+    font-weight: 700;
+    margin: var(--sign-in-form-margin);
+    padding: var(--sign-in-form-padding);
+    width: max-content;
+}
+
+#sign-in-title{
+    font-size:var(--sign-in-title-font-size);
+    display:flex;
+    justify-content: center;
     margin-bottom: 0;
 }
 
-main #sign-in-form p{
-    font-size: 50px;
-    font-weight: 700;
-    margin-top: 60px;
-    margin-bottom: 80px;
+#social-media-buttons{
+    margin-top: var(--social-media-buttons-margin-top);
+    margin-bottom: var(--social-media-buttons-margin-bottom);
 }
 
-main #sign-in-form #social-media-buttons{
-    margin: 20px 0;
-    margin-bottom: 105px;
-}
-
-main #sign-in-form #social-media-buttons a{
+#social-media-buttons a{
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-main #sign-in-form #social-media-buttons a iconify-icon{
-    margin-right: 9px;
+#social-media-buttons a iconify-icon{
+    margin-right: 0.56rem;
 }
 
-main #sign-in-form #social-media-buttons #facebook-log-in{
+#facebook-log-in{
     background-color: #1877F2;
     color: white;
 }
@@ -82,22 +110,152 @@ main #sign-in-form #social-media-buttons #github-log-in{
     color: white;
 }
 
-main #sign-in-form #social-media-buttons #google-log-in{
+#google-log-in{
     color: rgb(0, 0, 0, 0.54);
-    box-shadow: 5px 2px 9px 5px rgb(0, 0, 0, 0.25);
+    box-shadow: 0.3rem 0.4rem 0.56rem 0.3rem rgb(0, 0, 0, 0.25);
 }
 
 .social-sign-in-button{
-    padding: 15px 20px;
-    border-radius: 10px;
+    padding: 0.94rem 1.25rem;
+    border-radius: 0.62rem;
     font-weight: 600;
-    font-size: 20px;
+    font-size: 1.20rem;
     text-decoration: none;
     cursor: pointer;
-    margin-bottom: 35px;
+    margin-bottom: 2.2rem;
     transition: all .2s ease-in-out;
 }
 
 .social-sign-in-button:hover{
     transform: scale(1.1);
+}
+
+@media (min-width: 600px) {
+    #favicon{
+        width: calc(var(--width) + 0.2rem);
+        height: calc(var(--height) + 0.2rem);
+    }
+
+    #title{
+        font-size: calc(var(--title-font-size) + 0.2rem);
+    }
+
+    #sign-in-form{
+        margin: calc(var(--sign-in-form-margin) + 0.2rem);
+        padding: calc(var(--sign-in-form-padding) + 0.2rem);
+    }
+
+    #sign-in-title{
+        font-size: calc(var(--sign-in-title-font-size) + 0.2rem);
+    }
+
+    #social-media-buttons{
+        margin-top: calc(var(--social-media-buttons-margin-top) + 0.2rem);
+        margin-bottom: calc(var(--social-media-buttons-margin-bottom) + 0.2rem);
+    }
+}
+
+@media (min-width: 800px) {
+    #favicon{
+        width: calc(var(--width) + 0.3rem);
+        height: calc(var(--height) + 0.3rem);
+    }
+
+    #title{
+        font-size: calc(var(--title-font-size) + 0.3rem);
+    }
+
+    #sign-in-form{
+        margin: calc(var(--sign-in-form-margin) + 0.3rem);
+        padding: calc(var(--sign-in-form-padding) + 0.3rem);
+    }
+
+    #sign-in-title{
+        font-size: calc(var(--sign-in-title-font-size) + 0.3rem);
+    }
+
+    #social-media-buttons{
+        margin-top: calc(var(--social-media-buttons-margin-top) + 0.3rem);
+        margin-bottom: calc(var(--social-media-buttons-margin-bottom) + 0.3rem);
+    }
+}
+
+@media (min-width: 1000px) {
+    main{
+       flex-direction: unset;
+    }
+
+    #sign-in-text div{
+        justify-content: start !important;
+        margin-bottom: 0.5rem;
+    }
+
+    #sign-in-cause{
+        display: unset;
+    }
+
+    #sign-in-form{
+        margin: 0px;
+    }
+}
+
+@media (min-width: 1300px) {
+    #favicon{
+        width: calc(var(--width) + 0.4rem);
+        height: calc(var(--height) + 0.4rem);
+    }
+
+    #title{
+        font-size: calc(var(--title-font-size) + 0.4rem);
+    }
+
+    #sign-in-form{
+        padding: calc(var(--sign-in-form-padding) + 0.4rem);
+    }
+
+    #sign-in-title{
+        font-size: calc(var(--sign-in-title-font-size) + 0.4rem);
+    }
+
+    #social-media-buttons{
+        margin-top: calc(var(--social-media-buttons-margin-top) + 0.4rem);
+        margin-bottom: calc(var(--social-media-buttons-margin-bottom) + 0.4rem);
+    }
+}
+
+@media (min-width: 1500px) {
+    #favicon{
+        width: calc(var(--width) + 0.6rem);
+        height: calc(var(--height) + 0.6rem);
+    }
+
+    .container{
+        padding: 0px !important;
+    }
+
+    #sign-in-cause{
+        font-size: calc(var(--sign-in-title-font-size) - 1.1rem);
+    }
+
+    #title{
+        font-size: calc(var(--title-font-size) + 0.6rem);
+    }
+
+    #sign-in-form{
+        margin-left: 1.2rem;
+        padding: calc(var(--sign-in-form-padding) + 2rem);
+    }
+
+    #sign-in-title{
+        font-size: calc(var(--sign-in-title-font-size) + 0.6rem);
+    }
+
+    #social-media-buttons{
+        margin-top: calc(var(--social-media-buttons-margin-top) + 1rem);
+        margin-bottom: calc(var(--social-media-buttons-margin-bottom) + 1rem);
+    }
+
+    .social-sign-in-button{
+        margin-bottom: 3rem;
+    }
 }
