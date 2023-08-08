@@ -2,10 +2,16 @@ class URLProvider {
 
     #serverOrigin;
     #apiPrefix;
+    #authenticationServerOrigin;
+    #authenticationApi;
+    #redirectUri;
 
     constructor() {
         this.#serverOrigin = window.location.origin;
         this.#apiPrefix = "/blogi";
+        this.#authenticationServerOrigin = "http://localhost:8081/";
+        this.#authenticationApi = "blogi/authentication/oauth2/authorize/";
+        this.#redirectUri = "?redirect_uri=http://localhost:8080/blogi/redirect";
     }
 
     getArticlePageURL() {
@@ -22,6 +28,10 @@ class URLProvider {
 
     getBaseURL() {
         return this.#serverOrigin + this.#apiPrefix;
+    }
+
+    getSignInUrl(socialMediaName){
+        return this.#authenticationServerOrigin + this.#authenticationApi + socialMediaName + this.#redirectUri;
     }
 
 }

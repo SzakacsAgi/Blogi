@@ -105,6 +105,11 @@ main{
     color: white;
 }
 
+main #sign-in-form #social-media-buttons #github-log-in{
+    background-color: #24292f;
+    color: white;
+}
+
 #google-log-in{
     color: rgb(0, 0, 0, 0.54);
     box-shadow: 0.3rem 0.4rem 0.56rem 0.3rem rgb(0, 0, 0, 0.25);
