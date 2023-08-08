@@ -8,23 +8,16 @@ class LogInPageEvents {
 
     registerEvents(){
         window.addEventListener('load', () => {
-            this.addGoogleSignInButtonEventListener();
+            //this.addSocialButtonEventListener("facebook");
+            this.addSocialButtonEventListener("google");
+            this.addSocialButtonEventListener("github");
         })
     }
 
-    addGoogleSignInButtonEventListener(){
-        let googleButton = document.getElementById("google-log-in");
-        googleButton.addEventListener("click", () => {
-            googleButton.href = this.urlProvider.getGoogleSignInUrl();
-            googleButton.click();
-        })
-    }
-
-    addGoogleSignInButtonEventListener(){
-        let googleButton = document.getElementById("google-log-in");
-        googleButton.addEventListener("click", () => {
-            googleButton.href = this.urlProvider.getGoogleSignInUrl();
-            googleButton.click();
+    addSocialButtonEventListener(socialMediaName){
+        let socialMediaButton = document.getElementById(socialMediaName+"-log-in");
+        socialMediaButton.addEventListener("click", () => {
+            socialMediaButton.href = this.urlProvider.getSignInUrl(socialMediaName);
         })
     }
 }

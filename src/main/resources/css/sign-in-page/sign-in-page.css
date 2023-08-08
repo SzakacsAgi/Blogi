@@ -77,6 +77,11 @@ main #sign-in-form #social-media-buttons #facebook-log-in{
     color: white;
 }
 
+main #sign-in-form #social-media-buttons #github-log-in{
+    background-color: #24292f;
+    color: white;
+}
+
 main #sign-in-form #social-media-buttons #google-log-in{
     color: rgb(0, 0, 0, 0.54);
     box-shadow: 5px 2px 9px 5px rgb(0, 0, 0, 0.25);
