@@ -1,4 +1,5 @@
 class MyHeader extends HTMLElement {
+
     constructor() {
         super();
         this.template = document.createElement("template");
@@ -30,6 +31,7 @@ class MyHeader extends HTMLElement {
     async getHeaderCssContent() {
         return await fetch('header.css').then(response => response.text());
     }
+
 }
 
 customElements.define("my-header", MyHeader);

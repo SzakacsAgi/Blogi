@@ -38,6 +38,7 @@ class EventListeners {
             this.storedDataProvider.setItemToLocalStorage("articleId", id);
         })
     }
+
     addSearchBarListener(){
         let articleSearcher = new ArticleSearcher();
         let searchBar = articleSearcher.searchBar;
@@ -50,13 +51,4 @@ class EventListeners {
         });
     }
 
-
-}
-
-let eventListeners = new EventListeners();
-
-window.onload = function afterWebPageLoad() {
-    setTimeout(function(){
-        eventListeners.registerEventListeners();
-    }, 1000);
 }

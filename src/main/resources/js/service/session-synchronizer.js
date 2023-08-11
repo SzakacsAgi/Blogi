@@ -12,7 +12,7 @@ class SessionSynchronizer {
         Object.entries(localStorage).forEach(([key, value]) => {
             sessionStorage.setItem(key, value);
         })
-        this.storedDataProvider.clearLocalStorage();
+        this.storedDataProvider.clearSpecificItemFromLocalStorage("articleId");
     }
 
 }

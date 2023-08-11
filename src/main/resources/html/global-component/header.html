@@ -3,7 +3,18 @@
         <a href="/blogi/home" id="logo-link">
             <div class="col logo">Blogi</div>
         </a>
-        <a href="/blogi/sign-in" class="col sign-in-button welcome-text">Bejelentkezés</a>
+        <a href="/blogi/sign-in" class="col sign-in-button hide">Bejelentkezés</a>
+        <div class="d-flex align-items-center hide" id="signed-in-user">
+            <p class="welcome-text hide">Üdvözöllek <span id="username"></span>!</p>
+            <div class="d-flex align-items-center">
+                <img id="profile-picture">
+                <button class="dropdown-toggle d-flex align-items-center dropdown-icon" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+                <ul class="dropdown-menu button">
+                    <li><a class="dropdown-item" href="" id="sign-out">Kijelentkezés</a></li>
+                </ul>
+            </div>
+
+        </div>
     </div>
     <hr class="header-nav-separator mt-0 mb-0">
     <nav class="navbar navbar-expand-lg p-0">

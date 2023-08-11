@@ -11,6 +11,27 @@
   --nav-link-font-size: 1rem;
 }
 
+.welcome-text{
+  --welcome-text-font-size:1rem;
+}
+
+#profile-picture{
+  --profile-picture-width: 2rem;
+  --profile-picture-height: 2rem;
+}
+
+.dropdown-item{
+  --dropdown-item-font-size: 0.8rem;
+}
+
+.dropdown-icon{
+  --dropdown-icon-font-size: 0.94rem;
+}
+
+.dropdown-menu{
+  --dropdown-menu-margin-top: 1.05rem;
+}
+
 .header-content {
   display: grid;
   align-items: center;
@@ -20,17 +41,42 @@
   padding: 0.4rem;
 }
 
-.header-content .logo {
-  grid-column: 2;
-  align-self: start;
-  justify-self: center;
-}
-
 .logo {
   font-size: var(--logo-font-size);
   font-weight: 700;
   color: #cb849c;
   padding: 0.3rem 0;
+  grid-column: 2;
+  align-self: start;
+  justify-self: center;
+}
+
+.welcome-text{
+  font-size: var(--welcome-text-font-size);
+  margin-bottom: 0;
+  color: #CB849C;
+  font-weight: 763;
+}
+
+#profile-picture{
+  height: var(--profile-picture-height);
+  width: var(--profile-picture-width);
+  border-radius: 1.25rem;
+  margin:0 0.4rem;
+}
+
+.dropdown-menu{
+  margin-top: var(--dropdown-menu-margin-top) !important;
+  min-width: fit-content;
+}
+
+.dropdown-item{
+  font-size: var(--dropdown-item-font-size);
+  padding-left: 0.3rem;
+}
+
+.dropdown-icon{
+  font-size:var(--dropdown-icon-font-size);
 }
 
 #logo-link {
@@ -98,6 +144,23 @@
      font-size: var(--nav-link-font-size);
      padding: 0.5rem 0.8rem;
    }
+
+   #profile-picture{
+     height: calc(var(--profile-picture-height) + 0.2rem);
+     width: calc(var(--profile-picture-width) + 0.2rem);
+   }
+
+   .dropdown-item{
+     font-size:calc(var(--dropdown-item-font-size) + 0.1rem);
+   }
+
+   .dropdown-toggle::after{
+     font-size: calc(var(--dropdown-icon-font-size) + 0.1rem);
+   }
+
+   .dropdown-menu{
+     margin-top: calc(var(--dropdown-menu-margin-top) + 0.1rem) !important;
+   }
 }
 
 @media (min-width: 992px) {
@@ -107,6 +170,27 @@
 
   .sign-in-button {
     font-size: calc(var(--sign-in-button-font-size) + 0.3rem);
+  }
+
+  .welcome-text{
+    display: block !important;
+  }
+
+  #profile-picture{
+    height: calc(var(--profile-picture-height) + 0.45rem);
+    width: calc(var(--profile-picture-width) + 0.45rem);
+  }
+
+  .dropdown-item{
+    font-size:calc(var(--dropdown-item-font-size) + 0.2rem);
+  }
+
+  .dropdown-toggle::after{
+     font-size: calc(var(--dropdown-icon-font-size) + 0.3rem);
+  }
+
+  .dropdown-menu{
+    margin-top: calc(var(--dropdown-menu-margin-top) + 0.3rem) !important;
   }
 }
 
@@ -119,7 +203,29 @@
     font-size: calc(var(--sign-in-button-font-size) + 0.37rem);
   }
 
+  .welcome-text{
+    font-size:calc(var(--welcome-text-font-size) + 0.05rem);
+  }
+
+  #profile-picture{
+    height: calc(var(--profile-picture-height) + 0.6rem);
+    width: calc(var(--profile-picture-width) + 0.6rem);
+  }
+
+  .dropdown-item{
+    font-size:calc(var(--dropdown-item-font-size) + 0.3rem);
+  }
+
+  .dropdown-toggle::after{
+     font-size: calc(var(--dropdown-icon-font-size) + 0.4rem);
+  }
+
+  .dropdown-menu{
+    margin-top: calc(var(--dropdown-menu-margin-top) + 0.4rem) !important;
+  }
+
   .navbar-collapse ul li a{
      font-size: calc(var(--nav-link-font-size) + 0.1rem);
   }
+
 }

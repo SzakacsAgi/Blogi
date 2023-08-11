@@ -6,11 +6,16 @@ main #article-title{
     color: #707070;
     -webkit-text-stroke: 1px black;
     filter: drop-shadow(0 1.3mm 1px #d3d3d3);
+    text-align:center;
+}
+
+.hide{
+    display: none;
 }
 
 main #article-image{
     height: 660px;
-    background-size: 100% 100%;
+    background-size: 100% 150%;
     background-position: center;
     background-repeat: no-repeat;
 }

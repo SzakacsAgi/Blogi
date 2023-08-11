@@ -58,3 +58,45 @@ class ArticleRESTAPICaller extends RESTAPICaller {
         super('http://localhost:8082/blogi/', 'article');
     }
 }
+
+class AuthenticationRESTAPICaller extends RESTAPICaller {
+
+    tokenProvider;
+    userToken;
+    header;
+
+    constructor() {
+        super('http://localhost:8081/blogi/', 'authentication');
+        this.tokenProvider = new TokenProvider();
+        this.userToken = this.tokenProvider.getUserTokenAfterSignIn();
+        this.header = { "Authorization":this.userToken };
+    }
+
+    async detectWhoIAm(){
+        let errorChecker = new RESTAPIErrorChecker();
+
+        return await fetch(this.url + "/user/me", { method: 'GET', headers: this.header })
+           .then(errorChecker.check)
+           .then(response => response.json())
+           .then(function (json) {
+              return  json;
+           })
+           .catch(function (error) {
+              return { status: error.status };
+           });
+    }
+
+    async detectAuthenticationStatus(){
+        let errorChecker = new RESTAPIErrorChecker();
+
+            return await fetch(this.url + "/user/me", { method: 'GET', headers: this.header })
+                .then(errorChecker.check)
+                .then(response => response.json())
+                .then(function (json) {
+                    return 200;
+                })
+                .catch(function (error) {
+                    return { status: error.status };
+                });
+    };
+}
