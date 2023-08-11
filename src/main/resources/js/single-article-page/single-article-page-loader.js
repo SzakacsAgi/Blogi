@@ -16,31 +16,27 @@ class SingleArticlePageLoader {
     }
 
     async load() {
-            await this.authenticationStatusTracker.detectAuthenticationStatus();
-if(this.storedDataProvider.getItemFromSessionStorage("authenticated") === "true"){
-                    await this.loadAuthenticatedUserView();
-                }
-                else{
-                    this.loadUnAuthenticatedUserView()
-                }
+        await this.authenticationStatusTracker.detectAuthenticationStatus();
+        if(this.storedDataProvider.getItemFromSessionStorage("authenticated") === "true"){
+            await this.loadAuthenticatedUserView();
+        }
+        else{
+            this.loadUnAuthenticatedUserView()
+        }
         this.singleArticleLoader.load();
-
-
     }
 
-     async loadAuthenticatedUserView(){
-            console.log("AUTHENTICATED");
-             await this.authenticationStatusTracker.storeUserInfoAboutMe();
-             this.signedInUserViewDisplayer.displayAuthenticatedHeader();
-        }
+    async loadAuthenticatedUserView(){
+        await this.authenticationStatusTracker.storeUserInfoAboutMe();
+        this.signedInUserViewDisplayer.displayAuthenticatedHeader();
+    }
 
-         loadUnAuthenticatedUserView(){
-                     console.log("NOT AUTHENTICATED");
-
-             this.signedInUserViewDisplayer.displayUnAuthenticatedHeader();
-        }
+    loadUnAuthenticatedUserView(){
+        this.signedInUserViewDisplayer.displayUnAuthenticatedHeader();
+    }
 
 }
- window.addEventListener('load', async () => {
+
+window.addEventListener('load', async () => {
     new SingleArticlePageLoader().load();
- })
+})
