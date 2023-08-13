@@ -25,7 +25,6 @@ class SingleArticlePageLoader {
         else{
             this.loadUnAuthenticatedUserView()
         }
-
         this.singleArticleLoader.load();
     }
 
@@ -41,6 +40,7 @@ class SingleArticlePageLoader {
     }
 
 }
- window.addEventListener('load', async () => {
+
+window.addEventListener('load', async () => {
     new SingleArticlePageLoader().load();
  })
