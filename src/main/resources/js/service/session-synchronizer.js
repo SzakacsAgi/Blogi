@@ -1,18 +1,22 @@
 class SessionSynchronizer {
 
-    storedDataProvider = new StoredDataProvider();
+    storedDataProvider;
 
-    constructor() { }
+    constructor() {
+         this.storedDataProvider = new StoredDataProvider();
+     }
 
     sync() {
-        this.copyStoredDataToSessionStorage();
+        this.copyArticleIdToSessionStorage();
     }
 
-    copyStoredDataToSessionStorage() {
-        Object.entries(localStorage).forEach(([key, value]) => {
-            sessionStorage.setItem(key, value);
-        })
-        this.storedDataProvider.clearSpecificItemFromLocalStorage("articleId");
+    copyArticleIdToSessionStorage() {
+        let firstArticlePageLoad = this.storedDataProvider.getItemFromLocalStorage("articleId") !== null;
+
+        if(firstArticlePageLoad){
+            sessionStorage.setItem("articleId", this.storedDataProvider.getItemFromLocalStorage("articleId"));
+            this.storedDataProvider.clearSpecificItemFromLocalStorage("articleId");
+        }
     }
 
 }

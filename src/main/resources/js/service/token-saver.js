@@ -9,7 +9,6 @@ class TokenSaver {
     }
 
     saveUserToken(){
-        this.storedDataProvider.setItemToSessionStorage("userToken", this.tokenProvider.getUserTokenDuringRedirect());
         this.storedDataProvider.setItemToLocalStorage("userToken", this.tokenProvider.getUserTokenDuringRedirect());
     }
 

@@ -12,7 +12,7 @@ class TokenProvider {
     }
 
     getUserTokenAfterSignIn(){
-        return this.storedDataProvider.getItemFromSessionStorage("userToken");
+        return this.storedDataProvider.getItemFromLocalStorage("userToken");
     }
 
 }

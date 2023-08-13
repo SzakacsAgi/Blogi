@@ -10,7 +10,7 @@ main #article-title{
 }
 
 .hide{
-    display: none;
+    display: none !important;
 }
 
 main #article-image{

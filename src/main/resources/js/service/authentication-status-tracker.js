@@ -14,14 +14,13 @@ class AuthenticationStatusTracker {
         this.tokenSaver.saveAuthenticatedToken(isAuthenticated);
     }
 
-    async storeUserInfoAboutMe(){
-        let me = await this.authenticationRESTAPICaller.detectWhoIAm();
-        Me.id = me.userId;
-        Me.name = me.name;
-        Me.email = me.email;
-        Me.imageURL = me.imageURL;
-        Me.role = me.role;
-        Me.isAdmin = me.role === "ADMIN";
+    async storeUserInfoAboutAuthenticatedUser(){
+        let authenticatedUser = await this.authenticationRESTAPICaller.getAuthenticatedUser();
+        AuthenticatedUserInfo.id = authenticatedUser.userId;
+        AuthenticatedUserInfo.name = authenticatedUser.name;
+        AuthenticatedUserInfo.email = authenticatedUser.email;
+        AuthenticatedUserInfo.imageURL = authenticatedUser.imageURL;
+        AuthenticatedUserInfo.isAdmin = authenticatedUser.role === "ADMIN";
     }
 
 }

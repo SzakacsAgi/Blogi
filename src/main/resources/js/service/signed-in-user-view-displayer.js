@@ -21,8 +21,8 @@ class SignedInUserViewDisplayer{
 
     async displayUserInfoInHeader(){
         let userNameElement = this.header.querySelector("#username");
-        this.elementModifier.setElementText(userNameElement, Me.name);
+        this.elementModifier.setElementText(userNameElement, AuthenticatedUserInfo.name);
         let imageElement = this.header.querySelector("#profile-picture");
-        this.elementModifier.setElementAttributes(imageElement, {src:Me.imageURL});
+        this.elementModifier.setElementAttributes(imageElement, {src:AuthenticatedUserInfo.imageURL});
     }
 }

@@ -72,7 +72,7 @@ class AuthenticationRESTAPICaller extends RESTAPICaller {
         this.header = { "Authorization":this.userToken };
     }
 
-    async detectWhoIAm(){
+    async getAuthenticatedUser(){
         let errorChecker = new RESTAPIErrorChecker();
 
         return await fetch(this.url + "/user/me", { method: 'GET', headers: this.header })
