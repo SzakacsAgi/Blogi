@@ -52,4 +52,8 @@ class URLProvider {
         return this.#articleServerOrigin + this.#articleApiPrefix;
      }
 
+     getLogOutURL(){
+        return this.getBaseAuthenticationURL() + "/signout";
+     }
+
 }
