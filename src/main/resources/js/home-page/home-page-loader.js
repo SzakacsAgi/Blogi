@@ -39,7 +39,6 @@ class HomePageLoader {
          this.signedInUserViewDisplayer.displayUnAuthenticatedHeader();
          this.displayHomePageDynamicComponents.display();
          this.eventListeners.registerEventListeners();
-         this.eventListeners.registerEventListeners();
          this.headerEventListeners.registerEventListeners();
     }
 

@@ -1,4 +1,4 @@
-class MyHeader extends HTMLElement {
+class BlogiHeader extends HTMLElement {
 
     constructor() {
         super();
@@ -34,4 +34,4 @@ class MyHeader extends HTMLElement {
 
 }
 
-customElements.define("my-header", MyHeader);
+customElements.define("blogi-header", BlogiHeader);

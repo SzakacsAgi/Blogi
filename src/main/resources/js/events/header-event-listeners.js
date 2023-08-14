@@ -4,7 +4,7 @@ class HeaderEventListeners{
     storedDataProvider;
 
     constructor(){
-        this.header = document.getElementsByTagName("my-header")[0];
+        this.header = document.getElementsByTagName("blogi-header")[0];
         this.storedDataProvider = new StoredDataProvider();
     }
 
@@ -16,9 +16,13 @@ class HeaderEventListeners{
         let signInButton = this.header.querySelector(".sign-in-button");
         signInButton.addEventListener("click", () => {
             let locationPathname = window.location.pathname;
-            let pageToRedirect = locationPathname.substr(locationPathname.lastIndexOf("/")+1);
+            let pageToRedirect = this.getPageToRedirect(locationPathname);
             this.storedDataProvider.setItemToLocalStorage("pageToRedirect", pageToRedirect);
         })
+    }
+
+    getPageToRedirect(locationPathname){
+        return locationPathname.substr(locationPathname.lastIndexOf("/")+1);
     }
 
 }

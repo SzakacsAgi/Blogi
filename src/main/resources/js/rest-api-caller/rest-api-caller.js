@@ -1,11 +1,9 @@
 class RESTAPICaller {
 
-    baseURL;
     url;
 
-    constructor(baseURL, resourceName) {
-        this.baseURL = baseURL;
-        this.url = this.baseURL + resourceName;
+    constructor(url) {
+        this.url = url;
     }
 
     async sendGETSingleRequest(id) {
@@ -54,19 +52,24 @@ class RESTAPICaller {
 
 class ArticleRESTAPICaller extends RESTAPICaller {
 
-    constructor() {
-        super('http://localhost:8082/blogi/', 'article');
+    urlProvider;
+
+    constructor(url) {
+        super(url);
+        this.urlProvider = new URLProvider();
     }
 }
 
 class AuthenticationRESTAPICaller extends RESTAPICaller {
 
+    urlProvider;
     tokenProvider;
     userToken;
     header;
 
-    constructor() {
-        super('http://localhost:8081/blogi/', 'authentication');
+    constructor(url) {
+        super(url);
+        this.urlProvider = new URLProvider();
         this.tokenProvider = new TokenProvider();
         this.userToken = this.tokenProvider.getUserTokenAfterSignIn();
         this.header = { "Authorization":this.userToken };

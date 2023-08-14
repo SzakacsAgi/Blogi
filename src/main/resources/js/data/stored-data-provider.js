@@ -31,7 +31,7 @@ class StoredDataProvider {
     }
 
      clearSpecificItemFromSessionStorage(item){
-        sessionStorage.removeItem(item);
+         sessionStorage.removeItem(item);
     }
 
 }

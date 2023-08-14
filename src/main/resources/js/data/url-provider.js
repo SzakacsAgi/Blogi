@@ -1,45 +1,55 @@
 class URLProvider {
 
-    #serverOrigin;
-    #apiPrefix;
+    #frontendServerOrigin;
+    #frontendApiPrefix;
     #authenticationServerOrigin;
     #authenticationApi;
     #redirectUri;
     #authenticationApiPrefix;
-    #userApi;
+    #articleServerOrigin;
+    #articleApiPrefix;
 
     constructor() {
-        this.#serverOrigin = window.location.origin;
-        this.#apiPrefix = "/blogi";
+        this.#frontendServerOrigin = window.location.origin;
+        this.#frontendApiPrefix = "/blogi";
         this.#authenticationServerOrigin = "http://localhost:8081/";
-        this.#authenticationApiPrefix = "blogi/authentication/"
-        this.#authenticationApi = "oauth2/authorize/";
+        this.#authenticationApiPrefix = "blogi/authentication"
+        this.#authenticationApi = "/oauth2/authorize/";
         this.#redirectUri = "?redirect_uri=http://localhost:8080/blogi/redirect";
-        this.#userApi = "user/me"
+        this.#articleServerOrigin = "http://localhost:8082/";
+        this.#articleApiPrefix = "blogi/article";
     }
 
     getArticlePageURL() {
-        return this.getBaseURL() + "/article";
+        return this.getBaseFrontendURL() + "/article";
     }
 
     getHomePageURL() {
-        return this.getBaseURL() + "/home";
+        return this.getBaseFrontendURL() + "/home";
     }
 
     getArticleEditorURL() {
-        return this.getBaseURL() + "/editor";
+        return this.getBaseFrontendURL() + "/editor";
     }
 
-    getBaseURL() {
-        return this.#serverOrigin + this.#apiPrefix;
+    getBaseFrontendURL() {
+        return this.#frontendServerOrigin + this.#frontendApiPrefix;
     }
 
-    getSignInUrl(socialMediaName){
-        return this.#authenticationServerOrigin + this.#authenticationApiPrefix + this.#authenticationApi + socialMediaName + this.#redirectUri;
+    getBaseAuthenticationURL(){
+        return this.#authenticationServerOrigin + this.#authenticationApiPrefix;
     }
 
-    getSignedInUserInformation(){
-        return this.#authenticationServerOrigin + this.#authenticationApiPrefix + this.#userApi;
+    getAuthenticationURL(socialMediaName){
+        return this.getBaseAuthenticationURL() + this.#authenticationApi + socialMediaName + this.#redirectUri;
     }
+
+    getAuthenticatedUserInformationURL(){
+        return this.getBaseAuthenticationURL() + "user/me";
+    }
+
+     getBaseArticleURL(){
+        return this.#articleServerOrigin + this.#articleApiPrefix;
+     }
 
 }

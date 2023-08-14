@@ -7,10 +7,10 @@ class SessionSynchronizer {
      }
 
     sync() {
-        this.copyArticleIdToSessionStorage();
+        this.moveArticleIdToSessionStorage();
     }
 
-    copyArticleIdToSessionStorage() {
+    moveArticleIdToSessionStorage() {
         let firstArticlePageLoad = this.storedDataProvider.getItemFromLocalStorage("articleId") !== null;
 
         if(firstArticlePageLoad){

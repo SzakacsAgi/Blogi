@@ -2,17 +2,17 @@ class Redirector {
 
     tokenSaver;
     storedDataProvider;
-    whichPageICame;
+    redirectTo;
 
     constructor(){
         this.tokenSaver = new TokenSaver();
         this.storedDataProvider = new StoredDataProvider();
-        this.whichPageICame = this.storedDataProvider.getItemFromLocalStorage("pageToRedirect");
+        this.redirectTo = this.storedDataProvider.getItemFromLocalStorage("pageToRedirect");
     }
 
     redirect(){
         this.tokenSaver.saveUserToken();
-        switch(this.whichPageICame){
+        switch(this.redirectTo){
             case 'home': this.redirectToPage("home");
                 break;
             case 'article': this.redirectToPage("article");

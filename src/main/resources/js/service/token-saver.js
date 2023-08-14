@@ -12,8 +12,4 @@ class TokenSaver {
         this.storedDataProvider.setItemToLocalStorage("userToken", this.tokenProvider.getUserTokenDuringRedirect());
     }
 
-    saveAuthenticatedToken(authenticated){
-        this.storedDataProvider.setItemToSessionStorage("authenticated", authenticated);
-    }
-
 }

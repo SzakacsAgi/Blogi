@@ -1,17 +1,21 @@
 class AuthenticationStatusTracker {
 
+    urlProvider;
     authenticationRestApiCaller;
     tokenSaver;
+    storedDataProvider;
 
     constructor(){
-        this.authenticationRESTAPICaller = new AuthenticationRESTAPICaller();
+        this.urlProvider = new URLProvider();
+        this.authenticationRESTAPICaller = new AuthenticationRESTAPICaller(this.urlProvider.getBaseAuthenticationURL());
         this.tokenSaver = new TokenSaver();
+        this.storedDataProvider = new StoredDataProvider();
     }
 
     async detectAuthenticationStatus(){
         let statusCode = await this.authenticationRESTAPICaller.detectAuthenticationStatus();
         let isAuthenticated = statusCode === 200 ? true : false;
-        this.tokenSaver.saveAuthenticatedToken(isAuthenticated);
+        this.storedDataProvider.setItemToSessionStorage("authenticated", isAuthenticated);
     }
 
     async storeUserInfoAboutAuthenticatedUser(){

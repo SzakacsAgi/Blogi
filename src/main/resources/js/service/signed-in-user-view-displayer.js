@@ -5,7 +5,7 @@ class SignedInUserViewDisplayer{
 
     constructor(){
         this.elementModifier = new ElementModifier();
-        this.header = document.getElementsByTagName("my-header")[0];
+        this.header = document.getElementsByTagName("blogi-header")[0];
     }
 
     displayUnAuthenticatedHeader(){
