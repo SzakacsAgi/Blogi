@@ -5,7 +5,6 @@ class FilterBodyPart extends HTMLElement {
         this.template = document.createElement("template");
         this.cssStyleSheet = document.createElement("style");
         this.displayFilterBodyPart();
-        console.log("Filter-body");
     }
 
 

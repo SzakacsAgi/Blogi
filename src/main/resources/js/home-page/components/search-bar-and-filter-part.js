@@ -5,7 +5,6 @@ class SearchBarAndFilterPart extends HTMLElement {
         this.template = document.createElement("template");
         this.cssStyleSheet = document.createElement("style");
         this.displaySearchBarAndFilterPart();
-        console.log("SearchBarAndFilterPart")
     }
 
     async displaySearchBarAndFilterPart(){

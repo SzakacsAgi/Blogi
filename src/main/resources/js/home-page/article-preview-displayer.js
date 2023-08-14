@@ -1,11 +1,18 @@
 class ArticlePreviewDisplayer {
 
-    queryParams = new FilterMethods().getFilterQueryParams();
-    articlePreviewBuilder = new ArticlePreviewBuilder();
-    caller = new ArticleRESTAPICaller();
-    latestArticlesNumber = 6;
+    urlProvider;
+    queryParams;
+    articlePreviewBuilder;
+    caller;
+    latestArticlesNumber;
 
-    constructor() { }
+    constructor() {
+        this.urlProvider = new URLProvider();
+        this.queryParams = new FilterMethods().getFilterQueryParams();
+        this.articlePreviewBuilder = new ArticlePreviewBuilder();
+        this.caller = new ArticleRESTAPICaller(this.urlProvider.getBaseArticleURL());
+        this.latestArticlesNumber = 6;
+    }
 
     async getArticles(queryParams = {}) {
         let response = await this.caller.sendGETAllRequest(queryParams);

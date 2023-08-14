@@ -1,19 +1,29 @@
 class Redirector {
 
     tokenSaver;
+    storedDataProvider;
+    redirectTo;
 
     constructor(){
         this.tokenSaver = new TokenSaver();
+        this.storedDataProvider = new StoredDataProvider();
+        this.redirectTo = this.storedDataProvider.getItemFromLocalStorage("pageToRedirect");
     }
 
     redirect(){
         this.tokenSaver.saveUserToken();
-        this.redirectToTheHomePage();
+        switch(this.redirectTo){
+            case 'home': this.redirectToPage("home");
+                break;
+            case 'article': this.redirectToPage("article");
+                break;
+        }
+        this.storedDataProvider.clearSpecificItemFromLocalStorage("pageToRedirect");
     }
 
-    redirectToTheHomePage(){
-        let homeButton = document.getElementById("home-button");
-        homeButton.click();
+    redirectToPage(page){
+        let pageButtonRedirector = document.getElementById(page+"-button");
+        pageButtonRedirector.click();
     }
 
 }

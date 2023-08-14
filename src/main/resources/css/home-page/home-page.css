@@ -12,6 +12,10 @@ main {
   font-size: var(--title-font-size);
 }
 
+.hide{
+    display: none !important;
+}
+
 @media (min-width: 550px) {
   .title{
     font-size: calc(var(--title-font-size) + 0.2rem);

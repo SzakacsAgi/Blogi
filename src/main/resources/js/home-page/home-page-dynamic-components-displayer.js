@@ -22,8 +22,3 @@ class HomePageDynamicComponentsDisplayer {
         }
     }
 }
-
-window.addEventListener('load', () => {
-    let displayHomePageDynamicComponents = new HomePageDynamicComponentsDisplayer();
-    displayHomePageDynamicComponents.display();
-})

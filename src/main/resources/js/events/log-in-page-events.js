@@ -17,7 +17,7 @@ class LogInPageEvents {
     addSocialButtonEventListener(socialMediaName){
         let socialMediaButton = document.getElementById(socialMediaName+"-log-in");
         socialMediaButton.addEventListener("click", () => {
-            socialMediaButton.href = this.urlProvider.getSignInUrl(socialMediaName);
+            socialMediaButton.href = this.urlProvider.getAuthenticationURL(socialMediaName);
         })
     }
 }

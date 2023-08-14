@@ -1,11 +1,9 @@
 class RESTAPICaller {
 
-    baseURL;
     url;
 
-    constructor(baseURL, resourceName) {
-        this.baseURL = baseURL;
-        this.url = this.baseURL + resourceName;
+    constructor(url) {
+        this.url = url;
     }
 
     async sendGETSingleRequest(id) {
@@ -54,7 +52,54 @@ class RESTAPICaller {
 
 class ArticleRESTAPICaller extends RESTAPICaller {
 
-    constructor() {
-        super('http://localhost:8082/blogi/', 'article');
+    urlProvider;
+
+    constructor(url) {
+        super(url);
+        this.urlProvider = new URLProvider();
     }
+}
+
+class AuthenticationRESTAPICaller extends RESTAPICaller {
+
+    urlProvider;
+    tokenProvider;
+    userToken;
+    header;
+
+    constructor(url) {
+        super(url);
+        this.urlProvider = new URLProvider();
+        this.tokenProvider = new TokenProvider();
+        this.userToken = this.tokenProvider.getUserTokenAfterSignIn();
+        this.header = { "Authorization":this.userToken };
+    }
+
+    async getAuthenticatedUser(){
+        let errorChecker = new RESTAPIErrorChecker();
+
+        return await fetch(this.urlProvider.getAuthenticatedUserInformationURL(), { method: 'GET', headers: this.header })
+           .then(errorChecker.check)
+           .then(response => response.json())
+           .then(function (json) {
+              return  json;
+           })
+           .catch(function (error) {
+              return { status: error.status };
+           });
+    }
+
+    async detectAuthenticationStatus(){
+        let errorChecker = new RESTAPIErrorChecker();
+
+            return await fetch(this.urlProvider.getAuthenticatedUserInformationURL(), { method: 'GET', headers: this.header })
+                .then(errorChecker.check)
+                .then(response => response.json())
+                .then(function (json) {
+                    return 200;
+                })
+                .catch(function (error) {
+                    return { status: error.status };
+                });
+    };
 }

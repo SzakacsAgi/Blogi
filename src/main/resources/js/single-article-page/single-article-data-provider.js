@@ -1,7 +1,11 @@
 class SingleArticleDataProvider {
 
+     urlProvider;
+     caller;
+
       constructor() {
-        this.caller = new ArticleRESTAPICaller();
+        this.urlProvider = new URLProvider();
+        this.caller = new ArticleRESTAPICaller(this.urlProvider.getBaseArticleURL());
       }
 
       async createArticle(articleId) {

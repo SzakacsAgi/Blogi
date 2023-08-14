@@ -26,4 +26,12 @@ class StoredDataProvider {
         sessionStorage.clear();
     }
 
+    clearSpecificItemFromLocalStorage(item){
+        localStorage.removeItem(item);
+    }
+
+     clearSpecificItemFromSessionStorage(item){
+         sessionStorage.removeItem(item);
+    }
+
 }

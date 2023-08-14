@@ -8,8 +8,8 @@ class TokenSaver {
         this.tokenProvider = new TokenProvider();
     }
 
-     saveUserToken(){
-        this.storedDataProvider.setItemToLocalStorage("userToken", this.tokenProvider.getUserToken())
-     }
+    saveUserToken(){
+        this.storedDataProvider.setItemToLocalStorage("userToken", this.tokenProvider.getUserTokenDuringRedirect());
+    }
 
 }
