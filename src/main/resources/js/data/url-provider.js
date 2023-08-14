@@ -45,7 +45,7 @@ class URLProvider {
     }
 
     getAuthenticatedUserInformationURL(){
-        return this.getBaseAuthenticationURL() + "user/me";
+        return this.getBaseAuthenticationURL() + "/user/me";
     }
 
      getBaseArticleURL(){

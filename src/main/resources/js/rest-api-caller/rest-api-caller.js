@@ -78,7 +78,7 @@ class AuthenticationRESTAPICaller extends RESTAPICaller {
     async getAuthenticatedUser(){
         let errorChecker = new RESTAPIErrorChecker();
 
-        return await fetch(this.url + "/user/me", { method: 'GET', headers: this.header })
+        return await fetch(this.urlProvider.getAuthenticatedUserInformationURL(), { method: 'GET', headers: this.header })
            .then(errorChecker.check)
            .then(response => response.json())
            .then(function (json) {
@@ -92,7 +92,7 @@ class AuthenticationRESTAPICaller extends RESTAPICaller {
     async detectAuthenticationStatus(){
         let errorChecker = new RESTAPIErrorChecker();
 
-            return await fetch(this.url + "/user/me", { method: 'GET', headers: this.header })
+            return await fetch(this.urlProvider.getAuthenticatedUserInformationURL(), { method: 'GET', headers: this.header })
                 .then(errorChecker.check)
                 .then(response => response.json())
                 .then(function (json) {
