@@ -101,5 +101,19 @@ class AuthenticationRESTAPICaller extends RESTAPICaller {
                 .catch(function (error) {
                     return { status: error.status };
                 });
-    };
+    }
+
+    async logOut(){
+        let errorChecker = new RESTAPIErrorChecker();
+
+        return await fetch(this.urlProvider.getLogOutURL(), { method: 'DELETE', headers: this.header })
+            .then(errorChecker.check)
+            .then(response => response.json())
+            .then(function (json) {
+                return 200;
+            })
+            .catch(function (error) {
+                return { status: error.status };
+            });
+    }
 }
