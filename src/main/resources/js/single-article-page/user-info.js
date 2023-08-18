@@ -21,14 +21,14 @@ class UserInfo {
     }
 
     getUserName(){
-    if(this.userInfo){
-        return this.userInfo.name;
+        if(this.userInfo){
+            return this.userInfo.name;
         }
     }
 
     getUserImage(){
-if(this.userInfo){
-        return this.userInfo.imageURL;
+        if(this.userInfo){
+            return this.userInfo.imageURL;
         }
     }
 
