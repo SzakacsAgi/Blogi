@@ -14,12 +14,6 @@ class ElementProvider{
         return mainComponent.querySelector(subComponent);
     }
 
-/*    getLastOccurrenceOfComponent(name){
-        let lastIndex = document.getElementsByTagName(name).length -1;
-        console.log(lastIndex)
-        return document.getElementsByTagName(name)[lastIndex];
-    }*/
-
     getElementFromHtmlFile(fileName){
         return fetch(fileName)
             .then(response => response.text())
