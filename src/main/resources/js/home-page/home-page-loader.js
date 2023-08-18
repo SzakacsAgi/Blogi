@@ -1,45 +1,18 @@
-class HomePageLoader {
+class HomePageLoader extends PageLoader{
 
-    authenticationStatusTracker;
-    displayHomePageDynamicComponents;
-    eventListeners;
-    headerEventListener;
-    signedInUserViewDisplayer;
-    storedDataProvider;
+    homePageDynamicComponentsDisplayer;
+    homePageEventListeners;
 
     constructor(){
-        this.authenticationStatusTracker = new AuthenticationStatusTracker();
-        this.displayHomePageDynamicComponents = new HomePageDynamicComponentsDisplayer();
-        this.eventListeners = new EventListeners();
-        this.headerEventListeners = new HeaderEventListeners();
-        this.signedInUserViewDisplayer = new SignedInUserViewDisplayer();
-        this.storedDataProvider = new StoredDataProvider();
+        super();
+        this.homePageDynamicComponentsDisplayer = new HomePageDynamicComponentsDisplayer();
+        this.homePageEventListeners = new HomePageEventListeners();
     }
 
     async load(){
-        await this.authenticationStatusTracker.detectAuthenticationStatus();
-
-        if(this.storedDataProvider.getItemFromSessionStorage("authenticated") === "true"){
-            await this.loadAuthenticatedUserView();
-        }
-        else{
-            this.loadUnAuthenticatedUserView()
-        }
-    }
-
-     async loadAuthenticatedUserView(){
-         await this.authenticationStatusTracker.storeUserInfoAboutAuthenticatedUser();
-         this.signedInUserViewDisplayer.displayAuthenticatedHeader();
-         this.displayHomePageDynamicComponents.display();
-         this.eventListeners.registerEventListeners();
-         this.headerEventListeners.registerEventListeners();
-    }
-
-     loadUnAuthenticatedUserView(){
-         this.signedInUserViewDisplayer.displayUnAuthenticatedHeader();
-         this.displayHomePageDynamicComponents.display();
-         this.eventListeners.registerEventListeners();
-         this.headerEventListeners.registerEventListeners();
+        await super.load();
+        this.homePageDynamicComponentsDisplayer.display();
+        this.homePageEventListeners.registerEventListeners();
     }
 
 }

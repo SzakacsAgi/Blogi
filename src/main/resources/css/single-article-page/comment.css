@@ -1,0 +1,40 @@
+.comment, #write-comment{
+    flex:1;
+    border: 2px solid #595757;
+    border-radius: 25px;
+    padding: 25px;
+}
+
+.btn-group{
+    height: fit-content;
+}
+
+.edit-comment-view{
+    display:flex;
+    flex-direction: column;
+}
+
+.comment-edit-buttons{
+    color: #CB849C;
+}
+
+.comment-container{
+    margin-bottom: 32px;
+}
+
+#user-img{
+    width: 2rem;
+    height: 2rem;
+}
+
+.comment-content{
+    margin-left: 10px;
+}
+
+.comment-info{
+    margin-bottom: 19px;
+}
+
+.edit-comment-view{
+    display:none;
+}

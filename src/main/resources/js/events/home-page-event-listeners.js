@@ -1,4 +1,4 @@
-class EventListeners {
+class HomePageEventListeners {
 
     buttonEventListenerProvider = new ButtonEventListenerProvider();
     storedDataProvider = new StoredDataProvider();

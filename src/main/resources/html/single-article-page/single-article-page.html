@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="css-reset.css">
     <link rel="stylesheet" href="single-article-page.css">
+    <link rel="stylesheet" href="comment.css">
     <!-- FONTS -->
     <a href="http://www.eaglefonts.com/bodoni-bd-bt-bold-ttf-10544.htm"></a>
     <link href="https://fonts.cdnfonts.com/css/proxima-nova-rg-2" rel="stylesheet">
@@ -30,51 +31,37 @@
     </div>
     <!-- COMMENTS -->
     <div class="container">
-        <div id="comments" class="pb-5">
-            <h1></h1>
-            <div class="comment-part px-4" style="min-width: 1060px;">
-                <div class="d-flex align-items-center">
-                <div class="comment mb-3" style="flex: 1;">
-                    <div class="comment-info d-flex align-items-center justify-content-between m-3">
-                        <div class="user">
-                            <img class="user-img">
-                            <span class="user-name"></span>
-                        </div>
-                        <div class="comment-date"></div>
-                    </div>
-                    <div class="m-4" id="comment-content"></div>
+        <h1>Hozzászólások:</h1>
+
+        <div id="comments"></div>
+        <div id="no-comment" class="hide">Ehhez a cikkhez nincsennek hozzászólások, légy te az első aki megosztja véleményét!</div>
+        <div class="fs-2 hide pb-3 pt-3" id="need-to-sign-in">A hozzászóláshoz <a href="/blogi/sign-in">belépés</a> szükséges</div>
+        <div class="d-flex justify-content-between align-items-center hide" id="write-comment">
+            <div class=" mb-3 d-flex justify-content-between align-items-center p-3 " style="flex: 1;">
+                <div>
+                    <img class="user-img mr-2 profile-picture">
+                    <input placeholder="Hozzászólás írása...">
                 </div>
-                <div class="btn-group dropdown" style="height: fit-content">
-                    <button class="btn btn-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
-                    <ul class="dropdown-menu">
-                        <li></li>
-                        <li></li>
-                    </ul>
-                </div>
-                </div>
-                <div class="d-flex justify-content-between align-items-center" id="write-comment">
-                    <div class="comment mb-3 d-flex justify-content-between align-items-center p-3" style="flex: 1;">
-                        <div>
-                            <img class="user-img mr-2">
-                            <input placeholder="" style="border:none">
-                        </div>
-                        <a id="submit-comment">
-                            <img>
-                        </a>
-                    </div>
-                        <button class="btn btn-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="visibility:hidden;"></button>
-                </div>
-                <div class="fs-2" id="need-to-sign-in"></div>
+                <a id="submit-comment">
+                    <img>
+                </a>
             </div>
+            <button class="btn btn-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false">Küldés</button>
         </div>
     </div>
 </main>
+
 <blogi-footer></blogi-footer>
+
+
 <script src="stored-data-provider.js"></script>
 <script src="token-provider.js"></script>
 <script src="header-event-listeners.js"></script>
 <script src="token-saver.js"></script>
 <script src="url-provider.js"></script>
+<script src="user-info.js"></script>
+<script src="element-provider.js"></script>
+<script src="element-creator.js"></script>
 <script src="authenticated-user-info.js"></script>
 <script src="authentication-status-tracker.js"></script>
 <script src="footer.js"></script>
@@ -85,8 +72,14 @@
 <script src="rest-api-helper.js"></script>
 <script src="article-info.js"></script>
 <script src="single-article-data-provider.js"></script>
-<script src="signed-in-user-view-displayer.js"></script>
+<script src="comment-info.js"></script>
+<script src="comment-builder.js"></script>
+<script src="comment-loader.js"></script>
+<script src="page-view-displayer.js"></script>
+<script src="authenticated-user-view-displayer.js"></script>
+<script src="unauthenticated-user-view-displayer.js"></script>
 <script src="single-article-loader.js"></script>
+<script src="page-loader.js"></script>
 <script src="single-article-page-loader.js"></script>
 </body>
 </html>
