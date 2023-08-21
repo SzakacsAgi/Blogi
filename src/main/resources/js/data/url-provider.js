@@ -52,8 +52,16 @@ class URLProvider {
         return this.#articleServerOrigin + this.#articleApiPrefix;
      }
 
+     getBaseCommentURL(articleId){
+        return this.getBaseArticleURL() + "/" + articleId + "/comments";
+     }
+
      getLogOutURL(){
         return this.getBaseAuthenticationURL() + "/signout";
+     }
+
+     getUserInfoURL(userId){
+        return this.getBaseAuthenticationURL() + '/user/' + userId;
      }
 
 }

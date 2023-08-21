@@ -2,7 +2,7 @@ class RESTAPICaller {
 
     url;
 
-    constructor(url) {
+    constructor(url="") {
         this.url = url;
     }
 
@@ -116,4 +116,45 @@ class AuthenticationRESTAPICaller extends RESTAPICaller {
                 return { status: error.status };
             });
     }
+
+    async getUserInfo(userId){
+        let errorChecker = new RESTAPIErrorChecker();
+
+        return await fetch(this.urlProvider.getUserInfoURL(userId), { method: 'GET'})
+            .then(errorChecker.check)
+            .then(response => response.json())
+            .then(function (json) {
+                return json;
+            })
+            .catch(function (error) {
+                return { status: error.status };
+            });
+    }
+}
+
+class CommentRESTAPICaller extends RESTAPICaller {
+
+    urlProvider;
+    storedDataProvider;
+    articleId;
+
+    constructor() {
+        super();
+        this.urlProvider = new URLProvider();
+    }
+
+    async getCommentsByArticle(articleId){
+        let errorChecker = new RESTAPIErrorChecker();
+
+        return await fetch(this.urlProvider.getBaseCommentURL(articleId), { method: 'GET' })
+            .then(errorChecker.check)
+            .then(response => response.json())
+            .then(function (json) {
+                return json;
+            })
+            .catch(function (error) {
+                return { status: error.status };
+            });
+    }
+
 }

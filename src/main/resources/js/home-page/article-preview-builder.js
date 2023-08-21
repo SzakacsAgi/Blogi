@@ -1,155 +1,68 @@
 class ArticlePreviewBuilder {
 
     mainParent;
-    cardBodysParent;
-    editButtonsParent;
-    elementModifier = new ElementModifier();
-    elementCreator = new ElementCreator();
-    buttonCreator = new ButtonCreator();
     articleInfo;
-    articlePositionIndex;
+    elementModifier;
+    elementCreator;
+    buttonCreator;
+    elementProvider;
+    storedDataProvider;
+    articlePart;
 
-    articleDiv;
-    cardDiv;
-    articleImage;
-
-    bodyParent;
-    articleInfosDiv;
-    dateAndViewersCol;
-    dateDivContainer;
-    dateIcon;
-    date;
-    viewersDivContainer;
-    viewersIcon;
-    viewers;
-    authorAndMinutesToReadCol;
-    authorDivContainer;
-    authorIcon;
-    author;
-    minutesToReadDivContainer;
-    minutesToReadIcon;
-    minutesToRead;
-
-    articleTitle;
-    readMoreButton;
+    articleId;
+    articleElement;
+    creationDate;
+    viewersElement;
+    authorElement;
+    minutesToReadElement;
+    titleElement;
+    cardCategories;
     categoryDivContainer;
-    category;
-    categoryDiv;
-    hashTag;
 
-    editButtonsRow;
-    editButtonsContainer;
-    editButton;
-    deleteButton;
+    constructor() {
+        this.elementModifier = new ElementModifier();
+        this.elementCreator = new ElementCreator();
+        this.buttonCreator = new ButtonCreator();
+        this.elementProvider = new ElementProvider();
+        this.storedDataProvider = new StoredDataProvider();
+        this.articlePart = this.elementProvider.getComponent('article-part');
+        this.mainParent = this.elementProvider.getSubComponent(this.articlePart, "#article-row");
+    }
 
-    constructor() { }
-
-    build(article) {
-
-        let articlePart = document.getElementsByTagName('article-part')[0];
-        this.mainParent = articlePart.querySelector(".articles-part .articles #article-row");
+    async build(article) {
         this.articleInfo = new ArticleInfo(article);
-        this.createArticlePreviewHeadComponents();
-        this.addElementsToArticlePreviewHead();
-
-        this.articlePositionIndex = document.getElementsByClassName('article').length - 1;
-        this.editButtonsParent = document.getElementsByClassName('article')[this.articlePositionIndex];
-        this.cardBodysParent = document.getElementsByClassName('card')[this.articlePositionIndex];
-
-        this.createArticlePreviewBodyComponents();
-        this.addElementsToArticlePreviewBody();
+        this.articleId = this.articleInfo.getId();
+        await this.getArticleElement();
+        this.setElementsToModify();
         this.setArticlePreviewData();
-        this.createArticlePreviewEditButtonComponents();
-        this.addElementsToArticlePreviewEditButtonPart();
+        return this.articleElement;
     }
 
-    createArticlePreviewHeadComponents() {
-        this.articleDiv = this.elementCreator.createElement('div', ['col-auto', 'article']);
-        this.cardDiv = this.elementCreator.createElement('div', ['card']);
-        this.articleImage = this.elementCreator.createElement('img', ['card-img-top']);
+    async getArticleElement(){
+        this.articleElement = await this.elementProvider.getElementFromHtmlFile('article.html');
     }
 
-    addElementsToArticlePreviewHead() {
-        this.mainParent.appendChild(this.articleDiv);
-        this.articleDiv.appendChild(this.cardDiv);
-        this.cardDiv.appendChild(this.articleImage);
-    }
-
-    createArticlePreviewBodyComponents() {
-        this.createArticlePreviewInfosComponents();
-        this.articleTitle = this.elementCreator.createElement('h5', ['card-title']);
-        this.readMoreButton = this.buttonCreator.createReadMoreButton(this.articleInfo.getId())
-        this.categoryDivContainer = this.elementCreator.createElement('div', ['card-categories', 'd-flex', 'row']);
-    }
-
-    addElementsToArticlePreviewBody() {
-        this.addElementsToArticlePreviewInfos();
-        this.bodyParent.appendChild(this.articleTitle);
-        this.bodyParent.appendChild(this.readMoreButton);
-        this.addCategories();
-    }
-
-    createArticlePreviewEditButtonComponents() {
-        this.editButtonsRow = this.elementCreator.createElement('div', ['edit-buttons', 'container', 'row', 'mb-2']);
-        this.editButtonsContainer = this.elementCreator.createElement('div', ['edit-buttons-container', 'col', 'd-flex', 'justify-content-center']);
-        this.editButton = this.buttonCreator.createEditButton(this.articleInfo.getId());
-        this.deleteButton = this.buttonCreator.createDeleteButton('#delete-article-modal', this.articleInfo.getId());
-    }
-
-    addElementsToArticlePreviewEditButtonPart() {
-        this.editButtonsParent.appendChild(this.editButtonsRow);
-        this.editButtonsRow.appendChild(this.editButtonsContainer);
-        this.editButtonsContainer.appendChild(this.editButton);
-        this.editButtonsContainer.appendChild(this.deleteButton);
-    }
-
-    createArticlePreviewInfosComponents() {
-        this.bodyParent = this.elementCreator.createElement('div', ['card-body']);
-        this.articleInfosDiv = this.elementCreator.createElement('div', ['article-infos', 'd-flex']);
-        this.dateAndViewersCol = this.elementCreator.createElement('div', ['date-and-viewers-col', 'col']);
-        this.dateDivContainer = this.elementCreator.createElement('div', ['date-container', 'd-flex', 'align-items-center']);
-        this.dateIcon = this.elementCreator.createElement('i', ['fa-regular', 'fa-calendar']);
-        this.date = this.elementCreator.createElement('div', ['date']);
-        this.viewersDivContainer = this.elementCreator.createElement('div', ['viewers-container', 'd-flex', 'col', 'align-items-center']);
-        this.viewersIcon = this.elementCreator.createElement('i', ['fa-regular', 'fa-eye']);
-        this.viewers = this.elementCreator.createElement('div', ['viewers']);
-        this.authorAndMinutesToReadCol = this.elementCreator.createElement('div', ['author-and-minutes-to-read', 'col']);
-        this.authorDivContainer = this.elementCreator.createElement('div', ['author', 'd-flex', 'col', 'align-items-center']);
-        this.authorIcon = this.elementCreator.createElement('i', ['fa-regular', 'fa-user']);
-        this.author = this.elementCreator.createElement('div', ['author']);
-        this.minutesToReadDivContainer = this.elementCreator.createElement('div', ['minutes-to-read-container', 'd-flex', 'col', 'align-items-center']);
-        this.minutesToReadIcon = this.elementCreator.createElement('i', ['fa-regular', 'fa-clock'],);
-        this.minutesToRead = this.elementCreator.createElement('div', ['minutes-to-read']);
-    }
-
-    addElementsToArticlePreviewInfos() {
-        this.bodyParent.appendChild(this.articleInfosDiv);
-        this.articleInfosDiv.appendChild(this.dateAndViewersCol);
-        this.dateAndViewersCol.appendChild(this.dateDivContainer);
-        this.dateDivContainer.appendChild(this.dateIcon);
-        this.dateDivContainer.appendChild(this.date);
-        this.dateAndViewersCol.appendChild(this.viewersDivContainer);
-        this.viewersDivContainer.append(this.viewersIcon);
-        this.viewersDivContainer.appendChild(this.viewers);
-        this.articleInfosDiv.appendChild(this.authorAndMinutesToReadCol);
-        this.authorAndMinutesToReadCol.appendChild(this.authorDivContainer);
-        this.authorDivContainer.appendChild(this.authorIcon);
-        this.authorDivContainer.appendChild(this.author);
-        this.authorAndMinutesToReadCol.appendChild(this.minutesToReadDivContainer);
-        this.minutesToReadDivContainer.appendChild(this.minutesToReadIcon);
-        this.minutesToReadDivContainer.appendChild(this.minutesToRead);
-        this.cardBodysParent.appendChild(this.bodyParent);
+    setElementsToModify(){
+        this.articleImage = this.elementProvider.getSubComponent(this.articleElement, "#image")
+        this.creationDateElement = this.elementProvider.getSubComponent(this.articleElement, "#date");
+        this.viewersElement = this.elementProvider.getSubComponent(this.articleElement, "#viewers");
+        this.authorElement = this.elementProvider.getSubComponent(this.articleElement, "#author");
+        this.minutesToReadElement = this.elementProvider.getSubComponent(this.articleElement, "#minutes-to-read");
+        this.titleElement = this.elementProvider.getSubComponent(this.articleElement, "#title");
+        this.cardCategories = this.elementProvider.getSubComponent(this.articleElement, "#card-categories");
+        this.readMoreButtonElement = this.elementProvider.getSubComponent(this.articleElement, "#read-more-button");
+        this.categoryDivContainer = this.elementProvider.getSubComponent(this.articleElement, "#card-categories")
     }
 
     setArticlePreviewData() {
         this.elementModifier.setElementAttributes(this.articleImage, {'src' : this.articleInfo.getImageURL()});
-        this.elementModifier.setElementText(this.date, this.articleInfo.getLastModificationDate())
-        this.elementModifier.setElementText(this.viewers, 0);
-        this.elementModifier.setElementText(this.author, this.articleInfo.getAuthorName());
-        this.elementModifier.setElementText(this.minutesToRead, this.articleInfo.getMinutesToRead()+' perc');
-        this.elementModifier.setElementText(this.articleTitle, this.articleInfo.getTitle());
-        this.elementModifier.setElementText(this.readMoreButton, 'Olvass tovább');
-        this.elementModifier.setElementAttributes(this.readMoreButton, {'src' : '#'});
+        this.elementModifier.setElementText(this.creationDateElement, this.articleInfo.getLastModificationDate())
+        this.elementModifier.setElementText(this.viewersElement, 0);
+        this.elementModifier.setElementText(this.authorElement, this.articleInfo.getAuthorName());
+        this.elementModifier.setElementText(this.minutesToReadElement, this.articleInfo.getMinutesToRead()+' perc');
+        this.elementModifier.setElementText(this.titleElement, this.articleInfo.getTitle());
+        this.elementModifier.setElementAttributes(this.readMoreButtonElement, {"article-id":this.articleId});
+        this.addCategories();
     }
 
     addCategories() {
@@ -158,7 +71,6 @@ class ArticlePreviewBuilder {
             this.category = this.createACategory(categoryName);
             this.categoryDivContainer.appendChild(this.category);
         })
-        this.bodyParent.appendChild(this.categoryDivContainer);
     }
 
     createACategory(categoryName) {

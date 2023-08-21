@@ -1,4 +1,4 @@
-class EventListeners {
+class HomePageEventListeners {
 
     buttonEventListenerProvider = new ButtonEventListenerProvider();
     storedDataProvider = new StoredDataProvider();
@@ -9,6 +9,7 @@ class EventListeners {
         this.addFilterSearchListener();
         this.addResetFilterSearchListener();
         this.addDeleteArticleConfirmButtonListener();
+        this.copyArticleId();
         this.addSearchBarListener();
     }
 
@@ -33,9 +34,12 @@ class EventListeners {
         deleteArticleConfirmButton.addEventListener("click", this.buttonEventListenerProvider.clickOnDeleteArticleConfirmButton);
     }
 
-    copyArticleId(button, id) {
-        button.addEventListener("click", () => {
-            this.storedDataProvider.setItemToLocalStorage("articleId", id);
+    copyArticleId() {
+        let readMoreButtons = document.querySelectorAll('.read-more-button')
+        readMoreButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                this.storedDataProvider.setItemToLocalStorage("articleId", button.getAttribute('article-id'));
+            })
         })
     }
 

@@ -2,7 +2,7 @@ class ButtonCreator {
 
     elementCreator = new ElementCreator();
     elementModifier = new ElementModifier();
-    eventListeners = new EventListeners();
+    homePageEventListeners = new HomePageEventListeners();
     URLProvider = new URLProvider();
 
 
@@ -14,7 +14,7 @@ class ButtonCreator {
         this.elementModifier.setElementAttributes(editButton, {href:this.URLProvider.getArticleEditorURL(), target:"_blank"});
         let editButtonIcon =  this.elementCreator.createElement('i', ['fa-regular', 'fa-pen-to-square']);
         editButton.appendChild(editButtonIcon);
-        this.eventListeners.copyArticleId(editButton, id);
+        this.homePageEventListeners.copyArticleId(editButton, id);
         return editButton;
     }
 
@@ -23,7 +23,7 @@ class ButtonCreator {
         let deleteButtonIcon =  this.elementCreator.createElement('i', ['fa-regular', 'fa-trash-can']);
         this.elementModifier.setElementAttributes(deleteButton, { 'data-bs-toggle': 'modal', 'data-bs-target': modalId });
         deleteButton.appendChild(deleteButtonIcon);
-        this.eventListeners.addDeleteButtonListener(deleteButton, id);
+        this.homePageEventListeners.addDeleteButtonListener(deleteButton, id);
         return deleteButton;
     }
 
@@ -31,7 +31,7 @@ class ButtonCreator {
         let readMoreButton = this.elementCreator.createElement('a', ['read-more-button']);
         this.elementModifier.setElementAttributes(readMoreButton, {href:this.URLProvider.getArticlePageURL(), target:"_blank"});
         this.elementModifier.setElementAttributes(readMoreButton, {oncontextmenu:"return false;"});
-        this.eventListeners.copyArticleId(readMoreButton, id);
+        this.homePageEventListeners.copyArticleId(readMoreButton, id);
         return readMoreButton;
     }
 

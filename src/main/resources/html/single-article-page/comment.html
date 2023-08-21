@@ -1,0 +1,26 @@
+<div class="d-flex align-items-center comment-container">
+    <div class="comment">
+        <div class="comment-info d-flex align-items-center justify-content-between">
+            <div class="user d-flex align-items-center">
+                <img id="user-image">
+                <span id="user-name"></span>
+            </div>
+            <div id="comment-date"></div>
+        </div>
+        <div id="comment-content" class="comment-content"></div>
+        <div class="edit-comment-view">
+            <input id="edit-comment-content" class="comment-content" value="">
+            <div id="submit-comment-edit-buttons" class="d-flex justify-content-end ">
+                <button class="confirm-yes button" id="submit-update-comment">Mentés</button>
+                <button class="confirm-no button">Mégse</button>
+            </div>
+        </div>
+    </div>
+    <div class="btn-group dropdown hide" id="edit-comment">
+        <button class="btn btn-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-three-dots comment-edit-buttons"></i></button>
+        <ul class="dropdown-menu">
+            <li id="delete-comment">delete</li>
+            <li id="update-comment">edit</li>
+        </ul>
+    </div>
+</div>

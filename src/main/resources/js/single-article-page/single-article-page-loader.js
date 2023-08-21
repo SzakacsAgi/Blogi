@@ -1,42 +1,32 @@
-class SingleArticlePageLoader {
+class SingleArticlePageLoader extends PageLoader{
 
     sessionSynchronizer;
     singleArticleLoader;
-    authenticationStatusTracker;
-    signedInUserViewDisplayer;
-    storedDataProvider;
-    headerEventListeners;
+    commentLoader;
 
     constructor() {
+        super();
         this.sessionSynchronizer = new SessionSynchronizer();
         this.sessionSynchronizer.sync();
         this.singleArticleLoader = new SingleArticleLoader();
-        this.authenticationStatusTracker = new AuthenticationStatusTracker();
-        this.signedInUserViewDisplayer = new SignedInUserViewDisplayer();
-        this.storedDataProvider = new StoredDataProvider();
-        this.headerEventListeners = new HeaderEventListeners();
+        this.commentLoader = new CommentLoader();
     }
 
     async load() {
-        await this.authenticationStatusTracker.detectAuthenticationStatus();
-        if(this.storedDataProvider.getItemFromSessionStorage("authenticated") === "true"){
-            await this.loadAuthenticatedUserView();
-        }
-        else{
-            this.loadUnAuthenticatedUserView()
-        }
+        await super.load();
         this.singleArticleLoader.load();
     }
 
     async loadAuthenticatedUserView(){
-        await this.authenticationStatusTracker.storeUserInfoAboutAuthenticatedUser();
-        this.signedInUserViewDisplayer.displayAuthenticatedHeader();
-        this.headerEventListeners.registerEventListeners();
+        await super.loadAuthenticatedUserView();
+        await this.commentLoader.load();
+        this.authenticatedUserViewDisplayer.displayAuthenticatedArticlePage();
     }
 
-    loadUnAuthenticatedUserView(){
-        this.signedInUserViewDisplayer.displayUnAuthenticatedHeader();
-        this.headerEventListeners.registerEventListeners();
+    async loadUnAuthenticatedUserView(){
+        await super.loadUnAuthenticatedUserView();
+        await this.commentLoader.load();
+        this.unauthenticatedUserViewDisplayer.displayUnAuthenticatedArticlePage();
     }
 
 }
