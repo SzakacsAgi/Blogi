@@ -22,16 +22,13 @@ class CommentBuilder {
         this.elementProvider = new ElementProvider();
     }
 
-    async build(comment){
+    async build(comment, userId){
        this.commentInfo = new CommentInfo(comment);
-       this.userInfo =  new UserInfo();
-       await this.userInfo.getUserInfo(this.commentInfo.getUserId());
-
+       this.userInfo =  new UserInfo(userId);
        await this.getCommentElement();
        this.setElementsToModify();
-
        this.setCommentData();
-       this.addCommentToArticlePage();
+       return this.commentElement;
     }
 
     async getCommentElement(){
@@ -58,11 +55,6 @@ class CommentBuilder {
         this.elementModifier.setElementAttributes(this.editCommentButtons, {"user-id":this.commentInfo.getUserId()});
         this.elementModifier.setElementAttributes(this.deleteCommentButton, {"comment-id":this.commentInfo.getId()});
         this.elementModifier.setElementAttributes(this.submitUpdateCommentButton, {"comment-id":this.commentInfo.getId()});
-    }
-
-    addCommentToArticlePage(){
-        let commentsElement = this.elementProvider.getElementById("comments");
-        commentsElement.appendChild(this.commentElement);
     }
 
 }

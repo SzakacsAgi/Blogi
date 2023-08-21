@@ -28,7 +28,9 @@ class AuthenticatedUserViewDisplayer extends PageViewDisplayer{
     displayCommentEditButtons(){
         let editCommentButtons = this.elementProvider.getSubComponent(document, `div[user-id="${AuthenticatedUserInfo.id}"]`);
         let isAuthenticatedUserWroteComment = editCommentButtons !== null;
-        isAuthenticatedUserWroteComment &&  this.displayElement(editCommentButtons);
+        if(isAuthenticatedUserWroteComment){
+            this.displayElement(editCommentButtons);
+        }
     }
 
     displayWriteCommentSection(){

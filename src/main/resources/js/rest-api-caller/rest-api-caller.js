@@ -141,14 +141,12 @@ class CommentRESTAPICaller extends RESTAPICaller {
     constructor() {
         super();
         this.urlProvider = new URLProvider();
-        this.storedDataProvider = new StoredDataProvider();
-        this.articleId = this.storedDataProvider.getItemFromSessionStorage("articleId");
     }
 
-    async getCommentForAnArticle(){
+    async getCommentsByArticle(articleId){
         let errorChecker = new RESTAPIErrorChecker();
 
-        return await fetch(this.urlProvider.getCommentsForAnArticleURL(this.articleId), { method: 'GET' })
+        return await fetch(this.urlProvider.getBaseCommentURL(articleId), { method: 'GET' })
             .then(errorChecker.check)
             .then(response => response.json())
             .then(function (json) {

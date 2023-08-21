@@ -1,35 +1,19 @@
 class UserInfo {
 
-    urlProvider;
-    authenticationRESTAPICaller;
-    userInfo;
-
-    constructor(){
-        this.urlProvider = new URLProvider();
-        this.authenticationRESTAPICaller = new AuthenticationRESTAPICaller(this.urlProvider.getBaseAuthenticationURL());
-    }
-
-    async getUserInfo(userId){
-        let userInfoList = await this.authenticationRESTAPICaller.getUserInfo(userId);
-        if(userInfoList.length > 0){
-            this.userInfo = userInfoList[0];
-        }
+    constructor(user){
+        this.user = user;
     }
 
     getUserId(){
-        return this.userInfo.userId;
+        return this.user.userId;
     }
 
     getUserName(){
-        if(this.userInfo){
-            return this.userInfo.name;
-        }
+        return this.user.name;
     }
 
     getUserImage(){
-        if(this.userInfo){
-            return this.userInfo.imageURL;
-        }
+        return this.user.imageURL;
     }
 
 }

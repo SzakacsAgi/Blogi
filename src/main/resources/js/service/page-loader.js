@@ -16,8 +16,9 @@ class PageLoader{
 
     async load(){
         await this.authenticationStatusTracker.detectAuthenticationStatus();
+        let isAuthenticated = this.storedDataProvider.getItemFromSessionStorage("authenticated") === "true";
 
-        if(this.storedDataProvider.getItemFromSessionStorage("authenticated") === "true"){
+        if(isAuthenticated){
              await this.loadAuthenticatedUserView();
         }
         else{

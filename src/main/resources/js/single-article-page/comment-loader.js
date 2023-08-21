@@ -6,6 +6,9 @@ class CommentLoader{
     commentBuilder;
     elementProvider;
     elementModifier;
+    componentAdder;
+    authenticationRESTAPICaller;
+    commentParent;
 
     constructor(){
         this.urlProvider = new URLProvider();
@@ -14,14 +17,19 @@ class CommentLoader{
         this.commentBuilder = new CommentBuilder();
         this.elementProvider = new ElementProvider();
         this.elementModifier = new ElementModifier();
+        this.componentAdder = new ComponentAdder();
+        this.authenticationRESTAPICaller = new AuthenticationRESTAPICaller();
+        this.commentParent = this.elementProvider.getElementById("comments");
     }
 
     async load(){
         let comments = await this.getComments();
-        let thereIsComment = comments.length > 0;
-        if(thereIsComment){
+        let hasComments = comments.length > 0;
+        if(hasComments){
             for(let comment of comments){
-                 await this.commentBuilder.build(comment);
+                 let user = await this.getUser(comment.userId);
+                 let commentElement = await this.commentBuilder.build(comment, user);
+                 this.componentAdder.add(this.commentParent, commentElement)
             }
         }
         else{
@@ -31,7 +39,12 @@ class CommentLoader{
     }
 
     async getComments(){
-        return await this.commentRESTAPICaller.getCommentForAnArticle();
+        let articleId = this.storedDataProvider.getItemFromSessionStorage("articleId")
+        return await this.commentRESTAPICaller.getCommentsByArticle(articleId);
+    }
+
+    async getUser(userId){
+        return await this.authenticationRESTAPICaller.getUserInfo(userId);
     }
 
 }
