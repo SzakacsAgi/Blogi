@@ -11,7 +11,7 @@ class HomePageLoader extends PageLoader{
 
     async load(){
         await super.load();
-        this.homePageDynamicComponentsDisplayer.display();
+        await this.homePageDynamicComponentsDisplayer.display();
         this.homePageEventListeners.registerEventListeners();
     }
 

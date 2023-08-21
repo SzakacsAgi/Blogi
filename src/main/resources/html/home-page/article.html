@@ -1,0 +1,42 @@
+<div class="col-auto article">
+    <div class="card">
+        <img id="image" class="card-img-top">
+        <div class="card-body">
+            <div class="article-infos d-flex">
+                <div class="date-and-viewers-col col">
+                    <div class="date-container d-flex align-items-center">
+                        <i class="fa-regular fa-calendar"></i>
+                        <div id="date" class="date"></div>
+                    </div>
+                    <div class="viewers-container d-flex col align-items-center">
+                        <i class="fa-regular fa-eye"></i>
+                        <div id="viewers" class="viewers"></div>
+                    </div>
+                </div>
+                <div class="author-and-minutes-to-read col">
+                    <div class="author d-flex col align-items-center">
+                        <i class="fa-regular fa-user"></i>
+                        <div id="author" class="author"></div>
+                    </div>
+                    <div class="minutes-to-read-container d-flex col align-items-center">
+                        <i class="fa-regular fa-clock"></i>
+                        <div id="minutes-to-read" class="minutes-to-read"></div>
+                    </div>
+                </div>
+            </div>
+            <h5 id="title" class="card-title"></h5>
+            <a id="read-more-button" class="read-more-button" href="http://localhost:8080/blogi/article" target="_blank" oncontextmenu="return false;" src="#">Olvass tovább</a>
+            <div id="card-categories" class="card-categories d-flex row"></div>
+        </div>
+    </div>
+    <div class="edit-buttons container row mb-2">
+        <div class="edit-buttons-container col d-flex justify-content-center">
+            <a class="edit-button" oncontextmenu="return false;" href="http://localhost:8080/blogi/editor" target="_blank">
+                <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <a class="delete-button" data-bs-toggle="modal" data-bs-target="#delete-article-modal">
+                <i class="fa-regular fa-trash-can"></i>
+            </a>
+        </div>
+    </div>
+</div>

@@ -2,14 +2,14 @@ class HomePageDynamicComponentsDisplayer {
 
     constructor() {}
 
-    display(){
-        this.displayLatestArticlePreview();
-        this.displayCategoriesInFilterBody();
+    async display(){
+        await this.displayLatestArticlePreview();
+        await this.displayCategoriesInFilterBody();
     }
 
     async displayLatestArticlePreview(){
         let articlePreviewDisplayer = new ArticlePreviewDisplayer();
-        articlePreviewDisplayer.displayLatestArticles();
+        await articlePreviewDisplayer.displayLatestArticles();
     }
 
     async displayCategoriesInFilterBody(){
