@@ -12,11 +12,13 @@ class PageLoader{
         this.unauthenticatedUserViewDisplayer = new UnauthenticatedUserViewDisplayer();
         this.storedDataProvider = new StoredDataProvider();
         this.headerEventListeners = new HeaderEventListeners();
+        this.modalLoader = new ModalLoader();
     }
 
     async load(){
         await this.authenticationStatusTracker.detectAuthenticationStatus();
         let isAuthenticated = this.storedDataProvider.getItemFromSessionStorage("authenticated") === "true";
+        //await this.modalLoader.load();
 
         if(isAuthenticated){
              await this.loadAuthenticatedUserView();
@@ -24,6 +26,7 @@ class PageLoader{
         else{
             this.loadUnAuthenticatedUserView()
         }
+
         this.addEventListeners();
     }
 

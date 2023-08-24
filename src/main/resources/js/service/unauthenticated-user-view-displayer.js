@@ -6,12 +6,12 @@ class UnauthenticatedUserViewDisplayer extends PageViewDisplayer{
 
      displayUnAuthenticatedHeader(){
          let signedInButton = this.elementProvider.getSubComponent(this.header, ".sign-in-button");
-         this.displayElement(signedInButton);
+         this.elementModifier.displayElement(signedInButton);
      }
 
      displayUnAuthenticatedArticlePage(){
          let needToAuthenticateElement = this.elementProvider.getElementById("need-to-sign-in");
-         this.displayElement(needToAuthenticateElement);
+         this.elementModifier.displayElement(needToAuthenticateElement);
      }
 
 }

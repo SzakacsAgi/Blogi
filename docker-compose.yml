@@ -6,20 +6,20 @@ services:
       dockerfile: Dockerfile
     image: blogi-frontend:latest
     depends_on:
-      - blogi-backend-authentication-service
-      - blogi-backend-article-service
-      - blogi-backend-file-service
+      - blogi-authentication-service
+      - blogi-article-service
+      - blogi-file-service
     ports:
       - '8080:8080'
-  blogi-backend-authentication-service:
+  blogi-authentication-service:
     image: gabichelsea/blogi-authentication-service:1.8
     ports:
       - '8081:8081'
-  blogi-backend-article-service:
-    image: gabichelsea/blogi-article-service:1.17
+  blogi-article-service:
+    image: gabichelsea/blogi-article-service:1.19
     ports:
       - '8082:8082'
-  blogi-backend-file-service:
-    image: gabichelsea/blogi-file-service:1.7
+  blogi-file-service:
+    image: gabichelsea/blogi-file-service:1.9
     ports:
       - '8083:8083'

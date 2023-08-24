@@ -24,4 +24,22 @@ class ElementModifier {
         })
     }
 
+    displayElement(element){
+        this.removeElementClass(element, ["hide"]);
+    }
+
+    removeElement(element){
+        console.log(element)
+        console.log("delete from dom...")
+        element.remove();
+    }
+
+    hideElement(element){
+        this.addElementClass(element, ["hide"]);
+    }
+
+    clearInputField(inputField){
+        inputField.value = '';
+    }
+
 }

@@ -14,6 +14,10 @@ class ElementProvider{
         return mainComponent.querySelector(subComponent);
     }
 
+    getElementByClassName(name){
+       return mainComponent.getElementsByClassName(name)[0];
+    }
+
     getElementFromHtmlFile(fileName){
         return fetch(fileName)
             .then(response => response.text())
@@ -23,6 +27,14 @@ class ElementProvider{
                 let commentElement = htmlDoc.querySelector("body > *");
                 return commentElement;
         })
+    }
+
+    getAncestor(element, ancestorSelector){
+       return element.closest(ancestorSelector);
+    }
+
+    getAllSubComponent(mainComponent, subComponent){
+        return mainComponent.querySelectorAll(subComponent);
     }
 
 }

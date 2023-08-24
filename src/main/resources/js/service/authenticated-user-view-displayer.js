@@ -13,7 +13,7 @@ class AuthenticatedUserViewDisplayer extends PageViewDisplayer{
         this.displayUserNameInHeader();
         this.displayProfilePicture(this.elementProvider.getSubComponent(this.header, ".profile-picture"));
         let signedInHeaderPart = this.elementProvider.getSubComponent(this.header, "#signed-in-user");
-        this.displayElement(signedInHeaderPart);
+        this.elementModifier.displayElement(signedInHeaderPart);
     }
 
     displayUserNameInHeader(){
@@ -26,17 +26,27 @@ class AuthenticatedUserViewDisplayer extends PageViewDisplayer{
     }
 
     displayCommentEditButtons(){
-        let editCommentButtons = this.elementProvider.getSubComponent(document, `div[user-id="${AuthenticatedUserInfo.id}"]`);
-        let isAuthenticatedUserWroteComment = editCommentButtons !== null;
-        if(isAuthenticatedUserWroteComment){
-            this.displayElement(editCommentButtons);
+        let editCommentButtonsWrittenByAuthenticatedUser = Array.from(this.elementProvider.getAllSubComponent(document, `div[user-id="${AuthenticatedUserInfo.id}"]`));
+        let allEditCommentButtons = Array.from(this.elementProvider.getAllSubComponent(document, "#edit-comment"));
+        let isAuthenticatedUserWroteComment = editCommentButtonsWrittenByAuthenticatedUser !== null;
+        let authenticatedUserIsNotTheWriter =  allEditCommentButtons.filter(x => !editCommentButtonsWrittenByAuthenticatedUser.includes(x));
+        if(AuthenticatedUserInfo.isAdmin){
+            allEditCommentButtons.forEach(editCommentButton => this.elementModifier.displayElement(editCommentButton));
+            if(authenticatedUserIsNotTheWriter){
+                authenticatedUserIsNotTheWriter.forEach(button => {
+                    this.elementModifier.hideElement(this.elementProvider.getSubComponent(button, "#update-comment"));
+                })
+            }
+        }
+        else if(isAuthenticatedUserWroteComment){
+            editCommentButtonsWrittenByAuthenticatedUser.forEach(editCommentButton => this.elementModifier.displayElement(editCommentButton))
         }
     }
 
     displayWriteCommentSection(){
         let writeCommentElement = this.elementProvider.getElementById("write-comment");
         this.displayProfilePicture(this.elementProvider.getSubComponent(writeCommentElement, ".profile-picture"));
-        this.displayElement(writeCommentElement);
+        this.elementModifier.displayElement(writeCommentElement);
     }
 
 }

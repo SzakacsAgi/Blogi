@@ -135,12 +135,16 @@ class AuthenticationRESTAPICaller extends RESTAPICaller {
 class CommentRESTAPICaller extends RESTAPICaller {
 
     urlProvider;
-    storedDataProvider;
-    articleId;
 
     constructor() {
         super();
         this.urlProvider = new URLProvider();
+        this.tokenProvider = new TokenProvider();
+        this.userToken = this.tokenProvider.getUserTokenAfterSignIn();
+        this.header = {
+            "Content-Type": "application/json",
+            "Authorization":this.userToken
+        };
     }
 
     async getCommentsByArticle(articleId){
@@ -157,4 +161,45 @@ class CommentRESTAPICaller extends RESTAPICaller {
             });
     }
 
+    async deleteComment(articleId, commentId) {
+        let errorChecker = new RESTAPIErrorChecker();
+        console.log("DELETE URL:"+this.urlProvider.getASingleComment(articleId, commentId))
+        console.log("DELETE HEADER:"+JSON.stringify(this.header))
+        return await fetch(this.urlProvider.getASingleComment(articleId, commentId), { method: 'DELETE', headers: this.header })
+           .then(errorChecker.check)
+           .then(response => response.json())
+           .then(function (json) {
+                return { status: 204, payload: json };
+            })
+           .catch(function (error) {
+               return { status: error.status };
+           });
+    }
+
+    async updateComment(articleId, commentId, body) {
+        let errorChecker = new RESTAPIErrorChecker();
+
+        return await fetch(this.urlProvider.getASingleComment(articleId, commentId), { method: 'PUT', headers: this.header, body:body })
+           .then(errorChecker.check)
+           .then(response => response.json())
+           .then(function (json) {
+                return { status: 204, payload: json };
+            })
+           .catch(function (error) {
+               return { status: error.status };
+           });
+    }
+
+    async createComment(articleId, body) {
+        const response = await fetch(this.urlProvider.getBaseCommentURL(articleId), { method: 'POST', headers: this.header, body: body });
+
+            // Check if the response has a Location header
+            if (response.headers.has('Location')) {
+                const locationURL = response.headers.get('Location');
+                const contentResponse = await fetch(locationURL); // Fetch the content from the provided URL
+                return contentResponse.json(); // Return the fetched content as JSON
+            } else {
+                return {}; // Return an empty object if there is no Location header
+            }
+    }
 }

@@ -7,6 +7,7 @@ class ArticlePreviewBuilder {
     buttonCreator;
     elementProvider;
     storedDataProvider;
+    homePageEventListeners;
     articlePart;
 
     articleId;
@@ -18,6 +19,7 @@ class ArticlePreviewBuilder {
     titleElement;
     cardCategories;
     categoryDivContainer;
+    deleteButton;
 
     constructor() {
         this.elementModifier = new ElementModifier();
@@ -25,6 +27,7 @@ class ArticlePreviewBuilder {
         this.buttonCreator = new ButtonCreator();
         this.elementProvider = new ElementProvider();
         this.storedDataProvider = new StoredDataProvider();
+        this.homePageEventListeners = new HomePageEventListeners();
         this.articlePart = this.elementProvider.getComponent('article-part');
         this.mainParent = this.elementProvider.getSubComponent(this.articlePart, "#article-row");
     }
@@ -34,7 +37,7 @@ class ArticlePreviewBuilder {
         this.articleId = this.articleInfo.getId();
         await this.getArticleElement();
         this.setElementsToModify();
-        this.setArticlePreviewData();
+        await this.setArticlePreviewData();
         return this.articleElement;
     }
 
@@ -52,9 +55,10 @@ class ArticlePreviewBuilder {
         this.cardCategories = this.elementProvider.getSubComponent(this.articleElement, "#card-categories");
         this.readMoreButtonElement = this.elementProvider.getSubComponent(this.articleElement, "#read-more-button");
         this.categoryDivContainer = this.elementProvider.getSubComponent(this.articleElement, "#card-categories")
+        this.deleteButton = this.elementProvider.getSubComponent(this.articleElement, ".delete-button")
     }
 
-    setArticlePreviewData() {
+    async setArticlePreviewData() {
         this.elementModifier.setElementAttributes(this.articleImage, {'src' : this.articleInfo.getImageURL()});
         this.elementModifier.setElementText(this.creationDateElement, this.articleInfo.getLastModificationDate())
         this.elementModifier.setElementText(this.viewersElement, 0);
@@ -62,6 +66,7 @@ class ArticlePreviewBuilder {
         this.elementModifier.setElementText(this.minutesToReadElement, this.articleInfo.getMinutesToRead()+' perc');
         this.elementModifier.setElementText(this.titleElement, this.articleInfo.getTitle());
         this.elementModifier.setElementAttributes(this.readMoreButtonElement, {"article-id":this.articleId});
+        await this.homePageEventListeners.addDeleteButtonListener(this.deleteButton, this.articleId);
         this.addCategories();
     }
 
