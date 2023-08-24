@@ -5,109 +5,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tiny.cloud/1/26jnqpce17l0op7lu6j9vckcuqk5jcjf021emyrq9ljsxrr3/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-
     <title>Blogi</title>
 </head>
 
 <body>
 <p>A cikk ID-ja: <span id="article-id"></span></p>
 
-<!-- File Upload Component -->
-<div>
-    <input type="file" id="fileInput">
-    <button id="uploadButton">Upload</button>
-</div>
-
-<textarea id="my-editor"></textarea>
-<button onclick="sendContent()">Send Content</button>
-
 <script src="stored-data-provider.js"></script>
 <script src="session-synchronizer.js"></script>
 <script src="editor-page-loader.js"></script>
 
-<script>
-        let uploadedFileURL = '';
-        tinymce.init({
-          selector: '#my-editor',
-          toolbar: 'undo redo | bold italic'
-        });
-
-        const fileInput = document.getElementById('fileInput');
-        const uploadButton = document.getElementById('uploadButton');
-
-        uploadButton.addEventListener('click', async () => {
-            const file = fileInput.files[0];
-
-            if (file) {
-                // Simulate file upload process
-                await uploadFile(file);
-            }
-        });
-
-        async function uploadFile(file) {
-            // Set the Authorization header for the file upload request
-            const headers = {
-              'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjg4MzAwNTc5LCJleHAiOjkyMjMzNzIwMzY4NTQ3NzV9.6l6FJXOLK3sULg29FfR0N5hUD93WvAyVVEyrNCwy7Ey6iFf7PnVL15EzvNYDRVooSD7XkPLds5KzpWjLJRP3-g' // Replace with your actual token
-            };
-
-            const formData = new FormData();
-            formData.append('file', file);
-
-            // Make the file upload request with the Authorization header
-            await fetch('http://localhost:8083/blogi/file/upload', {
-              method: 'POST',
-              headers: headers,
-              body: formData,
-            })
-             .then(response => {
-                  if (response.status === 201) {
-                    // Successful response
-                    uploadedFileURL = response.headers.get('Location');
-                    console.log(uploadedFileURL)
-                    console.log("Test before");
-                    console.log("Test after");
-                  } else {
-                    // Error response or unexpected status code
-                    console.log('Not HTTP 201');
-                  }
-            })
-            .catch(error => {
-              console.log('Generic error');
-            });
-        }
-
-        async function sendContent() {
-          const editorContent = tinymce.activeEditor.getContent();
-
-          await fetch('http://localhost:8082/blogi/article/', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-               'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjg4MzAwNTc5LCJleHAiOjkyMjMzNzIwMzY4NTQ3NzV9.6l6FJXOLK3sULg29FfR0N5hUD93WvAyVVEyrNCwy7Ey6iFf7PnVL15EzvNYDRVooSD7XkPLds5KzpWjLJRP3-g' // Replace with your actual token
-            },
-            body: JSON.stringify({
-              title: 'Default_new_title',
-              authorName: 'Default_author_name',
-              minutesToRead: 1,
-              content: editorContent,
-              imageURL: uploadedFileURL,
-              categories: ['magyar', 'főétel'],
-              summary: {
-                content: "",
-                imageURL: uploadedFileURL
-              }
-            }),
-          })
-          .then(response => {
-                  if (response.status === 201) {
-                    location.href = 'http://localhost:8080/blogi/home';
-                  } else {
-                    console.log('Problems...');
-                  }
-            })
-        }
-    </script>
 </body>
 
 </html>
