@@ -10,6 +10,7 @@ class SingleArticlePageLoader extends PageLoader{
         this.sessionSynchronizer.sync();
         this.singleArticleLoader = new SingleArticleLoader();
         this.commentLoader = new CommentLoader();
+        this.singleArticlePageEventListeners = new SingleArticlePageEventListeners();
     }
 
     async load() {
@@ -21,6 +22,7 @@ class SingleArticlePageLoader extends PageLoader{
         await super.loadAuthenticatedUserView();
         await this.commentLoader.load();
         this.authenticatedUserViewDisplayer.displayAuthenticatedArticlePage();
+        this.singleArticlePageEventListeners.registerEvents();
     }
 
     async loadUnAuthenticatedUserView(){

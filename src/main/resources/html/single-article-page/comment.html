@@ -8,18 +8,18 @@
             <div id="comment-date"></div>
         </div>
         <div id="comment-content" class="comment-content"></div>
-        <div class="edit-comment-view">
-            <input id="edit-comment-content" class="comment-content" value="">
+        <div class="edit-comment-view hide">
+            <input id="edit-comment-content" class="comment-content">
             <div id="submit-comment-edit-buttons" class="d-flex justify-content-end ">
                 <button class="confirm-yes button" id="submit-update-comment">Mentés</button>
-                <button class="confirm-no button">Mégse</button>
+                <button class="confirm-no button" id="cancel-update-comment">Mégse</button>
             </div>
         </div>
     </div>
     <div class="btn-group dropdown hide" id="edit-comment">
         <button class="btn btn-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-three-dots comment-edit-buttons"></i></button>
         <ul class="dropdown-menu">
-            <li id="delete-comment">delete</li>
+            <a id="delete-comment" data-bs-toggle="modal" data-bs-target="#modal">delete</a>
             <li id="update-comment">edit</li>
         </ul>
     </div>

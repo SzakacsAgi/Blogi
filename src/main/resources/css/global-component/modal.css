@@ -1,0 +1,16 @@
+.confirm-yes, {
+  background-color:#cb849cd2;
+  color: gray;
+}
+
+.confirm-no{
+  color:#CB849C;
+  margin-left: 0.62rem;
+}
+
+.button {
+  border:1.2px #707070 solid;
+  border-radius: 10px;
+  padding:6px;
+  font-weight: 500;
+}

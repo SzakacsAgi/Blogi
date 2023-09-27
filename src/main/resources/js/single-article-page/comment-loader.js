@@ -1,15 +1,5 @@
 class CommentLoader{
 
-    urlProvider;
-    storedDataProvider;
-    commentRESTAPICaller;
-    commentBuilder;
-    elementProvider;
-    elementModifier;
-    componentAdder;
-    authenticationRESTAPICaller;
-    commentParent;
-
     constructor(){
         this.urlProvider = new URLProvider();
         this.storedDataProvider = new StoredDataProvider();
