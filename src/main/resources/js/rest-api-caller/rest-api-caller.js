@@ -163,8 +163,6 @@ class CommentRESTAPICaller extends RESTAPICaller {
 
     async deleteComment(articleId, commentId) {
         let errorChecker = new RESTAPIErrorChecker();
-        console.log("DELETE URL:"+this.urlProvider.getASingleComment(articleId, commentId))
-        console.log("DELETE HEADER:"+JSON.stringify(this.header))
         return await fetch(this.urlProvider.getASingleComment(articleId, commentId), { method: 'DELETE', headers: this.header })
            .then(errorChecker.check)
            .then(response => response.json())

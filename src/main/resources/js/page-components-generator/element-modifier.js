@@ -29,8 +29,6 @@ class ElementModifier {
     }
 
     removeElement(element){
-        console.log(element)
-        console.log("delete from dom...")
         element.remove();
     }
 

@@ -37,4 +37,14 @@ class ElementProvider{
         return mainComponent.querySelectorAll(subComponent);
     }
 
+    getClickedElement(){
+           return new Promise(resolve => {
+               function handleClick(event) {
+                   let clickedElement = event.target;
+                   document.removeEventListener('click', handleClick); // Remove the event listener
+                   resolve(clickedElement); // Return the clicked element
+               }
+               document.addEventListener('click', handleClick);
+           });
+       }
 }

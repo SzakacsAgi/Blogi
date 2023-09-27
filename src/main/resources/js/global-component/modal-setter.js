@@ -7,15 +7,14 @@ class ModalSetter{
         this.componentAdder = new ComponentAdder();
         this.modalData = new ModalData();
 
-
         this.modal = this.elementProvider.getElementById("modal-element");
         this.titleElement = this.elementProvider.getSubComponent(this.modal, "#title");
         this.confirmNoButton = this.elementProvider.getSubComponent(this.modal, "#modal-cancel");
+        this.confirmYesButton = this.elementProvider.getSubComponent(this.modal, "#modal-confirm")
     }
 
     setModalData(){
         this.modalType = this.storedDataProvider.getItemFromSessionStorage("modal");
-        this.confirmYesButton = this.createConfirmYesButton();
 
         switch(this.modalType){
             case this.modalData.getData("deleteArticle"):
@@ -30,12 +29,7 @@ class ModalSetter{
                 break;
         }
 
-        this.addConfirmYesButton(this.confirmYesButton);
-        this.modal.addEventListener('hidden.bs.modal', () => {
-            this.storedDataProvider.clearSpecificItemFromSessionStorage("modal");
-            this.elementModifier.removeElement(this.confirmYesButton);
-        });
-
+        this.registerModalConfirmYesButtonClickDetection();
     }
 
     setModalTitle(title){
@@ -46,21 +40,26 @@ class ModalSetter{
         this.elementModifier.setElementText(button, text);
     }
 
-    createConfirmYesButton(){
-        let confirmYesButton = document.createElement("button")
-        this.elementModifier.setElementAttributes(confirmYesButton, {"type":"button", "data-bs-dismiss":"modal", "id":"modal-confirm"});
-        this.elementModifier.addElementClass(confirmYesButton, ["button", "confirm-yes"]);
-        return confirmYesButton;
+    registerModalConfirmYesButtonClickDetection(){
+        this.modal.addEventListener('shown.bs.modal', async () => await this.registerModalConfirmYesButton());
+        this.modal.removeEventListener('shown.bs.modal', this.registerModalConfirmYesButton);
     }
 
-    addConfirmYesButton(){
-        this.componentAdder.addBeforeOtherComponent(this.confirmNoButton, this.confirmYesButton);
+    registerModalConfirmYesButton() {
+        this.elementProvider.getClickedElement().then(clickedElement => {
+            if(clickedElement.id === "modal-confirm"){
+                this.executeConfirmButtonEvent();
+            }
+        });
     }
 
-    clickOnConfirmButton(event){
-        this.confirmYesButton.addEventListener('click', () => {
+    setClickOnConfirmButtonEvent(eventParent, eventToExecute){
+        this.eventParent = eventParent;
+        this.eventToExecuteOnConfirmButtonClick = eventToExecute;
+    }
 
-        })
+    executeConfirmButtonEvent(){
+        this.eventToExecuteOnConfirmButtonClick.bind(this.eventParent)();
     }
 
 }

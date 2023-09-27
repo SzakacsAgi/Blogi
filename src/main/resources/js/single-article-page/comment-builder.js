@@ -51,12 +51,9 @@ class CommentBuilder {
         let hasPermissionToDelete = this.userPermissionVerifier.hasPermissionForDeleteComment(this.commentInfo);
         let hasPermissionToUpdate = this.userPermissionVerifier.hasPermissionForUpdateComment(this.commentInfo);
         if (hasPermissionToUpdate) {
-                    console.log("Got permission to update");
-
             this.commentEventListenerRegister.registerUpdateButton(this.updateCommentButton);
         }
         if(hasPermissionToDelete){
-            console.log("Got permission to delete");
             this.commentEventListenerRegister.registerDeleteButton(this.deleteCommentButton);
         }
         else{

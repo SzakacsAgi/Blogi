@@ -23,3 +23,13 @@ main #article-image{
 main .container #article-content{
     margin: 60px 0px;
 }
+
+.confirm-yes, {
+  background-color:#cb849cd2;
+  color: gray;
+}
+
+.confirm-no{
+  color:#CB849C;
+  margin-left: 0.62rem;
+}
