@@ -38,13 +38,13 @@ class ElementProvider{
     }
 
     getClickedElement(){
-           return new Promise(resolve => {
-               function handleClick(event) {
-                   let clickedElement = event.target;
-                   document.removeEventListener('click', handleClick);
-                   resolve(clickedElement);
-               }
-               document.addEventListener('click', handleClick);
-           });
-       }
+        return new Promise(resolve => {
+            function handleClick(event) {
+                let clickedElement = event.target;
+                document.removeEventListener('click', handleClick);
+                resolve(clickedElement);
+            }
+            document.addEventListener('click', handleClick);
+        });
+    }
 }

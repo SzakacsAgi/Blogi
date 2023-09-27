@@ -24,7 +24,6 @@ class PageLoader{
         else{
             this.loadUnAuthenticatedUserView()
         }
-
         this.addEventListeners();
     }
 
