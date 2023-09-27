@@ -163,7 +163,7 @@ class CommentRESTAPICaller extends RESTAPICaller {
 
     async deleteComment(articleId, commentId) {
         let errorChecker = new RESTAPIErrorChecker();
-        return await fetch(this.urlProvider.getASingleComment(articleId, commentId), { method: 'DELETE', headers: this.header })
+        return await fetch(this.urlProvider.getASingleCommentURL(articleId, commentId), { method: 'DELETE', headers: this.header })
            .then(errorChecker.check)
            .then(response => response.json())
            .then(function (json) {
@@ -177,7 +177,7 @@ class CommentRESTAPICaller extends RESTAPICaller {
     async updateComment(articleId, commentId, body) {
         let errorChecker = new RESTAPIErrorChecker();
 
-        return await fetch(this.urlProvider.getASingleComment(articleId, commentId), { method: 'PUT', headers: this.header, body:body })
+        return await fetch(this.urlProvider.getASingleCommentURL(articleId, commentId), { method: 'PUT', headers: this.header, body:body })
            .then(errorChecker.check)
            .then(response => response.json())
            .then(function (json) {
