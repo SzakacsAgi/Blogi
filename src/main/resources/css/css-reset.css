@@ -19,10 +19,6 @@
     box-sizing: border-box;
 }
 
-a:visited, a:hover{
-    color: black;
-}
-
 a{
     color: black;
 }

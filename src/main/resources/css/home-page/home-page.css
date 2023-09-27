@@ -12,6 +12,10 @@ main {
   font-size: var(--title-font-size);
 }
 
+a, a:visited, a:hover, a:active{
+    text-decoration: none;
+}
+
 .hide{
     display: none !important;
 }

@@ -1,12 +1,6 @@
 class ButtonEventListenerProvider {
 
-    storedDataProvider;
-    urlProvider;
-
-    constructor() {
-        this.storedDataProvider = new StoredDataProvider();
-        this.urlProvider = new URLProvider();
-    }
+    constructor() { }
 
     clickOnFilterSearchButton() {
         document.getElementById('article-row').innerHTML = '';
@@ -21,8 +15,13 @@ class ButtonEventListenerProvider {
 
     clickOnDeleteArticleConfirmButton() {
         console.log("clicked")
-        let caller = new ArticleRESTAPICaller(this.urlProvider.getBaseArticleURL());
-        let articleToDelete = this.storedDataProvider.getItemFromLocalStorage("articleId");
+
+        let urlProvider = new URLProvider();
+        let storedDataProvider = new StoredDataProvider();
+
+        console.log(urlProvider.getBaseArticleURL());
+        let caller = new ArticleRESTAPICaller(urlProvider.getBaseArticleURL());
+        let articleToDelete = storedDataProvider.getItemFromLocalStorage("articleId");
         let displayer = new ArticlePreviewDisplayer();
         caller.sendDELETESingleRequest(articleToDelete);
         setTimeout(function () {

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.tiny.cloud/1/26jnqpce17l0op7lu6j9vckcuqk5jcjf021emyrq9ljsxrr3/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
+    <title>Blogi - New Article</title>
+    <style>
+
+.invalid{
+    border-color: red;
+}
+
+.invalid:focus{
+ box-shadow: 0 0 0 0.25rem rgba(255,0,0,.25);
+ border-color: red;
+}
+
+.tox-statusbar{
+    display:none !important;
+}
+
+
+    </style>
+</head>
+
+<body>
+
+        <form class="container" id="create-article-form">
+            <h1 class="d-flex justify-content-center">Új cikk létrehozása</h1>
+                    <label for="file-input" class="form-label mx-1" style="display:inline-block">Indexkép feltöltése</label>
+                    <input type="file" id="file-input" class="form-control" style="display:inline-block" accept=".jpeg, .jpg, .png, .gif" required>
+                    <img alt="" id="file-preview">
+
+
+            <textarea id="local-upload"></textarea>
+            <label for="categories">Add meg a kategóriákat</label>
+            <input type="text" id="categories" class="form-control" placeholder="étel, ital, stb" required title="">
+            <label for="title">Add meg a cikk címét</label>
+            <input type="text" id="title" class="form-control" title="" required>
+            <label for="minutes-to-read">Add meg mennyi idő elolvasni a cikket</label>
+            <input type="text" id="minutes-to-read" class="form-control" title="" required>
+            <div class="mb-3 d-flex justify-content-end">
+                <button class="btn btn-primary me-2" type="submit" id="submit">Létrehozás</button>
+            </div>
+        </form>
+
+
+
+
+        <script src="stored-data-provider.js"></script>
+        <script src="token-saver.js"></script>
+        <script src="element-modifier.js"></script>
+        <script src="element-provider.js"></script>
+
+
+        <script src="token-provider.js"></script>
+
+        <script src="rest-api-helper.js"></script>
+
+        <script src="rest-api-caller.js"></script>
+        <script src="authenticated-user-info.js"></script>
+
+        <script src="authentication-status-tracker.js"></script>
+
+        <script src="url-provider.js"></script>
+
+        <script src="new-article-editor.js"></script>
+        <script src="new-article-page-event-listeners.js"></script>
+        <script src="new-article-page-exception-handler.js"></script>
+        <script src="page-loader.js"></script>
+        <script src="new-article-data.js"></script>
+        <script src="new-article-page-loader.js"></script>
+
+
+
+<script>
+
+
+
+</script>
+
+<script>
+
+        async function sendContent() {
+          const editorContent = tinymce.activeEditor.getContent();
+
+          await fetch('http://localhost:8082/blogi/article/', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+               'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk0ODYwNzgwLCJleHAiOjE2OTQ4NjI1ODB9.BPJKaAMfnLzV2hVQ7fiZCAZHgHzQrYUIRUB-jTNsitb4SXHBJR1B0VHIASFnkodLVe2aF23mJFuRELb0OWUjcw'// Replace with your actual token
+            },
+            body: JSON.stringify({
+              title: 'Default_new_title',
+              authorName: 'Default_author_name',
+              minutesToRead: 1,
+              content: editorContent,
+              imageURL: uploadedFileURL,
+              categories: ['magyar', 'főétel'],
+              summary: {
+                content: "",
+                imageURL: uploadedFileURL
+              }
+            }),
+          })
+          .then(response => {
+                  if (response.status === 201) {
+                    location.href = 'http://localhost:8080/blogi/home';
+                  } else {
+                    console.log('Problems...');
+                  }
+            })
+        }
+
+</script>
+
+
+
+</body>
+
+</html>

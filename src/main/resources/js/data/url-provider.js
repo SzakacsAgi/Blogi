@@ -8,16 +8,20 @@ class URLProvider {
     #authenticationApiPrefix;
     #articleServerOrigin;
     #articleApiPrefix;
+    #fileServerOrigin;
+    #fileApiPrefix;
 
     constructor() {
         this.#frontendServerOrigin = window.location.origin;
         this.#frontendApiPrefix = "/blogi";
-        this.#authenticationServerOrigin = "http://localhost:8081/";
+        this.#authenticationServerOrigin = "http://192.168.100.14:8081/";
         this.#authenticationApiPrefix = "blogi/authentication"
         this.#authenticationApi = "/oauth2/authorize/";
         this.#redirectUri = "?redirect_uri=http://localhost:8080/blogi/redirect";
-        this.#articleServerOrigin = "http://localhost:8082/";
+        this.#articleServerOrigin = "http://192.168.100.14:8082/";
         this.#articleApiPrefix = "blogi/article";
+        this.#fileServerOrigin = "http://192.168.100.14:8083/";
+        this.#fileApiPrefix = "blogi/file";
     }
 
     getArticlePageURL() {
@@ -63,5 +67,17 @@ class URLProvider {
      getUserInfoURL(userId){
         return this.getBaseAuthenticationURL() + '/user/' + userId;
      }
+
+    getBaseFileURL(){
+        return this.#fileServerOrigin + this.#fileApiPrefix;
+    }
+
+    getUploadFileURL(){
+        return this.getBaseFileURL() + "/upload";
+    }
+
+    getDeleteFileURL(file){
+        return this.getBaseFileURL() + "/" + file;
+    }
 
 }
