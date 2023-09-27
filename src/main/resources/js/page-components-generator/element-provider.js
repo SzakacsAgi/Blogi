@@ -41,8 +41,8 @@ class ElementProvider{
            return new Promise(resolve => {
                function handleClick(event) {
                    let clickedElement = event.target;
-                   document.removeEventListener('click', handleClick); // Remove the event listener
-                   resolve(clickedElement); // Return the clicked element
+                   document.removeEventListener('click', handleClick);
+                   resolve(clickedElement);
                }
                document.addEventListener('click', handleClick);
            });

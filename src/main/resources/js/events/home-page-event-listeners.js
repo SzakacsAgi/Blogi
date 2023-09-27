@@ -7,7 +7,7 @@ class HomePageEventListeners {
         this.modalData = new ModalData();
     }
 
-    async registerEventListeners(){
+    registerEventListeners(){
         this.addFilterSearchListener();
         this.addResetFilterSearchListener();
         this.copyArticleId();
@@ -24,7 +24,7 @@ class HomePageEventListeners {
         resetFilterSearchButton.addEventListener("click", this.buttonEventListenerProvider.clickOnResetFilterButton);
     }
 
-     async addDeleteButtonListener(button, id) {
+    addDeleteButtonListener(button, id) {
         button.addEventListener("click", async () => {
             this.storedDataProvider.setItemToSessionStorage("articleId", id);
             this.storedDataProvider.setItemToSessionStorage("modal", this.modalData.getData("deleteArticle"));

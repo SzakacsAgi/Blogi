@@ -190,14 +190,12 @@ class CommentRESTAPICaller extends RESTAPICaller {
 
     async createComment(articleId, body) {
         const response = await fetch(this.urlProvider.getBaseCommentURL(articleId), { method: 'POST', headers: this.header, body: body });
-
-            // Check if the response has a Location header
             if (response.headers.has('Location')) {
                 const locationURL = response.headers.get('Location');
-                const contentResponse = await fetch(locationURL); // Fetch the content from the provided URL
-                return contentResponse.json(); // Return the fetched content as JSON
+                const contentResponse = await fetch(locationURL);
+                return contentResponse.json();
             } else {
-                return {}; // Return an empty object if there is no Location header
+                    console.log("Location header is not present!");
             }
     }
 }

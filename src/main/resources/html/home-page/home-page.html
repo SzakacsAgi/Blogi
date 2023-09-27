@@ -31,23 +31,8 @@
 </main>
 
 <blogi-footer></blogi-footer>
-<div id="modal-element">
-    <div class="modal fade" tabindex="-1" id="modal" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="d-flex justify-content-between">
-                        <h1 class="modal-title fs-5" id="title"></h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="mt-3">
-                        <button type="button" class="button confirm-no mr-2" id="modal-cancel" data-bs-dismiss="modal"></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<blogi-modal></blogi-modal>
+
 
 <script src="rest-api-helper.js"></script>
 <script src="rest-api-caller.js"></script>
@@ -60,6 +45,7 @@
 <script src="url-provider.js"></script>
 <script src="authenticated-user-info.js"></script>
 <script src="authentication-status-tracker.js"></script>
+<script src="modal.js"></script>
 <script src="footer.js"></script>
 <script src="header.js"></script>
 <script src="about-me-part.js"></script>
@@ -87,7 +73,6 @@
 <script src="unauthenticated-user-view-displayer.js"></script>
 <script src="modal-data.js"></script>
 <script src="modal-setter.js"></script>
-<script src="modal-loader.js"></script>
 <script src="page-loader.js"></script>
 <script src="home-page-loader.js"></script>
 </body>
