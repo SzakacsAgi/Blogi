@@ -87,4 +87,7 @@ class URLProvider {
         return this.getBaseFileURL() + "/" + file;
     }
 
+    getASingleCommentURL(articleId, commentId){
+        return this.getBaseCommentURL(articleId) + "/" + commentId;
+    }
 }
