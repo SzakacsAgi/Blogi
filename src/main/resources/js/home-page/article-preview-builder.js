@@ -34,7 +34,7 @@ class ArticlePreviewBuilder {
         this.articleId = this.articleInfo.getId();
         await this.getArticleElement();
         this.setElementsToModify();
-        await this.setArticlePreviewData();
+        this.setArticlePreviewData();
         return this.articleElement;
     }
 
@@ -52,7 +52,6 @@ class ArticlePreviewBuilder {
         this.cardCategories = this.elementProvider.getSubComponent(this.articleElement, "#card-categories");
         this.readMoreButtonElement = this.elementProvider.getSubComponent(this.articleElement, "#read-more-button");
         this.categoryDivContainer = this.elementProvider.getSubComponent(this.articleElement, "#card-categories")
-        this.deleteButton = this.elementProvider.getSubComponent(this.articleElement, ".delete-button")
     }
 
     setArticlePreviewData() {
