@@ -14,6 +14,10 @@ class ElementProvider{
         return mainComponent.querySelector(subComponent);
     }
 
+    getElementByClassName(name){
+       return mainComponent.getElementsByClassName(name)[0];
+    }
+
     getElementFromHtmlFile(fileName){
         return fetch(fileName)
             .then(response => response.text())
@@ -25,4 +29,22 @@ class ElementProvider{
         })
     }
 
+    getAncestor(element, ancestorSelector){
+       return element.closest(ancestorSelector);
+    }
+
+    getAllSubComponent(mainComponent, subComponent){
+        return mainComponent.querySelectorAll(subComponent);
+    }
+
+    getClickedElement(){
+        return new Promise(resolve => {
+            function handleClick(event) {
+                let clickedElement = event.target;
+                document.removeEventListener('click', handleClick);
+                resolve(clickedElement);
+            }
+            document.addEventListener('click', handleClick);
+        });
+    }
 }

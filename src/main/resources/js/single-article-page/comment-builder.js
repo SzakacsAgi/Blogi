@@ -1,25 +1,11 @@
 class CommentBuilder {
 
-    commentInfo;
-    userInfo;
-    elementCreator;
-    elementModifier;
-    elementProvider;
-
-    commentElement;
-    creationDateElement;
-    contentElement;
-    userImageElement;
-    userNameElement;
-    editCommentButtons;
-    deleteCommentButton;
-    submitUpdateCommentButton;
-
-
     constructor(){
         this.elementCreator = new ElementCreator();
         this.elementModifier = new ElementModifier();
         this.elementProvider = new ElementProvider();
+        this.userPermissionVerifier = new UserPermissionVerifier();
+        this.commentEventListenerRegister = new CommentEventListenerRegister();
     }
 
     async build(comment, userId){
@@ -28,6 +14,7 @@ class CommentBuilder {
        await this.getCommentElement();
        this.setElementsToModify();
        this.setCommentData();
+       this.addEventListener();
        return this.commentElement;
     }
 
@@ -43,6 +30,7 @@ class CommentBuilder {
         this.userNameElement = this.elementProvider.getSubComponent(this.commentElement, "#user-name");
         this.editCommentButtons = this.elementProvider.getSubComponent(this.commentElement, "#edit-comment");
         this.deleteCommentButton = this.elementProvider.getSubComponent(this.commentElement, "#delete-comment");
+        this.updateCommentButton = this.elementProvider.getSubComponent(this.commentElement, "#update-comment");
         this.submitUpdateCommentButton = this.elementProvider.getSubComponent(this.commentElement, "#submit-update-comment");
     }
 
@@ -54,7 +42,24 @@ class CommentBuilder {
         this.elementModifier.setElementText(this.userNameElement, this.userInfo.getUserName());
         this.elementModifier.setElementAttributes(this.editCommentButtons, {"user-id":this.commentInfo.getUserId()});
         this.elementModifier.setElementAttributes(this.deleteCommentButton, {"comment-id":this.commentInfo.getId()});
-        this.elementModifier.setElementAttributes(this.submitUpdateCommentButton, {"comment-id":this.commentInfo.getId()});
+        this.elementModifier.setElementAttributes(this.updateCommentButton, {"comment-id":this.commentInfo.getId()});
+        this.elementModifier.setElementAttributes(this.submitUpdateCommentButton, {"user-id":this.userInfo.getUserId()});
+    }
+
+    addEventListener(){
+
+        let hasPermissionToDelete = this.userPermissionVerifier.hasPermissionForDeleteComment(this.commentInfo);
+        let hasPermissionToUpdate = this.userPermissionVerifier.hasPermissionForUpdateComment(this.commentInfo);
+        if (hasPermissionToUpdate) {
+            this.commentEventListenerRegister.registerUpdateButton(this.updateCommentButton);
+        }
+        if(hasPermissionToDelete){
+            this.commentEventListenerRegister.registerDeleteButton(this.deleteCommentButton);
+        }
+        else{
+            this.deleteCommentButton.removeAttribute("data-bs-toggle");
+            this.deleteCommentButton.removeAttribute("data-bs-target");
+        }
     }
 
 }

@@ -10,8 +10,4 @@ class PageViewDisplayer {
         this.header = this.elementProvider.getComponent("blogi-header");
     }
 
-    displayElement(element){
-        this.elementModifier.removeElementClass(element, ["hide"]);
-    }
-
 }

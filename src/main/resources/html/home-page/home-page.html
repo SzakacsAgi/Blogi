@@ -31,25 +31,8 @@
 </main>
 
 <blogi-footer></blogi-footer>
+<blogi-modal></blogi-modal>
 
-<!-- MODALS -->
-<div class="modal fade" id="delete-article-modal" tabindex="-1" aria-labelledby="delete-article-modal-label"
-     aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-body">
-                <div class="d-flex justify-content-between">
-                    <h1 class="modal-title fs-5" id="delete-article-modal-labe">Biztos, hogy törölni szeretnéd a cikket?</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="mt-3">
-                    <button type="button" class="button confirm-yes" data-bs-dismiss="modal" id="delete-article">Igen</button>
-                    <button type="button" class="button confirm-no mr-2" id="delete-article-cancel" data-bs-dismiss="modal">Nem</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 <script src="rest-api-helper.js"></script>
 <script src="rest-api-caller.js"></script>
@@ -62,6 +45,7 @@
 <script src="url-provider.js"></script>
 <script src="authenticated-user-info.js"></script>
 <script src="authentication-status-tracker.js"></script>
+<script src="modal.js"></script>
 <script src="footer.js"></script>
 <script src="header.js"></script>
 <script src="about-me-part.js"></script>
@@ -87,6 +71,8 @@
 <script src="page-view-displayer.js"></script>
 <script src="authenticated-user-view-displayer.js"></script>
 <script src="unauthenticated-user-view-displayer.js"></script>
+<script src="modal-data.js"></script>
+<script src="modal-setter.js"></script>
 <script src="page-loader.js"></script>
 <script src="home-page-loader.js"></script>
 </body>

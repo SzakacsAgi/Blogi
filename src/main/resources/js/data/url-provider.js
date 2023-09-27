@@ -64,4 +64,7 @@ class URLProvider {
         return this.getBaseAuthenticationURL() + '/user/' + userId;
      }
 
+    getASingleCommentURL(articleId, commentId){
+        return this.getBaseCommentURL(articleId) + "/" + commentId;
+    }
 }

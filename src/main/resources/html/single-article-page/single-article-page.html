@@ -33,25 +33,25 @@
     <div class="container">
         <h1>Hozzászólások:</h1>
 
-        <div id="comments"></div>
+
         <div id="no-comment" class="hide">Ehhez a cikkhez nincsennek hozzászólások, légy te az első aki megosztja véleményét!</div>
         <div class="fs-2 hide pb-3 pt-3" id="need-to-sign-in">A hozzászóláshoz <a href="/blogi/sign-in">belépés</a> szükséges</div>
         <div class="d-flex justify-content-between align-items-center hide" id="write-comment">
-            <div class=" mb-3 d-flex justify-content-between align-items-center p-3 " style="flex: 1;">
-                <div>
+            <div class=" mb-3 d-flex justify-content-between align-items-center p-3 ">
                     <img class="user-img mr-2 profile-picture">
-                    <input placeholder="Hozzászólás írása...">
-                </div>
-                <a id="submit-comment">
-                    <img>
-                </a>
+                    <input id="write-comment-input" placeholder="Hozzászólás írása...">
             </div>
-            <button class="btn btn-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false">Küldés</button>
+            <a id="submit-write-comment" class="button" aria-expanded="false">Küldés</a>
+        </div>
+        <div id="comments">
+            <div id="first-component"></div>
         </div>
     </div>
 </main>
 
 <blogi-footer></blogi-footer>
+<blogi-modal></blogi-modal>
+
 
 
 <script src="stored-data-provider.js"></script>
@@ -65,6 +65,7 @@
 <script src="element-creator.js"></script>
 <script src="authenticated-user-info.js"></script>
 <script src="authentication-status-tracker.js"></script>
+<script src="modal.js"></script>
 <script src="footer.js"></script>
 <script src="header.js"></script>
 <script src="session-synchronizer.js"></script>
@@ -74,12 +75,18 @@
 <script src="article-info.js"></script>
 <script src="single-article-data-provider.js"></script>
 <script src="comment-info.js"></script>
+<script src="user-permission-verifier.js"></script>
+<script src="request-body-maker.js"></script>
+<script src="comment-event-listener.js"></script>
 <script src="comment-builder.js"></script>
 <script src="comment-loader.js"></script>
 <script src="page-view-displayer.js"></script>
 <script src="authenticated-user-view-displayer.js"></script>
 <script src="unauthenticated-user-view-displayer.js"></script>
 <script src="single-article-loader.js"></script>
+<script src="modal-data.js"></script>
+<script src="modal-setter.js"></script>
+<script src="single-article-page-event-listeners.js"></script>
 <script src="page-loader.js"></script>
 <script src="single-article-page-loader.js"></script>
 </body>

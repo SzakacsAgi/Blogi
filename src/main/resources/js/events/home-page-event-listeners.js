@@ -1,14 +1,15 @@
 class HomePageEventListeners {
 
-    buttonEventListenerProvider = new ButtonEventListenerProvider();
-    storedDataProvider = new StoredDataProvider();
-
-    constructor() {}
+    constructor() {
+        this.buttonEventListenerProvider = new ButtonEventListenerProvider();
+        this.storedDataProvider = new StoredDataProvider();
+        this.modalSetter = new ModalSetter();
+        this.modalData = new ModalData();
+    }
 
     registerEventListeners(){
         this.addFilterSearchListener();
         this.addResetFilterSearchListener();
-        this.addDeleteArticleConfirmButtonListener();
         this.copyArticleId();
         this.addSearchBarListener();
     }
@@ -24,13 +25,16 @@ class HomePageEventListeners {
     }
 
     addDeleteButtonListener(button, id) {
-            button.addEventListener("click", () => {
-                this.storedDataProvider.setItemToLocalStorage("articleId", id);
+        button.addEventListener("click", async () => {
+            this.storedDataProvider.setItemToSessionStorage("articleId", id);
+            this.storedDataProvider.setItemToSessionStorage("modal", this.modalData.getData("deleteArticle"));
+            this.modalSetter.setModalData();
+            this.addDeleteArticleConfirmButtonListener();
         })
     }
 
     addDeleteArticleConfirmButtonListener() {
-        let deleteArticleConfirmButton = document.getElementById("delete-article");
+        let deleteArticleConfirmButton = document.getElementById("modal-confirm");
         deleteArticleConfirmButton.addEventListener("click", this.buttonEventListenerProvider.clickOnDeleteArticleConfirmButton);
     }
 
