@@ -5,9 +5,10 @@ class NewArticlePageExceptionHandler{
     registerExceptionHandlers(){
         this.handleTitleIsNullException();
         this.handelMinutesToReadIsNotValidNumberException();
-        this.handleMinutesToReadIsNullException();
+       this.handleMinutesToReadIsNullException();
         this.handleCategoryIsNullException();
         this.handleFileIsNullException();
+       // this.handelSubmitWithoutFieldFillException();
     }
 
     handleTitleIsNullException(){
@@ -72,28 +73,53 @@ class NewArticlePageExceptionHandler{
     }
 
     handleFileIsNullException(){
-        let fileInput =  document.getElementById('file-input');
-        fileInput.setCustomValidity('Egy kép feltöltése kötelező!');
-        fileInput.addEventListener("click", () =>{
-            let isSubmitWithoutFileUpload = document.getElementById("file-preview").src === '';
-            if(isSubmitWithoutFileUpload){
-                document.body.onfocus = this.checkIt;
+        this.fileInput = document.getElementById('file-input');
+        this.fileInput.setCustomValidity('Egy kép feltöltése kötelező!');
+        this.fileInput.addEventListener("click", () =>{
+            this.isFileUploaded = document.getElementById("file-preview").src !== '';
+            console.log(document.getElementById("file-preview").src);
+            console.log(this.isFileUploaded)
+            if(!this.isFileUploaded){
+                document.body.onfocus = () => this.checkIfFileWillBeUpload;
+            }
+            else{
+                this.fileInput.removeAttribute("required");
+                this.fileInput.classList.remove("invalid-focus");
             }
         })
     }
 
-    checkIt() {
-        let fileInput =  document.getElementById('file-input');
-        if (fileInput.value.length) {
-            fileInput.title = "";
-            fileInput.setCustomValidity("");
-            fileInput.classList.remove("invalid");
+    checkIfFileWillBeUpload() {
+        let isUserClickedUploadButton = this.fileInput.value.length !== 0;
+        this.isFileUploaded = document.getElementById("file-preview").src !== '';
+        console.log(isUserClickedUploadButton)
+        if (isUserClickedUploadButton || this.isFileUploaded) {
+            this.fileInput.title = "";
+            this.fileInput.setCustomValidity("");
+            this.fileInput.classList.remove("invalid");
+                            this.fileInput.classList.remove("invalid-focus");
         }
         else {
-            fileInput.title = 'Egy kép feltöltése kötelező!';
-            fileInput.setCustomValidity('Egy kép feltöltése kötelező!');
-            fileInput.classList.add("invalid");
+            this.fileInput.title = 'Egy kép feltöltése kötelező!';
+            this.fileInput.setCustomValidity('Egy kép feltöltése kötelező!');
+            this.fileInput.classList.add("invalid");
         }
         document.body.onfocus = null;
+    }
+
+    handelContentIsNullException(){
+        let editor = document.getElementsByClassName("tox-tinymce")[0];
+        let isContentNull = tinymce.activeEditor.getContent() === '';
+        if(isContentNull){
+            editor.classList.add("invalid");
+            editor.title = "A cikk tartalmát kötelező megadni!";
+        }
+    }
+
+    handelSubmitWithoutFieldFillException(){
+        let submitButton = document.getElementById('submit');
+        submitButton.addEventListener('click', () =>{
+            this.isFileUploaded ? this.fileInput.classList.remove("invalid-focus") : this.fileInput.classList.add("invalid-focus");
+        })
     }
 }

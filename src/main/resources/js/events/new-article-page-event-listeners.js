@@ -25,13 +25,15 @@ class NewArticleEventListeners{
                 await this.fileRESTAPICaller.uploadFile(file);
                 filePreview.src = NewArticleData.imageURL;
             }
-
         }
     }
 
     async addSendContentListener(){
-        document.getElementById("create-article-form").addEventListener('submit', async () => {
-            event.preventDefault();
+        let form = this.elementProvider.getElementById("create-article-form");
+        form.addEventListener('submit', async (event) => {
+                event.preventDefault();
+
+
             NewArticleData.title = this.elementProvider.getElementById('title').value;
             NewArticleData.author = AuthenticatedUserInfo.name;
             NewArticleData.categories = ["test", "test4"]
@@ -56,6 +58,7 @@ class NewArticleEventListeners{
 
 
         })
+
     }
 
 }

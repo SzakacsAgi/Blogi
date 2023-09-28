@@ -15,10 +15,6 @@
     <title>Blogi - New Article</title>
     <style>
 
-.invalid{
-    border-color: red;
-}
-
 .invalid:focus{
  box-shadow: 0 0 0 0.25rem rgba(255,0,0,.25);
  border-color: red;
@@ -28,7 +24,14 @@
     display:none !important;
 }
 
+#create-article-form .invalid-focus{
+ box-shadow: 0 0 0 0.25rem rgba(255,0,0,.25);
+ border-color: red;
+}
 
+.invalid{
+    border-color: red !important;
+}
     </style>
 </head>
 
@@ -36,24 +39,45 @@
 
         <form class="container" id="create-article-form">
             <h1 class="d-flex justify-content-center">Új cikk létrehozása</h1>
-                    <label for="file-input" class="form-label mx-1" style="display:inline-block">Indexkép feltöltése</label>
-                    <input type="file" id="file-input" class="form-control" style="display:inline-block" accept=".jpeg, .jpg, .png, .gif" required>
-                    <img alt="" id="file-preview">
+            <div class="col-md-4">
+                <label for="file-input" class="form-label mx-1" style="display:inline-block">Indexkép feltöltése</label>
+                <input type="file" id="file-input" class="form-control" style="display:inline-block" accept=".jpeg, .jpg, .png, .gif" required>
 
+                <div class="invalid-feedback">
+                    Egy fájl választása kötelező!
+                </div>
+                <img alt="" id="file-preview">
+            </div>
+            <div class="col-md-4">
+                <label for="categories">Add meg a kategóriákat</label>
+                <input type="text" id="categories" class="form-control" placeholder="étel, ital, stb" required title="">
+                <div class="invalid-feedback">
+                    Kategória megadása kötelező!
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="title">Add meg a cikk címét</label>
+                <input type="text" id="title" class="form-control" title="" required>
+                <div class="invalid-feedback">
+                    Cikk címe!
+                </div>
+            </div>
 
             <textarea id="local-upload"></textarea>
-            <label for="categories">Add meg a kategóriákat</label>
-            <input type="text" id="categories" class="form-control" placeholder="étel, ital, stb" required title="">
-            <label for="title">Add meg a cikk címét</label>
-            <input type="text" id="title" class="form-control" title="" required>
-            <label for="minutes-to-read">Add meg mennyi idő elolvasni a cikket</label>
-            <input type="text" id="minutes-to-read" class="form-control" title="" required>
+            <div class="col-md-4">
+                <label for="minutes-to-read">Add meg mennyi idő elolvasni a cikket</label>
+                <input type="text" id="minutes-to-read" class="form-control" title="" required>
+                <div class="invalid-feedback">
+                    cikk ideje
+                </div>
+            </div>
+
+
             <div class="mb-3 d-flex justify-content-end">
                 <button class="btn btn-primary me-2" type="submit" id="submit">Létrehozás</button>
             </div>
         </form>
-
-
+        <blogi-modal></blogi-modal>
 
 
         <script src="stored-data-provider.js"></script>
@@ -61,7 +85,7 @@
         <script src="element-modifier.js"></script>
         <script src="element-provider.js"></script>
 
-
+        <script src="modal.js"></script>
         <script src="token-provider.js"></script>
 
         <script src="rest-api-helper.js"></script>
@@ -79,51 +103,6 @@
         <script src="page-loader.js"></script>
         <script src="new-article-data.js"></script>
         <script src="new-article-page-loader.js"></script>
-
-
-
-<script>
-
-
-
-</script>
-
-<script>
-
-        async function sendContent() {
-          const editorContent = tinymce.activeEditor.getContent();
-
-          await fetch('http://localhost:8082/blogi/article/', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-               'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjk0ODYwNzgwLCJleHAiOjE2OTQ4NjI1ODB9.BPJKaAMfnLzV2hVQ7fiZCAZHgHzQrYUIRUB-jTNsitb4SXHBJR1B0VHIASFnkodLVe2aF23mJFuRELb0OWUjcw'// Replace with your actual token
-            },
-            body: JSON.stringify({
-              title: 'Default_new_title',
-              authorName: 'Default_author_name',
-              minutesToRead: 1,
-              content: editorContent,
-              imageURL: uploadedFileURL,
-              categories: ['magyar', 'főétel'],
-              summary: {
-                content: "",
-                imageURL: uploadedFileURL
-              }
-            }),
-          })
-          .then(response => {
-                  if (response.status === 201) {
-                    location.href = 'http://localhost:8080/blogi/home';
-                  } else {
-                    console.log('Problems...');
-                  }
-            })
-        }
-
-</script>
-
-
 
 </body>
 
