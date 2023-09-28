@@ -334,4 +334,41 @@ class AdminOperationRESTAPICaller extends RESTAPICaller {
         }
 
 
+    async deleteComment(articleId, commentId) {
+        let errorChecker = new RESTAPIErrorChecker();
+        return await fetch(this.urlProvider.getASingleCommentURL(articleId, commentId), { method: 'DELETE', headers: this.header })
+           .then(errorChecker.check)
+           .then(response => response.json())
+           .then(function (json) {
+                return { status: 204, payload: json };
+            })
+           .catch(function (error) {
+               return { status: error.status };
+           });
+    }
+
+    async updateComment(articleId, commentId, body) {
+        let errorChecker = new RESTAPIErrorChecker();
+
+        return await fetch(this.urlProvider.getASingleCommentURL(articleId, commentId), { method: 'PUT', headers: this.header, body:body })
+           .then(errorChecker.check)
+           .then(response => response.json())
+           .then(function (json) {
+                return { status: 204, payload: json };
+            })
+           .catch(function (error) {
+               return { status: error.status };
+           });
+    }
+
+    async createComment(articleId, body) {
+        const response = await fetch(this.urlProvider.getBaseCommentURL(articleId), { method: 'POST', headers: this.header, body: body });
+            if (response.headers.has('Location')) {
+                const locationURL = response.headers.get('Location');
+                const contentResponse = await fetch(locationURL);
+                return contentResponse.json();
+            } else {
+                    console.log("Location header is not present!");
+            }
+    }
 }
