@@ -58,6 +58,20 @@ class ArticleRESTAPICaller extends RESTAPICaller {
         super(url);
         this.urlProvider = new URLProvider();
     }
+
+    async getAllCategories() {
+       let errorChecker = new RESTAPIErrorChecker();
+
+       return await fetch(this.urlProvider.getCategoriesURL(), { method: 'GET' })
+           .then(errorChecker.check)
+           .then(response => response.json())
+           .then(function (json) {
+                return { status: 200, payload: json };
+           })
+           .catch(function (error) {
+               return { status: error.status };
+           });
+    }
 }
 
 class AuthenticationRESTAPICaller extends RESTAPICaller {

@@ -1,5 +1,7 @@
 class HomePageDynamicComponentsDisplayer {
 
+    articleRESTAPICaller = new ArticleRESTAPICaller();
+
     constructor() {}
 
     async display(){
@@ -12,12 +14,13 @@ class HomePageDynamicComponentsDisplayer {
         await articlePreviewDisplayer.displayLatestArticles();
     }
 
-    async displayCategoriesInFilterBody(){
+    async displayCategoriesInFilterBody() {
+        let apiResponse = await this.articleRESTAPICaller.getAllCategories();
+        let categories = apiResponse.payload;
         let filterBuilder = new FilterBuilder();
-        let parentId;
-        let categories = ["főétel", "előétel", "rakott", "vegeteriános", "desszert", "barack"]; //mock categories
+
         for (const categoryIndex in categories) {
-            parentId = categoryIndex%3;
+            let parentId = categoryIndex%3;
             filterBuilder.build(categories[categoryIndex], parentId);
         }
     }

@@ -8,8 +8,6 @@ class URLProvider {
     #authenticationApiPrefix;
     #articleServerOrigin;
     #articleApiPrefix;
-    #fileServerOrigin;
-    #fileApiPrefix;
 
     constructor() {
         this.#frontendServerOrigin = window.location.origin;
@@ -92,5 +90,9 @@ class URLProvider {
     }
     getASingleCommentURL(articleId, commentId){
         return this.getBaseCommentURL(articleId) + "/" + commentId;
+    }
+
+    getCategoriesURL() {
+        return this.getBaseArticleURL() + "/categories";
     }
 }

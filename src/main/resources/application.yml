@@ -39,3 +39,4 @@ spring:
         - classpath:/js/redirector
         - classpath:/js/new-article-page
         - classpath:/html/redirector
+        - classpath:/js/browser

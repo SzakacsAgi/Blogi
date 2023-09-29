@@ -14,6 +14,11 @@ class SingleArticlePageEventListeners{
 
     registerEvents(){
         this.addWriteCommentSubmitButtonListener();
+        this.addCommentInputContentChangeListener();
+    }
+
+    registerEventForSignInHrefButton() {
+        this.addRedirectLogicForSignInHrefButtonListener();
     }
 
     async addWriteCommentSubmitButtonListener(){
@@ -32,6 +37,32 @@ class SingleArticlePageEventListeners{
 
     async getAuthenticatedUser(){
         return await this.authenticationRESTAPICaller.getAuthenticatedUser();
+    }
+
+    addCommentInputContentChangeListener() {
+        this.inputField.addEventListener('keyup', () => {
+            let inputContent = this.inputField.value.trim();
+            if (inputContent === "") {
+                this.writeCommentSubmitButton.setAttribute("disabled", "disabled");
+            } else {
+                this.writeCommentSubmitButton.removeAttribute("disabled");
+            }
+        });
+    }
+
+    // Copy from HeaderEventListeners class (only the button id is different)
+    addRedirectLogicForSignInHrefButtonListener() {
+        let signInHrefButton = document.getElementById("sign-in-href-button");
+        signInHrefButton.addEventListener("click", () => {
+            let locationPathname = window.location.pathname;
+            let pageToRedirect = this.getPageToRedirect(locationPathname);
+            this.storedDataProvider.setItemToLocalStorage("pageToRedirect", pageToRedirect);
+        })
+    }
+
+    // Copy from HeaderEventListeners class
+    getPageToRedirect(locationPathname){
+        return locationPathname.substr(locationPathname.lastIndexOf("/")+1);
     }
 
     findNeededElements(){

@@ -8,19 +8,26 @@ class ArticleSearcher {
     previousSearchResult;
     articlePreviewDisplayer;
     elementModifier = new ElementModifier();
+    componentAdder;
+    elementProvider;
+    articleParent;
 
     constructor(){
         this.searchBar = document.getElementById('input-search');
         this.articleSection = document.getElementById('article-row');
         this.waitTimeInMilliseconds = 800;
         this.articlePreviewDisplayer = new ArticlePreviewDisplayer();
+        this.componentAdder = new ComponentAdder();
+        this.elementProvider = new ElementProvider();
+        let articlePart = this.elementProvider.getComponent('article-part');
+        this.articleParent = this.elementProvider.getSubComponent(articlePart, '#article-row');
     }
 
     async search() {
         this.currentSearchResult = await this.articlePreviewDisplayer.getArticles({filterByTitle:this.currentSearchText, orderField:"LAST_MODIFICATION_DATE"});
         if(!this.isEqual(this.previousSearchResult, this.currentSearchResult)){
             this.deleteArticleSection();
-            this.thereIsNoMatchingArticle() ? this.handleThereIsNoMatchingArticle() : this.handleThereIsMatchingArticle(this.currentSearchResult);
+            this.thereIsNoMatchingArticle() ? this.handleThereIsNoMatchingArticle() : await this.handleThereIsMatchingArticle(this.currentSearchResult);
         }
         this.previousSearchResult = this.currentSearchResult;
     }
@@ -38,9 +45,9 @@ class ArticleSearcher {
         this.changeArticleSectionAppearance();
     }
 
-    handleThereIsMatchingArticle(){
+    async handleThereIsMatchingArticle(){
         this.removeChangesFromArticleSectionAppearance();
-        this.displayMatchedArticle();
+        await this.displayMatchedArticle();
     }
 
     displayNoMatchingArticleText(){
@@ -56,9 +63,10 @@ class ArticleSearcher {
         this.elementModifier.removeElementClass(this.articleSection, ["fs-5", "fw-medium", "py-5"]);
     }
 
-    displayMatchedArticle(){
+    async displayMatchedArticle(){
         for(let i=0; i<this.currentSearchResult.length; i++){
-            this.articlePreviewDisplayer.articlePreviewBuilder.build(this.currentSearchResult[i]);
+            let articlePreview = await this.articlePreviewDisplayer.articlePreviewBuilder.build(this.currentSearchResult[i]);
+            this.componentAdder.add(this.articleParent, articlePreview);
         }
     }
 

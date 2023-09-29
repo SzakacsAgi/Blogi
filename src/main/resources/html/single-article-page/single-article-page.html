@@ -35,13 +35,13 @@
 
 
         <div id="no-comment" class="hide">Ehhez a cikkhez nincsennek hozzászólások, légy te az első aki megosztja véleményét!</div>
-        <div class="fs-2 hide pb-3 pt-3" id="need-to-sign-in">A hozzászóláshoz <a href="/blogi/sign-in">belépés</a> szükséges</div>
+        <div class="fs-2 hide pb-3 pt-3" id="need-to-sign-in">A hozzászóláshoz <a id="sign-in-href-button" href="/blogi/sign-in">belépés</a> szükséges</div>
         <div class="d-flex justify-content-between align-items-center hide" id="write-comment">
             <div class=" mb-3 d-flex justify-content-between align-items-center p-3 ">
                     <img class="user-img mr-2 profile-picture">
                     <input id="write-comment-input" placeholder="Hozzászólás írása...">
             </div>
-            <a id="submit-write-comment" class="button" aria-expanded="false">Küldés</a>
+            <button id="submit-write-comment" class="button" aria-expanded="false" disabled>Küldés</button>
         </div>
         <div id="comments">
             <div id="first-component"></div>
@@ -83,6 +83,7 @@
 <script src="page-view-displayer.js"></script>
 <script src="authenticated-user-view-displayer.js"></script>
 <script src="unauthenticated-user-view-displayer.js"></script>
+<script src="browser-data-modifier.js"></script>
 <script src="single-article-loader.js"></script>
 <script src="modal-data.js"></script>
 <script src="modal-setter.js"></script>

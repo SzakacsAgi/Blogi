@@ -57,7 +57,7 @@ class ArticlePreviewBuilder {
     setArticlePreviewData() {
         this.elementModifier.setElementAttributes(this.articleImage, {'src' : this.articleInfo.getImageURL()});
         this.elementModifier.setElementText(this.creationDateElement, this.articleInfo.getLastModificationDate())
-        this.elementModifier.setElementText(this.viewersElement, 0);
+        this.elementModifier.setElementText(this.viewersElement, this.articleInfo.getVisitorCount());
         this.elementModifier.setElementText(this.authorElement, this.articleInfo.getAuthorName());
         this.elementModifier.setElementText(this.minutesToReadElement, this.articleInfo.getMinutesToRead()+' perc');
         this.elementModifier.setElementText(this.titleElement, this.articleInfo.getTitle());
