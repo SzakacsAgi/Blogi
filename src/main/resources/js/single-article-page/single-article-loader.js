@@ -3,6 +3,7 @@ class SingleArticleLoader {
     elementModifier = new ElementModifier();
     storedDataProvider = new StoredDataProvider();
     articleId = this.storedDataProvider.getItemFromSessionStorage("articleId");
+    browserDataModifier = new BrowserDataModifier();
 
     constructor() { }
 
@@ -13,6 +14,8 @@ class SingleArticleLoader {
             this.loadArticleTitle(articleInfo.getTitle());
             this.loadArticleImage(articleInfo.getImageURL());
             this.loadArticleContent(articleInfo.getContent());
+
+            this.browserDataModifier.updateTitleWith(articleInfo.getTitle());
           })
           .catch(error => {
             console.error("Error fetching article:", error);

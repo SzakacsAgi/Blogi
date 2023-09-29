@@ -38,3 +38,4 @@ spring:
         - classpath:/js/home-page/components
         - classpath:/js/redirector
         - classpath:/html/redirector
+        - classpath:/js/browser

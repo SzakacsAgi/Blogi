@@ -29,6 +29,7 @@ class SingleArticlePageLoader extends PageLoader{
         await super.loadUnAuthenticatedUserView();
         await this.commentLoader.load();
         this.unauthenticatedUserViewDisplayer.displayUnAuthenticatedArticlePage();
+        this.singleArticlePageEventListeners.registerEventForSignInHrefButton();
     }
 
 }
