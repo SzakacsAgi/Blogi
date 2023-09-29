@@ -36,4 +36,8 @@ class ArticleInfo {
         return this.article.content;
     }
 
+    getVisitorCount() {
+        return this.article.visitorCount;
+    }
+
 }

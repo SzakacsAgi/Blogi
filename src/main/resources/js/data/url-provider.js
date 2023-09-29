@@ -67,4 +67,8 @@ class URLProvider {
     getASingleCommentURL(articleId, commentId){
         return this.getBaseCommentURL(articleId) + "/" + commentId;
     }
+
+    getCategoriesURL() {
+        return this.getBaseArticleURL() + "/categories";
+    }
 }
