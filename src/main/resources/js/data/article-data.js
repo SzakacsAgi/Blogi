@@ -1,4 +1,4 @@
-class NewArticleData {
+class ArticleData {
 
     constructor() { }
 

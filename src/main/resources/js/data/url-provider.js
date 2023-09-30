@@ -8,17 +8,19 @@ class URLProvider {
     #authenticationApiPrefix;
     #articleServerOrigin;
     #articleApiPrefix;
+    #fileServerOrigin;
+    #fileApiPrefix;
 
     constructor() {
         this.#frontendServerOrigin = window.location.origin;
         this.#frontendApiPrefix = "/blogi";
-        this.#authenticationServerOrigin = "http://localhost:8081/";
+        this.#authenticationServerOrigin = "http://192.168.100.14:8081/";
         this.#authenticationApiPrefix = "blogi/authentication"
         this.#authenticationApi = "/oauth2/authorize/";
         this.#redirectUri = "?redirect_uri=http://localhost:8080/blogi/redirect";
-        this.#articleServerOrigin = "http://localhost:8082/";
+        this.#articleServerOrigin = "http://192.168.100.14:8082/";
         this.#articleApiPrefix = "blogi/article";
-        this.#fileServerOrigin = "http://localhost:8083/";
+        this.#fileServerOrigin = "http://192.168.100.14:8083/";
         this.#fileApiPrefix = "blogi/file";
     }
 
@@ -54,25 +56,26 @@ class URLProvider {
         return this.getBaseAuthenticationURL() + "/user/me";
     }
 
-     getBaseArticleURL(){
+    getBaseArticleURL(){
         return this.#articleServerOrigin + this.#articleApiPrefix;
-     }
+    }
 
-     getBaseCommentURL(articleId){
+    getBaseCommentURL(articleId){
         return this.getBaseArticleURL() + "/" + articleId + "/comments";
-     }
+    }
 
-     getLogOutURL(){
+    getLogOutURL(){
         return this.getBaseAuthenticationURL() + "/signout";
-     }
+    }
 
-     getUserInfoURL(userId){
+    getUserInfoURL(userId){
         return this.getBaseAuthenticationURL() + '/user/' + userId;
-     }
+    }
 
     getASingleCommentURL(articleId, commentId){
         return this.getBaseCommentURL(articleId) + "/" + commentId;
     }
+
     getBaseFileURL(){
         return this.#fileServerOrigin + this.#fileApiPrefix;
     }
@@ -88,8 +91,13 @@ class URLProvider {
     getASingleCommentURL(articleId, commentId){
         return this.getBaseCommentURL(articleId) + "/" + commentId;
     }
+
     getASingleCommentURL(articleId, commentId){
         return this.getBaseCommentURL(articleId) + "/" + commentId;
+    }
+
+    getUpdateArticleURL(articleId){
+        return this.getBaseArticleURL() + "/" +articleId;
     }
 
     getCategoriesURL() {

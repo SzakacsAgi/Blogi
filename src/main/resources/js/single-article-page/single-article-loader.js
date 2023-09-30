@@ -1,40 +1,53 @@
 class SingleArticleLoader {
 
-    elementModifier = new ElementModifier();
-    storedDataProvider = new StoredDataProvider();
-    articleId = this.storedDataProvider.getItemFromSessionStorage("articleId");
-    browserDataModifier = new BrowserDataModifier();
-
-    constructor() { }
-
-    async load(){
-        let singleArticleDataProvider = new SingleArticleDataProvider();
-        singleArticleDataProvider.createArticle(this.articleId)
-          .then(articleInfo => {
-            this.loadArticleTitle(articleInfo.getTitle());
-            this.loadArticleImage(articleInfo.getImageURL());
-            this.loadArticleContent(articleInfo.getContent());
-
-            this.browserDataModifier.updateTitleWith(articleInfo.getTitle());
-          })
-          .catch(error => {
-            console.error("Error fetching article:", error);
-          });
+     constructor() {
+        this.elementModifier = new ElementModifier();
+        this.storedDataProvider = new StoredDataProvider();
+        this.articleId = this.storedDataProvider.getItemFromSessionStorage("articleId");
+        this.elementProvider = new ElementProvider();
+        this.singleArticleDataProvider = new SingleArticleDataProvider();
     }
 
-    loadArticleTitle(articleTitle){
-       let titleContainer = this.findElement('#article-title');
-       this.elementModifier.setElementText(titleContainer, articleTitle);
+    async loadArticleToSingleArticlePage(){
+        let browserDataModifier = new BrowserDataModifier();
+        let articleInfo = await this.singleArticleDataProvider.createArticle(this.articleId);
+        this.loadArticleTitle(articleInfo.getTitle(), '#article-title');
+        this.loadArticleImage(articleInfo.getImageURL(), '#article-image');
+        this.loadArticleContent(articleInfo.getContent(), '#article-content');
+        browserDataModifier.updateTitleWith(articleInfo.getTitle());
     }
 
-    loadArticleImage(imageURL){
-        let imageContainer = this.findElement('#article-image');
-        imageContainer.style.backgroundImage = "url("+imageURL+")";
+    async loadArticleToArticleEditorPage(){
+        let articleInfo = await this.singleArticleDataProvider.createArticle(this.articleId);
+        let titleElement = this.elementProvider.getElementById('title');
+        titleElement.value = articleInfo.getTitle();
+        let filePreviewElement = this.elementProvider.getElementById('file-preview');
+        filePreviewElement.src = articleInfo.getImageURL();
+        this.storedDataProvider.setItemToSessionStorage("currentImageURL", articleInfo.getImageURL());
+        this.loadArticleCategories(articleInfo.getCategories(), "#categories");
+        tinymce.activeEditor.setContent(articleInfo.getContent());
+    }
+
+    loadArticleTitle(articleTitle, elementIdToLoadInto){
+       let elementToLoadInto = this.findElement(elementIdToLoadInto);
+       this.elementModifier.setElementText(elementToLoadInto, articleTitle);
+    }
+
+    loadArticleImage(imageURL, elementIdToLoadInto){
+        let elementToLoadInto = this.findElement(elementIdToLoadInto);
+        elementToLoadInto.style.backgroundImage = "url("+imageURL+")";
      }
 
-    loadArticleContent(articleContent){
-        let contentContainer = this.findElement('.container #article-content');
-        this.elementModifier.setElementText(contentContainer, articleContent);
+    loadArticleContent(articleContent, elementIdToLoadInto){
+        let elementToLoadInto = this.findElement(elementIdToLoadInto);
+        this.elementModifier.setElementText(elementToLoadInto, articleContent);
+    }
+
+    loadArticleCategories(articleCategories, elementIdToLoadInto){
+        let elementToLoadInto = this.findElement(elementIdToLoadInto);
+        if(articleCategories.length > 1){
+            articleCategories.forEach(category => elementToLoadInto.textContent = elementToLoadInto.textContent+category+"\n");
+        }
     }
 
     findElement(id){

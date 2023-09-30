@@ -214,43 +214,7 @@ class CommentRESTAPICaller extends RESTAPICaller {
                     console.log("Location header is not present!");
             }
     }
-    async deleteComment(articleId, commentId) {
-        let errorChecker = new RESTAPIErrorChecker();
-        return await fetch(this.urlProvider.getASingleCommentURL(articleId, commentId), { method: 'DELETE', headers: this.header })
-           .then(errorChecker.check)
-           .then(response => response.json())
-           .then(function (json) {
-                return { status: 204, payload: json };
-            })
-           .catch(function (error) {
-               return { status: error.status };
-           });
-    }
 
-    async updateComment(articleId, commentId, body) {
-        let errorChecker = new RESTAPIErrorChecker();
-
-        return await fetch(this.urlProvider.getASingleCommentURL(articleId, commentId), { method: 'PUT', headers: this.header, body:body })
-           .then(errorChecker.check)
-           .then(response => response.json())
-           .then(function (json) {
-                return { status: 204, payload: json };
-            })
-           .catch(function (error) {
-               return { status: error.status };
-           });
-    }
-
-    async createComment(articleId, body) {
-        const response = await fetch(this.urlProvider.getBaseCommentURL(articleId), { method: 'POST', headers: this.header, body: body });
-            if (response.headers.has('Location')) {
-                const locationURL = response.headers.get('Location');
-                const contentResponse = await fetch(locationURL);
-                return contentResponse.json();
-            } else {
-                    console.log("Location header is not present!");
-            }
-    }
 }
 
 class FileRESTAPICaller extends RESTAPICaller {
@@ -287,8 +251,7 @@ class FileRESTAPICaller extends RESTAPICaller {
                     await this.deleteFile();
                 }
                 this.uploadedFileURL = response.headers.get('Location');
-                NewArticleData.imageURL = this.uploadedFileURL;
-                console.log(NewArticleData.imageURL);
+                ArticleData.imageURL = this.uploadedFileURL;
                 this.isFirstUpload = false;
             }
         })
@@ -327,62 +290,43 @@ class AdminOperationRESTAPICaller extends RESTAPICaller {
     }
 
      async createArticle(body){
-            let errorChecker = new RESTAPIErrorChecker();
+         let errorChecker = new RESTAPIErrorChecker();
+         await fetch(this.urlProvider.getBaseArticleURL()+"/", {
+             method: 'POST',
+             headers: this.headers,
+             body:body
+         })
+         .then(errorChecker.check)
+         .then(response => {
+             if (response.status === 201) {
+                 location.href = this.urlProvider.getHomePageURL();
+             } else {
+                 console.log('Request problems');
+             }
+         })
+         .catch(function (error) {
+             return { status: error.status };
+         });
+     }
 
-            await fetch(this.urlProvider.getBaseArticleURL()+"/", {
-                method: 'POST',
-                headers: this.headers,
-                body:body
-           })
-           .then(response => {
-                             if (response.status === 201) {
-                               location.href = this.urlProvider.getHomePageURL();
-                             } else {
-                               console.log('Problems...');
-                             }
-                       })
-            .then(errorChecker.check)
-            .catch(function (error) {
-                return { status: error.status };
-            });
-        }
+    async updateArticle(articleId, body){
+         let errorChecker = new RESTAPIErrorChecker();
+         await fetch(this.urlProvider.getUpdateArticleURL(articleId), {
+             method: 'PUT',
+             headers: this.headers,
+             body:body
+         })
+         .then(errorChecker.check)
+         .then(response => {
+             if (response.status === 204) {
+                 location.href = this.urlProvider.getHomePageURL();
+             } else {
+                 console.log('Request problems');
+             }
+         })
+         .catch(function (error) {
+             return { status: error.status };
+         });
+     }
 
-
-    async deleteComment(articleId, commentId) {
-        let errorChecker = new RESTAPIErrorChecker();
-        return await fetch(this.urlProvider.getASingleCommentURL(articleId, commentId), { method: 'DELETE', headers: this.header })
-           .then(errorChecker.check)
-           .then(response => response.json())
-           .then(function (json) {
-                return { status: 204, payload: json };
-            })
-           .catch(function (error) {
-               return { status: error.status };
-           });
-    }
-
-    async updateComment(articleId, commentId, body) {
-        let errorChecker = new RESTAPIErrorChecker();
-
-        return await fetch(this.urlProvider.getASingleCommentURL(articleId, commentId), { method: 'PUT', headers: this.header, body:body })
-           .then(errorChecker.check)
-           .then(response => response.json())
-           .then(function (json) {
-                return { status: 204, payload: json };
-            })
-           .catch(function (error) {
-               return { status: error.status };
-           });
-    }
-
-    async createComment(articleId, body) {
-        const response = await fetch(this.urlProvider.getBaseCommentURL(articleId), { method: 'POST', headers: this.header, body: body });
-            if (response.headers.has('Location')) {
-                const locationURL = response.headers.get('Location');
-                const contentResponse = await fetch(locationURL);
-                return contentResponse.json();
-            } else {
-                    console.log("Location header is not present!");
-            }
-    }
 }
