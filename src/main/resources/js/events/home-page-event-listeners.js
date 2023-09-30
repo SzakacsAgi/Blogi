@@ -10,7 +10,8 @@ class HomePageEventListeners {
     registerEventListeners(){
         this.addFilterSearchListener();
         this.addResetFilterSearchListener();
-        this.copyArticleId();
+        this.copyArticleIdForSingleArticlePage();
+        this.copyArticleIdForEditArticlePage();
         this.addSearchBarListener();
     }
 
@@ -38,9 +39,18 @@ class HomePageEventListeners {
         deleteArticleConfirmButton.addEventListener("click", this.buttonEventListenerProvider.clickOnDeleteArticleConfirmButton);
     }
 
-    copyArticleId() {
+    copyArticleIdForSingleArticlePage() {
         let readMoreButtons = document.querySelectorAll('.read-more-button')
         readMoreButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                this.storedDataProvider.setItemToLocalStorage("articleId", button.getAttribute('article-id'));
+            })
+        })
+    }
+
+    copyArticleIdForEditArticlePage() {
+        let editButtons = document.querySelectorAll('.edit-button')
+        editButtons.forEach(button => {
             button.addEventListener("click", () => {
                 this.storedDataProvider.setItemToLocalStorage("articleId", button.getAttribute('article-id'));
             })

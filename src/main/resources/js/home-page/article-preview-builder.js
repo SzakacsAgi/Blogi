@@ -18,6 +18,7 @@ class ArticlePreviewBuilder {
     titleElement;
     cardCategories;
     categoryDivContainer;
+    articleEditButton;
 
     constructor() {
         this.elementModifier = new ElementModifier();
@@ -51,7 +52,8 @@ class ArticlePreviewBuilder {
         this.titleElement = this.elementProvider.getSubComponent(this.articleElement, "#title");
         this.cardCategories = this.elementProvider.getSubComponent(this.articleElement, "#card-categories");
         this.readMoreButtonElement = this.elementProvider.getSubComponent(this.articleElement, "#read-more-button");
-        this.categoryDivContainer = this.elementProvider.getSubComponent(this.articleElement, "#card-categories")
+        this.categoryDivContainer = this.elementProvider.getSubComponent(this.articleElement, "#card-categories");
+        this.articleEditButton = this.elementProvider.getSubComponent(this.articleElement, ".edit-button");
     }
 
     setArticlePreviewData() {
@@ -62,6 +64,7 @@ class ArticlePreviewBuilder {
         this.elementModifier.setElementText(this.minutesToReadElement, this.articleInfo.getMinutesToRead()+' perc');
         this.elementModifier.setElementText(this.titleElement, this.articleInfo.getTitle());
         this.elementModifier.setElementAttributes(this.readMoreButtonElement, {"article-id":this.articleId});
+        this.elementModifier.setElementAttributes(this.articleEditButton, {"article-id":this.articleId});
         this.addCategories();
     }
 

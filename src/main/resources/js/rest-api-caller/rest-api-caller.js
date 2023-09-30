@@ -149,6 +149,8 @@ class AuthenticationRESTAPICaller extends RESTAPICaller {
 class CommentRESTAPICaller extends RESTAPICaller {
 
     urlProvider;
+    storedDataProvider;
+    articleId;
 
     constructor() {
         super();
@@ -212,4 +214,119 @@ class CommentRESTAPICaller extends RESTAPICaller {
                     console.log("Location header is not present!");
             }
     }
+
+}
+
+class FileRESTAPICaller extends RESTAPICaller {
+
+    urlProvider;
+    storedDataProvider;
+
+    constructor() {
+        super();
+        this.urlProvider = new URLProvider();
+        this.storedDataProvider = new StoredDataProvider();
+        this.headers = {
+            'Authorization': this.storedDataProvider.getItemFromLocalStorage('userToken')
+         };
+
+         this.uploadedFileURL = null;
+         this.previousUploadFile = null;
+         this.isFirstUpload = true;
+    }
+
+    async uploadFile(file){
+        let errorChecker = new RESTAPIErrorChecker();
+        this.formData = new FormData();
+        this.formData.append('file', file);
+        await fetch(this.urlProvider.getUploadFileURL(), {
+            method: 'POST',
+            headers: this.headers,
+            body: this.formData,
+        })
+        .then(errorChecker.check)
+        .then(async (response)  => {
+            if (response.status === 201) {
+                if(!this.isFirstUpload){
+                    await this.deleteFile();
+                }
+                this.uploadedFileURL = response.headers.get('Location');
+                ArticleData.imageURL = this.uploadedFileURL;
+                this.isFirstUpload = false;
+            }
+        })
+        .catch(function (error) {
+            return { status: error.status };
+        });
+    }
+
+    async deleteFile(){
+        let errorChecker = new RESTAPIErrorChecker();
+        this.previousUploadFile = this.uploadedFileURL.substring(this.uploadedFileURL.lastIndexOf("/")+1);
+        await fetch(this.urlProvider.getDeleteFileURL(this.previousUploadFile), {
+            method: 'DELETE',
+            headers: this.headers,
+       })
+        .then(errorChecker.check)
+        .catch(function (error) {
+            return { status: error.status };
+        });
+    }
+}
+
+class AdminOperationRESTAPICaller extends RESTAPICaller {
+
+    urlProvider;
+    storedDataProvider;
+
+    constructor() {
+        super();
+        this.urlProvider = new URLProvider();
+        this.storedDataProvider = new StoredDataProvider();
+        this.headers = {
+            'Content-Type': 'application/json',
+            'Authorization': this.storedDataProvider.getItemFromLocalStorage('userToken')
+         };
+    }
+
+     async createArticle(body){
+         let errorChecker = new RESTAPIErrorChecker();
+         await fetch(this.urlProvider.getBaseArticleURL()+"/", {
+             method: 'POST',
+             headers: this.headers,
+             body:body
+         })
+         .then(errorChecker.check)
+         .then(response => {
+             if (response.status === 201) {
+                 location.href = this.urlProvider.getHomePageURL();
+             } else {
+                 console.log('Request problems');
+             }
+         })
+         .catch(function (error) {
+             return { status: error.status };
+         });
+     }
+
+    async updateArticle(articleId, body){
+         let errorChecker = new RESTAPIErrorChecker();
+         await fetch(this.urlProvider.getUpdateArticleURL(articleId), {
+             method: 'PUT',
+             headers: this.headers,
+             body:body
+         })
+         .then(errorChecker.check)
+         .then(response => {
+             if (response.status === 204) {
+                 location.href = this.urlProvider.getHomePageURL();
+             } else {
+                 console.log('Request problems');
+             }
+         })
+         .catch(function (error) {
+             return { status: error.status };
+         });
+     }
+
 }

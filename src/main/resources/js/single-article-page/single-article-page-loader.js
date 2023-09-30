@@ -4,7 +4,7 @@ class SingleArticlePageLoader extends PageLoader{
     singleArticleLoader;
     commentLoader;
 
-    constructor() {
+     constructor() {
         super();
         this.sessionSynchronizer = new SessionSynchronizer();
         this.sessionSynchronizer.sync();
@@ -15,7 +15,7 @@ class SingleArticlePageLoader extends PageLoader{
 
     async load() {
         await super.load();
-        this.singleArticleLoader.load();
+        await this.singleArticleLoader.loadArticleToSingleArticlePage();
     }
 
     async loadAuthenticatedUserView(){

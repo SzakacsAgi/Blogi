@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.tiny.cloud/1/26jnqpce17l0op7lu6j9vckcuqk5jcjf021emyrq9ljsxrr3/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
+    <title>Blogi - New Article</title>
+    <style>
+        .hide{
+            display:none;
+        }
+
+        .invalid:focus{
+         box-shadow: 0 0 0 0.25rem rgba(255,0,0,.25);
+         border-color: red;
+        }
+
+        .tox-statusbar{
+            display:none !important;
+        }
+
+        .invalid-content{
+             border-color: 1px solid red;
+        }
+
+        .invalid{
+            border-color: red !important;
+        }
+
+        input:invalid{
+            border: red 5px solid;
+        }
+
+        #categories{
+            position:relative;
+        }
+
+        #autocomplete-list {
+            list-style-type: none;
+            padding: 0;
+            width: 100%;
+            max-height: 150px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            display: none;
+        }
+
+        #autocomplete-list li {
+            padding: 8px;
+            cursor: pointer;
+        }
+
+        #autocomplete-list li:hover {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <form class="container" id="create-article-form">
+        <h1 class="d-flex justify-content-center">Új cikk létrehozása</h1>
+        <div class="col-md-4">
+            <label for="file-input" class="form-label mx-1" style="display:inline-block">Indexkép feltöltése</label>
+            <input type="file" id="file-input" class="form-control" style="display:inline-block" accept=".jpeg, .jpg, .png, .gif">
+            <p id="fileIsNotValidMessage" class="hide"></p>
+            <img alt="" id="file-preview">
+
+        </div>
+        <div class="col-md-4">
+            <label for="categories">Add meg a kategóriákat</label>
+            <div class="autocomplete">
+                <textarea id="categories" placeholder="Type here..." rows="4"></textarea>
+                <ul class="autocomplete-list" id="autocomplete-list"></ul>
+            </div>
+
+        </div>
+        <div class="col-md-4">
+            <label for="title">Add meg a cikk címét</label>
+            <input type="text" id="title" class="form-control" title="">
+            <p id="titleIsNotValidMessage" class="hide"></p>
+
+        </div>
+
+        <textarea id="local-upload"></textarea>
+        <p id="contentIsNullMessage" class="hide">A cikk tartalma nem lehet üres!</p>
+        <div class="mb-3 d-flex justify-content-end">
+            <button class="btn btn-primary me-2" type="submit" id="submit">Létrehozás</button>
+        </div>
+    </form>
+    <blogi-modal></blogi-modal>
+
+    <script src="stored-data-provider.js"></script>
+    <script src="token-saver.js"></script>
+    <script src="element-modifier.js"></script>
+    <script src="element-provider.js"></script>
+
+    <script src="modal.js"></script>
+    <script src="token-provider.js"></script>
+
+    <script src="rest-api-helper.js"></script>
+
+    <script src="rest-api-caller.js"></script>
+    <script src="authenticated-user-info.js"></script>
+
+    <script src="authentication-status-tracker.js"></script>
+
+    <script src="url-provider.js"></script>
+    <script src="request-body-maker.js"></script>
+
+
+    <script src="rich-text-editor.js"></script>
+    <script src="component-initializer.js"></script>
+    <script src="new-article-page-event-listeners.js"></script>
+    <script src="article-exception-handler.js"></script>
+    <script src="page-loader.js"></script>
+    <script src="article-data.js"></script>
+    <script src="new-article-page-loader.js"></script>
+</body>
+</html>

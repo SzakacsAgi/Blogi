@@ -6,8 +6,8 @@ class ElementProvider{
         return document.getElementsByTagName(name)[0];
     }
 
-    getElementById(name){
-        return document.getElementById(name)
+    getElementById(id){
+        return document.getElementById(id);
     }
 
     getSubComponent(mainComponent, subComponent){
@@ -15,7 +15,7 @@ class ElementProvider{
     }
 
     getElementByClassName(name){
-       return mainComponent.getElementsByClassName(name)[0];
+       return document.getElementsByClassName(name)[0];
     }
 
     getElementFromHtmlFile(fileName){
@@ -46,5 +46,9 @@ class ElementProvider{
             }
             document.addEventListener('click', handleClick);
         });
+    }
+
+    getInputFieldContentById(id){
+        return this.getElementById(id).value;
     }
 }
