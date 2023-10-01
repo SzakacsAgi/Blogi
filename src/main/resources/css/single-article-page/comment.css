@@ -1,3 +1,49 @@
+.comment-elements{
+    font-family: "Minion";
+    margin-bottom: 70px;
+}
+
+.container h1 {
+    margin: 60px 0 30px 0;
+    font-size: 50px;
+    text-transform: uppercase;
+    color: #CB849C;
+    margin-left: -20px;
+}
+
+.user-img{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    margin-right:10px;
+}
+
+#write-comment > div{
+    padding-left: 0 !important;
+    width: -webkit-fill-available;
+}
+
+#write-comment input{
+    width: 100%;
+    padding-right:10px;
+    font-size:18px;
+}
+
+#write-comment-input::placeholder{
+    color:#595757;
+    font-size: 20px;
+    font-style: italic;
+}
+
+#submit-write-comment:enabled:hover{
+    cursor:pointer;
+}
+
+#submit-write-comment svg{
+    width: 60px;
+    height: 61px;
+}
+
 .comment, #write-comment{
     flex:1;
     border: 2px solid #595757;
@@ -5,8 +51,54 @@
     padding: 25px;
 }
 
-.btn-group{
-    height: fit-content;
+.comment-edit-buttons{
+    font-size: 30px;
+    color:#CB849C;
+}
+
+.dropdown-menu li, .dropdown-menu a{
+    padding:10px;
+    display:inline-block;
+    width:100%;
+}
+
+.dropdown-menu a{
+    color: red !important;
+    font-weight:600;
+}
+
+.dropdown-menu li:hover, .dropdown-menu a:hover{
+    cursor:pointer;
+    background-color:#d9d9d9;
+}
+
+.dropdown-menu a:hover{
+    cursor:pointer;
+}
+
+.btn-group>.btn-group:not(:last-child)>.btn, .btn-group>.btn.dropdown-toggle-split:first-child, .btn-group>.btn:not(:last-child):not(.dropdown-toggle) {
+     border-radius:6px;
+ }
+
+ .btn{
+     margin-left:5px;
+ }
+
+.dropdown ul{
+    border: 1px solid #CB849C;
+    padding:0;
+}
+
+.comment-container{
+    margin-top:32px;
+}
+
+.comment-info, .comment-content{
+    font-size:20px;
+}
+
+.submit-comment-edit-buttons{
+    margin-top:10px;
 }
 
 .edit-comment-view{
@@ -14,17 +106,8 @@
     flex-direction: column;
 }
 
-.comment-edit-buttons{
-    color: #CB849C;
-}
-
 .comment-container{
     margin-bottom: 32px;
-}
-
-#user-img{
-    width: 2rem;
-    height: 2rem;
 }
 
 .comment-content{

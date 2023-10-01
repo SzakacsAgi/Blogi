@@ -47,19 +47,30 @@
         <div id="article-content"></div>
     </div>
     <!-- COMMENTS -->
-    <div class="container">
+    <div class="container comment-elements">
         <h1>Hozzászólások:</h1>
 
 
         <div id="no-comment" class="hide">Ehhez a cikkhez nincsennek hozzászólások, légy te az első aki megosztja véleményét!</div>
         <div class="fs-2 hide pb-3 pt-3" id="need-to-sign-in">A hozzászóláshoz <a id="sign-in-href-button" href="/blogi/sign-in">belépés</a> szükséges</div>
-        <div class="d-flex justify-content-between align-items-center hide" id="write-comment">
-            <div class=" mb-3 d-flex justify-content-between align-items-center p-3 ">
-                    <img class="user-img mr-2 profile-picture">
-                    <input id="write-comment-input" placeholder="Hozzászólás írása...">
+        <div class="d-flex">
+            <div class="d-flex justify-content-between align-items-center hide" id="write-comment">
+                <div class="d-flex justify-content-between align-items-center">
+                        <img class="user-img profile-picture">
+                        <input id="write-comment-input" placeholder="Hozzászólás írása...">
+                </div>
+                <button id="submit-write-comment" aria-expanded="false" disabled>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="87" height="87" viewBox="0 0 87 87" fill="none">
+                        <path d="M77.4415 43.0917L31.0455 62.9031L39.8013 43.2347L31.4479 23.6314L77.4415 43.0917Z" stroke="#CB849C" stroke-width="3" stroke-linejoin="round"/>
+                        <path d="M77.4416 43.0879L39.8014 43.2309" stroke="#CB849C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
             </div>
-            <button id="submit-write-comment" class="button" aria-expanded="false" disabled>Küldés</button>
+            <div style="margin-left:5px;">
+                <i class="bi bi-three-dots comment-edit-buttons" style="padding:0 8px; visibility:hidden"></i>
+            </div>
         </div>
+
         <div id="comments">
             <div id="first-component"></div>
         </div>
