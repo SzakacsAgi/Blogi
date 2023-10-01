@@ -29,7 +29,6 @@ class PageLoader{
     }
 
     async loadAuthenticatedUserView(){
-        await this.authenticationStatusTracker.storeUserInfoAboutAuthenticatedUser();
         await this.authenticatedUserViewDisplayer.displayAuthenticatedHeader();
         await this.modalLoader.load();
     }

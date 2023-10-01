@@ -26,6 +26,7 @@ class Redirector {
         pageButtonRedirector.click();
     }
 
+    redirectWhenPermissionIsDenied() {
+        window.location.pathname = "/blogi/permission-denied";
+    }
 }
-
-new Redirector().redirect();

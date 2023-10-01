@@ -12,13 +12,9 @@ class EditorPageLoader {
     }
 
     async load() {
-        await this.authenticationStatusTracker.detectAuthenticationStatus();
-        await this.authenticationStatusTracker.storeUserInfoAboutAuthenticatedUser();
-        let isAuthenticated = this.storedDataProvider.getItemFromSessionStorage("authenticated") === "true";
         await this.singleArticleLoader.loadArticleToArticleEditorPage();
         await this.componentInitializer.init();
         this.editorPageEventListeners.registerEventListeners();
-
     }
 
 }

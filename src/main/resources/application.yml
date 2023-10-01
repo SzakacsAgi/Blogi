@@ -40,3 +40,6 @@ spring:
         - classpath:/js/new-article-page
         - classpath:/html/redirector
         - classpath:/js/browser
+        - classpath:/js/executor
+        - classpath:/html/error-page
+        - classpath:/html/permission-denied-page

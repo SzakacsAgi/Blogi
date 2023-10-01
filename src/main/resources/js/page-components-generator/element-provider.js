@@ -18,6 +18,10 @@ class ElementProvider{
        return document.getElementsByClassName(name)[0];
     }
 
+    getElementsByClassName(name){
+        return document.getElementsByClassName(name);
+    }
+
     getElementFromHtmlFile(fileName){
         return fetch(fileName)
             .then(response => response.text())
