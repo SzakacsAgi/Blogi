@@ -12,6 +12,7 @@ class PageLoader{
         this.unauthenticatedUserViewDisplayer = new UnauthenticatedUserViewDisplayer();
         this.storedDataProvider = new StoredDataProvider();
         this.headerEventListeners = new HeaderEventListeners();
+        this.modalLoader = new ModalLoader();
     }
 
     async load(){
@@ -30,10 +31,12 @@ class PageLoader{
     async loadAuthenticatedUserView(){
         await this.authenticationStatusTracker.storeUserInfoAboutAuthenticatedUser();
         await this.authenticatedUserViewDisplayer.displayAuthenticatedHeader();
+        await this.modalLoader.load();
     }
 
     async loadUnAuthenticatedUserView(){
         await this.unauthenticatedUserViewDisplayer.displayUnAuthenticatedHeader();
+        await this.modalLoader.load();
     }
 
     addEventListeners(){

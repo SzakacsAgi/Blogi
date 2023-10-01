@@ -5,7 +5,6 @@ class HomePageEventListeners {
         this.storedDataProvider = new StoredDataProvider();
         this.modalSetter = new ModalSetter();
         this.modalData = new ModalData();
-        this.modalLoader = new ModalLoader();
     }
 
     registerEventListeners(){

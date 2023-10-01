@@ -13,7 +13,7 @@ class ModalSetter{
         this.confirmYesButton = this.elementProvider.getSubComponent(this.modal, "#modal-confirm");
     }
 
-    setModalData(){
+     setModalData(){
         this.modalType = this.storedDataProvider.getItemFromSessionStorage("modal");
 
         switch(this.modalType){

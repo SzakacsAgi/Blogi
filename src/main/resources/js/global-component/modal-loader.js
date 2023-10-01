@@ -7,12 +7,12 @@ class ModalLoader{
 
     async load(){
         this.modalElement = await this.getModal();
-        this.displayModal();
+        await this.displayModal();
     }
 
-    displayModal(){
-        let modalParent = this.elementProvider.getElementById("modal-element");
-        this.componentAdder.add(modalParent, this.modalElement);
+     async displayModal(){
+        let modal = this.elementProvider.getComponent("blogi-modal");
+        await modal.displayModal();
     }
 
     async getModal(){

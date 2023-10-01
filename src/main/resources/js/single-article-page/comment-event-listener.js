@@ -51,33 +51,21 @@ class DeleteCommentEventListener {
         this.elementModifier = new ElementModifier();
         this.modalSetter = new ModalSetter();
         this.modalData = new ModalData();
+        this.articleId = this.storedDataProvider.getItemFromSessionStorage('articleId');
     }
 
-    clickOnButton(button, commentID) {
+     clickOnButton(button, commentID) {
         this.button = button;
         this.commentID = commentID;
-        this.findNeededElementsForDeletion();
         this.storedDataProvider.setItemToSessionStorage("modal", this.modalData.getData("deleteComment"));
         this.modalSetter.setModalData();
         this.modalSetter.setClickOnConfirmButtonEvent(this, (() => this.clickOnDeleteCommentConfirmButton)());
     }
 
     clickOnDeleteCommentConfirmButton() {
-        let commentsElement = this.elementProvider.getElementById("comments");
-        let lastComment = commentsElement.children.length == 1;
         let commentElement = this.elementProvider.getAncestor(this.button, '.comment-container');
         this.commentRESTAPICaller.deleteComment(this.articleId, this.commentID);
         this.elementModifier.removeElement(commentElement);
-        if(lastComment){
-            this.elementModifier.displayElement(this.noCommentElement);
-        }
-    }
-
-    findNeededElementsForDeletion(){
-        this.articleId = this.storedDataProvider.getItemFromSessionStorage('articleId');
-        this.noCommentElement = this.elementProvider.getElementById("no-comment");
-        this.commentsElement = this.elementProvider.getElementById("comments");
-        this.lastComment = this.commentsElement.childElementCount == 1 ;
     }
 
 }

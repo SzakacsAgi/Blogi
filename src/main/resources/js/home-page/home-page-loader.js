@@ -6,11 +6,11 @@ class HomePageLoader extends PageLoader{
     constructor(){
         super();
         this.homePageDynamicComponentsDisplayer = new HomePageDynamicComponentsDisplayer();
-        this.homePageEventListeners = new HomePageEventListeners();
     }
 
     async load(){
         await super.load();
+        this.homePageEventListeners = new HomePageEventListeners();
         await this.homePageDynamicComponentsDisplayer.display();
         this.homePageEventListeners.registerEventListeners();
     }

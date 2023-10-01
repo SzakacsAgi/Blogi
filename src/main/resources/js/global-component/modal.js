@@ -4,7 +4,6 @@ class BlogiModal extends HTMLElement {
         super();
         this.template = document.createElement("template");
         this.cssStyleSheet = document.createElement("style");
-        this.displayModal();
     }
 
     async displayModal(){
