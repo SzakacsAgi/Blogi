@@ -4,7 +4,10 @@ class BlogiHeader extends HTMLElement {
         super();
         this.template = document.createElement("template");
         this.cssStyleSheet = document.createElement("style");
-        this.displayHeader();
+    }
+
+    async initialize(){
+        await this.displayHeader();
     }
 
     async displayHeader() {

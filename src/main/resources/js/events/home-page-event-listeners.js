@@ -13,6 +13,7 @@ class HomePageEventListeners {
         this.copyArticleIdForSingleArticlePage();
         this.copyArticleIdForEditArticlePage();
         this.addSearchBarListener();
+        this.addDeleteButtonListener();
     }
 
     addFilterSearchListener() {
@@ -25,12 +26,17 @@ class HomePageEventListeners {
         resetFilterSearchButton.addEventListener("click", this.buttonEventListenerProvider.clickOnResetFilterButton);
     }
 
-    addDeleteButtonListener(button, id) {
-        button.addEventListener("click", async () => {
-            this.storedDataProvider.setItemToSessionStorage("articleId", id);
-            this.storedDataProvider.setItemToSessionStorage("modal", this.modalData.getData("deleteArticle"));
-            this.modalSetter.setModalData();
-            this.addDeleteArticleConfirmButtonListener();
+    addDeleteButtonListener() {
+        let articleDeleteButtons = document.querySelectorAll('.delete-button');
+        articleDeleteButtons.forEach(deleteButton =>{
+            deleteButton.addEventListener("click", () => {
+                let articleId = deleteButton.getAttribute("article-id");
+                this.storedDataProvider.setItemToSessionStorage("articleId", articleId);
+                this.storedDataProvider.setItemToSessionStorage("modal", this.modalData.getData("deleteArticle"));
+                this.modalSetter.setModalData();
+                this.modalSetter.setClickOnConfirmButtonEvent(this.buttonEventListenerProvider, (() => this.buttonEventListenerProvider.clickOnDeleteArticleConfirmButton)());
+
+            })
         })
     }
 

@@ -12,6 +12,7 @@ class PageLoader{
         this.unauthenticatedUserViewDisplayer = new UnauthenticatedUserViewDisplayer();
         this.storedDataProvider = new StoredDataProvider();
         this.headerEventListeners = new HeaderEventListeners();
+        this.modalLoader = new ModalLoader();
     }
 
     async load(){
@@ -22,18 +23,20 @@ class PageLoader{
              await this.loadAuthenticatedUserView();
         }
         else{
-            this.loadUnAuthenticatedUserView()
+            await this.loadUnAuthenticatedUserView()
         }
         this.addEventListeners();
     }
 
     async loadAuthenticatedUserView(){
         await this.authenticationStatusTracker.storeUserInfoAboutAuthenticatedUser();
-        this.authenticatedUserViewDisplayer.displayAuthenticatedHeader();
+        await this.authenticatedUserViewDisplayer.displayAuthenticatedHeader();
+        await this.modalLoader.load();
     }
 
     async loadUnAuthenticatedUserView(){
-        this.unauthenticatedUserViewDisplayer.displayUnAuthenticatedHeader();
+        await this.unauthenticatedUserViewDisplayer.displayUnAuthenticatedHeader();
+        await this.modalLoader.load();
     }
 
     addEventListeners(){

@@ -9,8 +9,6 @@ class SingleArticlePageLoader extends PageLoader{
         this.sessionSynchronizer = new SessionSynchronizer();
         this.sessionSynchronizer.sync();
         this.singleArticleLoader = new SingleArticleLoader();
-        this.commentLoader = new CommentLoader();
-        this.singleArticlePageEventListeners = new SingleArticlePageEventListeners();
     }
 
     async load() {
@@ -20,6 +18,8 @@ class SingleArticlePageLoader extends PageLoader{
 
     async loadAuthenticatedUserView(){
         await super.loadAuthenticatedUserView();
+        this.singleArticlePageEventListeners = new SingleArticlePageEventListeners();
+        this.commentLoader = new CommentLoader();
         await this.commentLoader.load();
         this.authenticatedUserViewDisplayer.displayAuthenticatedArticlePage();
         this.singleArticlePageEventListeners.registerEvents();
@@ -27,6 +27,8 @@ class SingleArticlePageLoader extends PageLoader{
 
     async loadUnAuthenticatedUserView(){
         await super.loadUnAuthenticatedUserView();
+        this.singleArticlePageEventListeners = new SingleArticlePageEventListeners();
+        this.commentLoader = new CommentLoader();
         await this.commentLoader.load();
         this.unauthenticatedUserViewDisplayer.displayUnAuthenticatedArticlePage();
         this.singleArticlePageEventListeners.registerEventForSignInHrefButton();

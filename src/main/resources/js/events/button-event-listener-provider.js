@@ -1,6 +1,12 @@
 class ButtonEventListenerProvider {
 
-    constructor() { }
+    constructor() {
+        this.urlProvider = new URLProvider();
+        this.storedDataProvider = new StoredDataProvider();
+        this.elementProvider = new ElementProvider();
+        this.elementModifier = new ElementModifier();
+        this.articleRESTAPICaller = new ArticleRESTAPICaller(this.urlProvider.getBaseArticleURL());
+    }
 
     clickOnFilterSearchButton() {
         document.getElementById('article-row').innerHTML = '';
@@ -14,20 +20,20 @@ class ButtonEventListenerProvider {
     }
 
     clickOnDeleteArticleConfirmButton() {
-        console.log("clicked")
+        let articleToDelete = this.storedDataProvider.getItemFromSessionStorage("articleId");
+        let header = {
+            "Authorization":this.storedDataProvider.getItemFromLocalStorage("userToken")
+        }
+        this.articleRESTAPICaller.sendDELETESingleRequest(articleToDelete, header);
+        let button = document.querySelector(`.delete-button[article-id="${articleToDelete}"]`);
+        if(button !== null){
+            let articleElement = this.elementProvider.getAncestor(button, '.article');
+            this.elementModifier.removeElement(articleElement);
+        }
 
-        let urlProvider = new URLProvider();
-        let storedDataProvider = new StoredDataProvider();
-
-        console.log(urlProvider.getBaseArticleURL());
-        let caller = new ArticleRESTAPICaller(urlProvider.getBaseArticleURL());
-        let articleToDelete = storedDataProvider.getItemFromLocalStorage("articleId");
-        let displayer = new ArticlePreviewDisplayer();
-        caller.sendDELETESingleRequest(articleToDelete);
-        setTimeout(function () {
-            document.getElementById('article-row').innerHTML = '';
-            displayer.displayAllArticles();
-        }, 500);
-
+        let articlesContainer = this.elementProvider.getElementById("article-row");
+        if(articlesContainer.children.length === 0){
+            this.elementModifier.setElementText(articlesContainer, "Nincsenek cikkek!");
+        }
     }
 }

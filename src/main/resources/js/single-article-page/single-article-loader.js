@@ -36,7 +36,7 @@ class SingleArticleLoader {
     loadArticleImage(imageURL, elementIdToLoadInto){
         let elementToLoadInto = this.findElement(elementIdToLoadInto);
         elementToLoadInto.style.backgroundImage = "url("+imageURL+")";
-     }
+    }
 
     loadArticleContent(articleContent, elementIdToLoadInto){
         let elementToLoadInto = this.findElement(elementIdToLoadInto);

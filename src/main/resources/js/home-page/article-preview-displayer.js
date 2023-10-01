@@ -35,15 +35,22 @@ class ArticlePreviewDisplayer {
     }
 
     async displayLatestArticles() {
+
         let allArticles = await this.getArticles();
-        if(allArticles.length > this.latestArticlesNumber){
-            for(let i=0; i<this.latestArticlesNumber; i++){
-                let articlePreview = await this.articlePreviewBuilder.build(allArticles[i]);
-                this.componentAdder.add(this.articleParent, articlePreview);
+        if(allArticles.length > 0){
+            if(allArticles.length > this.latestArticlesNumber){
+                for(let i=0; i<this.latestArticlesNumber; i++){
+                    let articlePreview = await this.articlePreviewBuilder.build(allArticles[i]);
+                    this.componentAdder.add(this.articleParent, articlePreview);
+                }
+            }
+            else{
+                await this.displayAllArticles();
             }
         }
         else{
-            await this.displayAllArticles();
+            let articlesContainer = this.elementProvider.getElementById("article-row");
+            articlesContainer.innerHTML = "Nincsenek cikkek!";
         }
     }
 

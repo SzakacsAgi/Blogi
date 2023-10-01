@@ -34,10 +34,9 @@ class RESTAPICaller {
             });
     }
 
-    async sendDELETESingleRequest(id) {
+    async sendDELETESingleRequest(id, header) {
         let errorChecker = new RESTAPIErrorChecker();
-
-        return await fetch(this.url + "/" + id, { method: 'DELETE' })
+        return await fetch(this.url + "/" + id, { method: 'DELETE',  headers: header})
            .then(errorChecker.check)
            .then(response => response.json())
            .then(function (json) {

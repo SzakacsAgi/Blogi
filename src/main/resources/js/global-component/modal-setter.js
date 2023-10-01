@@ -10,10 +10,10 @@ class ModalSetter{
         this.modal = this.elementProvider.getComponent("blogi-modal");
         this.titleElement = this.elementProvider.getSubComponent(this.modal, "#title");
         this.confirmNoButton = this.elementProvider.getSubComponent(this.modal, "#modal-cancel");
-        this.confirmYesButton = this.elementProvider.getSubComponent(this.modal, "#modal-confirm")
+        this.confirmYesButton = this.elementProvider.getSubComponent(this.modal, "#modal-confirm");
     }
 
-    setModalData(){
+     setModalData(){
         this.modalType = this.storedDataProvider.getItemFromSessionStorage("modal");
 
         switch(this.modalType){
