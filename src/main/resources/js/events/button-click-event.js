@@ -1,3 +1,4 @@
+/*
 class ButtonEventListenerProvider {
 
     constructor() {}
@@ -12,4 +13,4 @@ class ButtonEventListenerProvider {
         let filterMethods = new FilterMethods();
         filterMethods.resetFilters();
     }
-}
+}*/

@@ -22,18 +22,18 @@ class PageLoader{
              await this.loadAuthenticatedUserView();
         }
         else{
-            this.loadUnAuthenticatedUserView()
+            await this.loadUnAuthenticatedUserView()
         }
         this.addEventListeners();
     }
 
     async loadAuthenticatedUserView(){
         await this.authenticationStatusTracker.storeUserInfoAboutAuthenticatedUser();
-        this.authenticatedUserViewDisplayer.displayAuthenticatedHeader();
+        await this.authenticatedUserViewDisplayer.displayAuthenticatedHeader();
     }
 
     async loadUnAuthenticatedUserView(){
-        this.unauthenticatedUserViewDisplayer.displayUnAuthenticatedHeader();
+        await this.unauthenticatedUserViewDisplayer.displayUnAuthenticatedHeader();
     }
 
     addEventListeners(){

@@ -4,7 +4,8 @@ class UnauthenticatedUserViewDisplayer extends PageViewDisplayer{
         super();
     }
 
-     displayUnAuthenticatedHeader(){
+     async displayUnAuthenticatedHeader(){
+         await this.initializeHeader();
          let signedInButton = this.elementProvider.getSubComponent(this.header, ".sign-in-button");
          this.elementModifier.displayElement(signedInButton);
      }

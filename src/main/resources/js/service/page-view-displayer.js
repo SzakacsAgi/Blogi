@@ -10,4 +10,8 @@ class PageViewDisplayer {
         this.header = this.elementProvider.getComponent("blogi-header");
     }
 
+    async initializeHeader(){
+        await this.header.initialize();
+    }
+
 }

@@ -9,7 +9,8 @@ class AuthenticatedUserViewDisplayer extends PageViewDisplayer{
         this.displayWriteCommentSection();
     }
 
-    displayAuthenticatedHeader(){
+    async displayAuthenticatedHeader(){
+        await this.initializeHeader();
         this.displayUserNameInHeader();
         this.displayProfilePicture(this.elementProvider.getSubComponent(this.header, ".profile-picture"));
         let signedInHeaderPart = this.elementProvider.getSubComponent(this.header, "#signed-in-user");

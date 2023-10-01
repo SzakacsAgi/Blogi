@@ -76,7 +76,7 @@ class EditorPageEventListeners{
             ArticleData.title = this.elementProvider.getInputFieldContentById('title');
             ArticleData.author = AuthenticatedUserInfo.name;
             let categories = this.elementProvider.getInputFieldContentById('categories');
-            ArticleData.categories = categories.split('\n').filter(category => category !== "");
+            ArticleData.categories = Array.from(new Set(categories.split('\n').filter(category => category !== "")));
             ArticleData.content = tinymce.activeEditor.getContent();
             ArticleData.minutesToRead = this.estimateReadingTime();
 
@@ -89,7 +89,6 @@ class EditorPageEventListeners{
     estimateReadingTime() {
         let wordsPerMinute = 200;
         let text = tinymce.activeEditor.getContent({format : 'text'})
-        console.log(text);
         const words = text.split(/\s+/).length;
         const minutes = Math.ceil(words / wordsPerMinute);
         return minutes;
