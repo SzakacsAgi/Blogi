@@ -43,3 +43,4 @@ spring:
         - classpath:/js/executor
         - classpath:/html/error-page
         - classpath:/html/permission-denied-page
+        - classpath:/css/editor-page
