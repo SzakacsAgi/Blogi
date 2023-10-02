@@ -10,6 +10,10 @@
   --card-title-font-size: 1.2rem;
 }
 
+.card-title::first-letter{
+    text-transform:capitalize;
+}
+
 .card{
   --card-width: 16rem;
 }
@@ -36,6 +40,7 @@
 .card-img-top {
   border-radius: 0;
   height: auto;
+  max-height:19rem;
 }
 
 .article-infos {
@@ -93,10 +98,6 @@
 
 .edit-buttons {
   margin-top: 1rem;
-}
-
-.edit-buttons-container {
-  margin-bottom: 2rem;
 }
 
 .edit-button {

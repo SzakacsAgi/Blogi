@@ -13,6 +13,11 @@
   font-size: 0.8rem;
 }
 
+.new-article-button:hover{
+      color: #cb849c;
+      text-decoration:none;
+}
+
 @media (min-width: 1200px) {
   .new-article-button {
     padding: 0.55rem 0.55rem;

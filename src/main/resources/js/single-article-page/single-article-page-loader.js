@@ -8,12 +8,20 @@ class SingleArticlePageLoader extends PageLoader{
         super();
         this.sessionSynchronizer = new SessionSynchronizer();
         this.sessionSynchronizer.sync();
+        this.articleId = sessionStorage.getItem("articleId");
         this.singleArticleLoader = new SingleArticleLoader();
+        this.redirector = new Redirector();
     }
 
     async load() {
         await super.load();
-        await this.singleArticleLoader.loadArticleToSingleArticlePage();
+        let articleWasOpenedThroughNormalFlow = this.articleId !== null;
+        if(articleWasOpenedThroughNormalFlow){
+            await this.singleArticleLoader.loadArticleToSingleArticlePage();
+        }
+        else{
+            this.redirector.redirectWhenArticleIdIsNotDefined();
+        }
     }
 
     async loadAuthenticatedUserView(){

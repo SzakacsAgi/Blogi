@@ -5,16 +5,26 @@ class EditorPageLoader {
         this.sessionSynchronizer.sync();
 
         this.storedDataProvider = new StoredDataProvider();
+        this.articleId = this.storedDataProvider.getItemFromSessionStorage("articleId");
         this.singleArticleLoader = new SingleArticleLoader();
         this.editorPageEventListeners = new EditorPageEventListeners();
         this.authenticationStatusTracker = new AuthenticationStatusTracker();
         this.componentInitializer = new ComponentInitializer();
+        this.redirector = new Redirector();
     }
 
     async load() {
-        await this.componentInitializer.init();
-        await this.singleArticleLoader.loadArticleToArticleEditorPage();
-        this.editorPageEventListeners.registerEventListeners();
+        let pageWasOpenedThroughNormalFlow = this.articleId !== null;
+        if(pageWasOpenedThroughNormalFlow){
+            await this.componentInitializer.init();
+            await this.singleArticleLoader.loadArticleToArticleEditorPage();
+            this.editorPageEventListeners.registerEventListeners();
+        }
+        else{
+            this.redirector.redirectWhenArticleIdIsNotDefined();
+        }
+
+
     }
 
 }

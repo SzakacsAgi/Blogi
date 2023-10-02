@@ -32,4 +32,8 @@ class Redirector {
     redirectWhenPermissionIsDenied() {
         window.location.pathname = "/blogi/permission-denied";
     }
+
+    redirectWhenArticleIdIsNotDefined(){
+        window.location.pathname = "/blogi/error";
+    }
 }
