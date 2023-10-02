@@ -12,8 +12,8 @@ class EditorPageLoader {
     }
 
     async load() {
-        await this.singleArticleLoader.loadArticleToArticleEditorPage();
         await this.componentInitializer.init();
+        await this.singleArticleLoader.loadArticleToArticleEditorPage();
         this.editorPageEventListeners.registerEventListeners();
     }
 

@@ -34,7 +34,6 @@ class ComponentInitializer{
 
              if (filteredData.length > 0) {
                  autocompleteList.style.display = 'block';
-                 autocompleteList.style.width = '303px';
              } else {
                  autocompleteList.style.display = 'none';
                }
