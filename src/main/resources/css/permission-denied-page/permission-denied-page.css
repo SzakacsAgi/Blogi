@@ -1,0 +1,42 @@
+html{
+    height: 100vh;
+}
+
+body{
+    height:100%;
+}
+
+.hide{
+    display:none !important;
+}
+
+footer{
+    bottom:0;
+}
+
+ h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 236px;
+  font-weight: 200;
+  margin: 0px;
+  color: #cb849c;
+  text-transform: uppercase;
+}
+
+.error-403{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    position:relative;
+    margin-top:10%;
+}
+
+h2{
+    position:absolute;
+    bottom:40px;
+    background-color:white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}

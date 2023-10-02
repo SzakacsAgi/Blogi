@@ -17,6 +17,9 @@ class Redirector {
                 break;
             case 'article': this.redirectToPage("article");
                 break;
+            default:
+                this.redirectToPage("home");
+                break;
         }
         this.storedDataProvider.clearSpecificItemFromLocalStorage("pageToRedirect");
     }
