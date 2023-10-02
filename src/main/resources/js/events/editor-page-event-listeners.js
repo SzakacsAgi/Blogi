@@ -7,6 +7,7 @@ class EditorPageEventListeners{
         this.adminOperationRESTAPICaller = new AdminOperationRESTAPICaller();
         this.requestBodyMaker = new RequestBodyMaker();
         this.articleExceptionHandler = new ArticleExceptionHandler();
+        this.globalErrorMessageField = this.elementProvider.getElementById("errorMessage");
     }
 
     registerEventListeners(){
@@ -24,12 +25,26 @@ class EditorPageEventListeners{
 
         fileInput.onchange =  async () =>{
             this.file = fileInput.files[0];
+            this.elementModifier.hideElement(this.globalErrorMessageField);
             let isFileSelected = typeof this.file !== 'undefined';
             if(isFileSelected){
+                let acceptedFileFormat = ["image/jpeg", "image/jpg", "image/png", "image/gif"];
+                let fileFormatIsNotSupported = !acceptedFileFormat.includes(this.file.type);
+                if(fileFormatIsNotSupported){
+                    this.articleExceptionHandler.handleFileFormatIsNotSupported();
+                    this.filePreview.src = "";
+                    return;
+                }
+                let isFileTooBig = this.file.size > 5000000;
+                if(isFileTooBig){
+                    this.articleExceptionHandler.handleFileIsTooBigException();
+                    this.filePreview.src = "";
+                    return;
+                }
                 this.elementModifier.removeElementClass(fileInput, ["invalid"]);
                 this.elementModifier.hideElement(fileIsNotValidMessageElement);
                 await this.fileRESTAPICaller.uploadFile(this.file);
-                filePreview.src = ArticleData.imageURL;
+                this.filePreview.src = ArticleData.imageURL;
             }
         }
     }
@@ -38,6 +53,11 @@ class EditorPageEventListeners{
         let form = this.elementProvider.getElementById("update-article-form");
         form.addEventListener('submit', async (event) => {
             event.preventDefault();
+            let titleIsNull = this.elementProvider.getInputFieldContentById('title') === '';
+            if(titleIsNull){
+                this.articleExceptionHandler.handleTitleIsNullException();
+                return;
+            }
             let currentImageURL = this.storedDataProvider.getItemFromSessionStorage("currentImageURL");
             let fileWasChanged = this.filePreview.src !== currentImageURL;
             if(fileWasChanged){
@@ -46,26 +66,30 @@ class EditorPageEventListeners{
                     this.articleExceptionHandler.handleFileIsNullException();
                     return;
                 }
-                let isFileTooBig = this.file.size > 5000000;
-                if(isFileTooBig){
-                    this.articleExceptionHandler.handleFileIsTooBigException();
-                    return;
-                }
                 let acceptedFileFormat = ["image/jpeg", "image/jpg", "image/png", "image/gif"];
                 let fileFormatIsNotSupported = !acceptedFileFormat.includes(this.file.type);
                 if(fileFormatIsNotSupported){
                     this.articleExceptionHandler.handleFileFormatIsNotSupported();
+                    this.elementModifier.setElementText(this.globalErrorMessageField, "A megadott fájl formátum nem támogatott!<br> A támogatott formátumok: jpeg, jpg, png, gif");
+                    this.elementModifier.displayElement(this.globalErrorMessageField);
                     return;
+                }
+                else{
+                    this.elementModifier.hideElement(this.globalErrorMessageField);
+                }
+                let isFileTooBig = this.file.size > 5000000;
+                if(isFileTooBig){
+                    this.articleExceptionHandler.handleFileIsTooBigException();
+                    this.elementModifier.setElementText(this.globalErrorMessageField, "A megadott fájl túl nagy, maximum 5MB lehet!");
+                    this.elementModifier.displayElement(this.globalErrorMessageField);
+                    return;
+                }
+                else{
+                    this.elementModifier.hideElement(this.globalErrorMessageField);
                 }
             }
             else{
                 ArticleData.imageURL = currentImageURL;
-            }
-
-            let titleIsNull = this.elementProvider.getInputFieldContentById('title') === '';
-            if(titleIsNull){
-                this.articleExceptionHandler.handleTitleIsNullException();
-                return;
             }
             let isContentEmpty = tinymce.activeEditor.getContent() === '';
             if(isContentEmpty){
@@ -100,6 +124,7 @@ class EditorPageEventListeners{
         titleInput.addEventListener("input", () => {
             this.elementModifier.removeElementClass(titleInput, ["invalid"]);
             this.elementModifier.hideElement(titleIsNotValidMessageElement);
+            this.elementModifier.hideElement(this.globalErrorMessageField);
         })
     }
 
@@ -109,6 +134,7 @@ class EditorPageEventListeners{
         tinymce.activeEditor.getBody().addEventListener('keydown', () =>{
             this.elementModifier.removeElementClass(editorElement, ["invalid"]);
             this.elementModifier.hideElement(contentIsNullError);
+            this.elementModifier.hideElement(this.globalErrorMessageField);
         });
     }
 }

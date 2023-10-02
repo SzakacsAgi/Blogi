@@ -1,0 +1,159 @@
+body {
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: "Minion";
+    margin:60px 0;
+    flex-direction:column;
+    background-color:#ebe1e8;
+}
+
+form{
+    border-radius:25px;
+    background-color:#FFF;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;;
+}
+
+h1{
+    margin-bottom:30px;
+    text-align:center;
+    font-weight:700;
+    color:#CB849C;
+    font-size:50px;
+}
+
+label{
+    font-size:20px;
+    margin-bottom:5px;
+    color:#595757;
+    padding:0 !important;
+    margin-top:40px !important;
+    font-weight:600;
+}
+
+.description{
+    font-style:italic;
+    margin-bottom:5px;
+    padding:0;
+}
+
+#file-input{
+    width: 50%;
+}
+
+p{
+    padding:0 !important;
+    margin: 5px 0 !important;
+    font-size:18px;
+}
+
+.row{
+    padding: 0 40px;
+}
+
+.row > .col{
+    padding-left: 0;
+}
+
+.row .col:nth-child(2){
+    margin-left:20px;
+    padding-right: 0;
+}
+
+#file-preview{
+    margin-top:10px;
+    padding:0 !important;
+}
+
+.hide{
+     display:none;
+}
+
+.invalid:focus{
+    box-shadow: 0 0 0 0.25rem rgba(255,0,0,.25);
+    border-color: red;
+}
+
+.tox-statusbar{
+    display:none !important;
+}
+
+.invalid-content{
+    border: 2px solid red;
+}
+
+.invalid{
+    border: 2px solid red !important;
+}
+
+#autocomplete-list {
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+    max-height: 150px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    display: none;
+}
+
+#autocomplete-list li {
+    padding: 8px;
+    cursor: pointer;
+}
+
+#autocomplete-list li:hover, .selected {
+    background-color: #cb849c80;
+}
+
+textarea{
+    resize:none;
+}
+
+.col{
+    width:50%;
+}
+
+.confirm-yes{
+    background-color:#cb849cd2;
+    color: gray;
+}
+
+.button {
+    border:1.2px #707070 solid;
+    border-radius: 10px;
+    padding:6px;
+    font-weight: 500;
+    font-size:20px;
+}
+
+.tox-editor-container{
+    border:1px solid #ced4da !important;
+}
+
+.tox-tinymce{
+    min-height:600px !important;
+    padding:0 !important;
+}
+
+.submit-container{
+    display: flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    padding:32px 0;
+}
+
+.submit-container button{
+    width:fit-content;
+}
+
+#errorMessage{
+    margin-bottom: 10px !important;
+}
+
+sup{
+    top:-0.2rem;
+    color:red;
+    font-weight:700;
+    margin-left:2px;
+}

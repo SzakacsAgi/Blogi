@@ -11,88 +11,49 @@
             integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
             crossorigin="anonymous"></script>
     <script src="https://cdn.tiny.cloud/1/26jnqpce17l0op7lu6j9vckcuqk5jcjf021emyrq9ljsxrr3/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-
-    <title>Blogi - New Article</title>
-    <style>
-        .hide{
-            display:none;
-        }
-
-        .invalid:focus{
-         box-shadow: 0 0 0 0.25rem rgba(255,0,0,.25);
-         border-color: red;
-        }
-
-        .tox-statusbar{
-            display:none !important;
-        }
-
-        .invalid-content{
-             border-color: 1px solid red;
-        }
-
-        .invalid{
-            border-color: red !important;
-        }
-
-        input:invalid{
-            border: red 5px solid;
-        }
-
-        #categories{
-            position:relative;
-        }
-
-        #autocomplete-list {
-            list-style-type: none;
-            padding: 0;
-            width: 100%;
-            max-height: 150px;
-            overflow-y: auto;
-            border: 1px solid #ccc;
-            display: none;
-        }
-
-        #autocomplete-list li {
-            padding: 8px;
-            cursor: pointer;
-        }
-
-        #autocomplete-list li:hover {
-            background-color: #f2f2f2;
-        }
-    </style>
+    <link rel="stylesheet" href="new-article-page.css">
+    <!-- FONTS -->
+    <a href="http://www.eaglefonts.com/bodoni-bd-bt-bold-ttf-10544.htm"></a>
+    <link href="https://fonts.cdnfonts.com/css/proxima-nova-rg-2" rel="stylesheet">
+    <title>Blogi - Új cikk</title>
 </head>
 
 <body>
+    <h1>Új cikk létrehozása</h1>
     <form class="container" id="create-article-form">
-        <h1 class="d-flex justify-content-center">Új cikk létrehozása</h1>
-        <div class="col-md-4">
-            <label for="file-input" class="form-label mx-1" style="display:inline-block">Indexkép feltöltése</label>
-            <input type="file" id="file-input" class="form-control" style="display:inline-block" accept=".jpeg, .jpg, .png, .gif">
-            <p id="fileIsNotValidMessage" class="hide"></p>
-            <img alt="" id="file-preview">
-
-        </div>
-        <div class="col-md-4">
-            <label for="categories">Add meg a kategóriákat</label>
-            <div class="autocomplete">
-                <textarea id="categories" placeholder="Type here..." rows="4"></textarea>
-                <ul class="autocomplete-list" id="autocomplete-list"></ul>
+        <div class="row">
+            <div class="col">
+                <label for="title">Cím<sup>*</sup></label>
+                <input type="text" id="title" class="form-control">
+                <p id="titleIsNotValidMessage" class="hide"></p>
             </div>
-
+            <div class="col">
+                <label for="categories">Kategóriák</label>
+                <div class="description">Kategóriák megadása enterrel elválasztva</div>
+                <div class="autocomplete">
+                <textarea id="categories" class="form-control" rows="4" placeholder="főétel
+olasz leves
+olasz"></textarea>
+                    <ul class="autocomplete-list" id="autocomplete-list"></ul>
+                </div>
+            </div>
         </div>
-        <div class="col-md-4">
-            <label for="title">Add meg a cikk címét</label>
-            <input type="text" id="title" class="form-control" title="">
-            <p id="titleIsNotValidMessage" class="hide"></p>
-
+        <div class="row">
+            <label for="file-input">Indexkép<sup>*</sup></label>
+            <div class="description">JPEG, JPG vagy PNG feltöltése legfeljebb 5 MB méretben</div>
+            <input type="file" id="file-input" class="form-control" accept=".jpeg, .jpg, .png, .gif">
+            <p id="fileIsNotValidMessage" class="hide"></p>
+            <img alt="" id="file-preview" title="Választott indexkép">
         </div>
 
-        <textarea id="local-upload"></textarea>
-        <p id="contentIsNullMessage" class="hide">A cikk tartalma nem lehet üres!</p>
-        <div class="mb-3 d-flex justify-content-end">
-            <button class="btn btn-primary me-2" type="submit" id="submit">Létrehozás</button>
+        <div class="row">
+            <label>Tartalom<sup>*</sup></label>
+            <textarea id="local-upload"></textarea>
+            <p id="contentIsNullMessage" class="hide"></p>
+        </div>
+        <div class="submit-container">
+            <p id="errorMessage" class="hide"></p>
+            <button class="confirm-yes button" type="submit" id="submit">Létrehozás</button>
         </div>
     </form>
     <blogi-modal></blogi-modal>

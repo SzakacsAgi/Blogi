@@ -45,7 +45,7 @@ class SingleArticleLoader {
 
     loadArticleCategories(articleCategories, elementIdToLoadInto){
         let elementToLoadInto = this.findElement(elementIdToLoadInto);
-        if(articleCategories.length > 1){
+        if(articleCategories.length > 0){
             articleCategories.forEach(category => elementToLoadInto.textContent = elementToLoadInto.textContent+category+"\n");
         }
     }
