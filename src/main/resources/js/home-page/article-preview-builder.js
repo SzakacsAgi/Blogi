@@ -4,7 +4,6 @@ class ArticlePreviewBuilder {
     articleInfo;
     elementModifier;
     elementCreator;
-    buttonCreator;
     elementProvider;
     storedDataProvider;
     articlePart;
@@ -24,7 +23,6 @@ class ArticlePreviewBuilder {
     constructor() {
         this.elementModifier = new ElementModifier();
         this.elementCreator = new ElementCreator();
-        this.buttonCreator = new ButtonCreator();
         this.elementProvider = new ElementProvider();
         this.storedDataProvider = new StoredDataProvider();
         this.articlePart = this.elementProvider.getComponent('article-part');

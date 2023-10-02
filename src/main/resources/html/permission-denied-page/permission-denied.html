@@ -1,13 +1,63 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>Permission Denied Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="referrer" content="no-referrer" />
+    <title>403 Nincs hozzáférésed</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
             crossorigin="anonymous"></script>
+    <script src="https://cdn.tiny.cloud/1/26jnqpce17l0op7lu6j9vckcuqk5jcjf021emyrq9ljsxrr3/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css-reset.css">
+    <link rel="stylesheet" href="permission-denied-page.css">
+    <link href="https://fonts.cdnfonts.com/css/proxima-nova-rg-2" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,400,700" rel="stylesheet">
+    <!-- ICONS -->
+    <script src="https://kit.fontawesome.com/df226d5321.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="Favicon.png" type="image/x-icon">
+
+    <script src="rest-api-helper.js"></script>
+    <script src="rest-api-caller.js"></script>
+
+    <script src="token-provider.js"></script>
+    <script src="url-provider.js"></script>
+    <script src="authenticated-user-info.js"></script>
+    <script src="authentication-status-tracker.js"></script>
+
+    <script src="stored-data-provider.js"></script>
+    <script src="token-saver.js"></script>
 </head>
+
 <body>
-<h1>Permission denied</h1>
-<p>Please try to sign in and visit the previous page again.</p>
+<blogi-header></blogi-header>
+
+<main>
+    <div class="error-403">
+        <h1>Hoppá!</h1>
+        <h2>Az oldal megtekintéséhez nincs jogosúltságod!</h2>
+    </div>
+</main>
+
+<blogi-footer></blogi-footer>
+
+<script src="header-event-listeners.js"></script>
+<script src="element-provider.js"></script>
+<script src="component-adder.js"></script>
+<script src="footer.js"></script>
+<script src="header.js"></script>
+<script src="element-creator.js"></script>
+<script src="element-modifier.js"></script>
+<script src="page-view-displayer.js"></script>
+<script src="authenticated-user-view-displayer.js"></script>
+<script src="unauthenticated-user-view-displayer.js"></script>
+
+<script src="permission-denied-page-loader.js"></script>
+
 </body>
+
 </html>

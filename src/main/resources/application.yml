@@ -41,5 +41,9 @@ spring:
         - classpath:/html/redirector
         - classpath:/js/browser
         - classpath:/js/executor
+        - classpath:/js/error-page
+        - classpath:/js/permission-denied-page
         - classpath:/html/error-page
         - classpath:/html/permission-denied-page
+        - classpath:/css/permission-denied-page
+        - classpath:/css/error-page
