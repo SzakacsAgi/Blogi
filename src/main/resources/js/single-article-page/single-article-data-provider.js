@@ -14,7 +14,7 @@ class SingleArticleDataProvider {
       }
 
       async fetchArticleData(articleId) {
-        const response = await this.caller.sendGETSingleRequest(articleId);
+        const response = await this.caller.getASingleArticle(articleId);
         return response.payload;
       }
 
