@@ -5,7 +5,7 @@ class ButtonEventListenerProvider {
         this.storedDataProvider = new StoredDataProvider();
         this.elementProvider = new ElementProvider();
         this.elementModifier = new ElementModifier();
-        this.articleRESTAPICaller = new ArticleRESTAPICaller(this.urlProvider.getBaseArticleURL());
+        this.articleRESTAPICaller = new ArticleRESTAPICaller();
     }
 
     clickOnFilterSearchButton() {
@@ -24,7 +24,7 @@ class ButtonEventListenerProvider {
         let header = {
             "Authorization":this.storedDataProvider.getItemFromLocalStorage("userToken")
         }
-        this.articleRESTAPICaller.sendDELETESingleRequest(articleToDelete, header);
+        this.articleRESTAPICaller.deleteArticle(articleToDelete, header);
         let button = document.querySelector(`.delete-button[article-id="${articleToDelete}"]`);
         if(button !== null){
             let articleElement = this.elementProvider.getAncestor(button, '.article');
