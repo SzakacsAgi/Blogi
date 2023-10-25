@@ -15,7 +15,6 @@ class SingleArticlePageLoader extends PageLoader{
 
     async load() {
         let articleWasOpenedThroughNormalFlow = this.articleId !== null;
-        console.log(articleWasOpenedThroughNormalFlow)
         if(articleWasOpenedThroughNormalFlow){
             await this.singleArticleLoader.loadArticleToSingleArticlePage();
             await super.load();
