@@ -46,8 +46,10 @@ class RESTAPIErrorChecker {
                 statusText: response.statusText,
                 status: response.status
             };
-            throw (responseError);
+            return Promise.reject(responseError);
         }
-        return response;
+        else{
+            return response;
+        }
     }
 }

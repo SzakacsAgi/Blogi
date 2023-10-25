@@ -14,10 +14,11 @@ class SingleArticlePageLoader extends PageLoader{
     }
 
     async load() {
-        await super.load();
         let articleWasOpenedThroughNormalFlow = this.articleId !== null;
+        console.log(articleWasOpenedThroughNormalFlow)
         if(articleWasOpenedThroughNormalFlow){
             await this.singleArticleLoader.loadArticleToSingleArticlePage();
+            await super.load();
         }
         else{
             this.redirector.redirectWhenArticleIdIsNotDefined();
