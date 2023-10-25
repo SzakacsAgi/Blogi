@@ -9,7 +9,6 @@ class SingleArticleLoader {
     }
 
     async loadArticleToSingleArticlePage(){
-        console.log("I am loading the article")
         let browserDataModifier = new BrowserDataModifier();
         let articleInfo = await this.singleArticleDataProvider.createArticle(this.articleId);
         this.loadArticleTitle(articleInfo.getTitle(), '#article-title');
