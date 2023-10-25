@@ -1,9 +1,9 @@
 class RESTAPICaller {
-
     constructor() {
         this.urlProvider = new URLProvider();
         this.errorChecker = new RESTAPIErrorChecker();
         this.queryParamFormatter = new QueryParamFormatter()
+
         this.tokenProvider = new TokenProvider();
         this.userToken = this.tokenProvider.getUserTokenAfterSignIn();
         this.authorizationHeader = { "Authorization":this.userToken };
@@ -15,7 +15,6 @@ class RESTAPICaller {
 }
 
 class ArticleRESTAPICaller extends RESTAPICaller {
-
     constructor() {
         super();
     }
@@ -62,11 +61,9 @@ class ArticleRESTAPICaller extends RESTAPICaller {
          .then(location.href = this.urlProvider.getHomePageURL())
          .catch(error => console.log(error));
      }
-
 }
 
 class AuthenticationRESTAPICaller extends RESTAPICaller {
-
     constructor() {
         super();
     }
@@ -101,7 +98,6 @@ class AuthenticationRESTAPICaller extends RESTAPICaller {
 }
 
 class CommentRESTAPICaller extends RESTAPICaller {
-
     constructor() {
         super();
     }
@@ -122,7 +118,7 @@ class CommentRESTAPICaller extends RESTAPICaller {
     async updateComment(articleId, commentId, body) {
         return await fetch(this.urlProvider.getASingleCommentURL(articleId, commentId), { method: 'PUT', headers: this.authorizationHeaderWithContentType, body:body })
             .then(response => this.errorChecker.check(response))
-            .catch(error => console.log(error));
+            .catch(error => console.log(error));      
     }
 
     async createComment(articleId, body) {
@@ -135,11 +131,9 @@ class CommentRESTAPICaller extends RESTAPICaller {
             console.log("Location header is not present!");
         }
     }
-
 }
 
 class FileRESTAPICaller extends RESTAPICaller {
-
     constructor() {
         super();
 
@@ -170,5 +164,5 @@ class FileRESTAPICaller extends RESTAPICaller {
         await fetch(this.urlProvider.getDeleteFileURL(this.previousUploadFile), { method: 'DELETE', headers: this.authorizationHeader})
         .then(response => this.errorChecker.check(response))
         .catch(error => console.log(error));
-    }
+    }    
 }
