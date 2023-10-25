@@ -50,7 +50,6 @@ class SingleArticlePageEventListeners{
         });
     }
 
-    // Copy from HeaderEventListeners class (only the button id is different)
     addRedirectLogicForSignInHrefButtonListener() {
         let signInHrefButton = document.getElementById("sign-in-href-button");
         signInHrefButton.addEventListener("click", () => {
@@ -60,7 +59,6 @@ class SingleArticlePageEventListeners{
         })
     }
 
-    // Copy from HeaderEventListeners class
     getPageToRedirect(locationPathname){
         return locationPathname.substr(locationPathname.lastIndexOf("/")+1);
     }

@@ -13,7 +13,7 @@ class ArticlePreviewDisplayer {
         this.urlProvider = new URLProvider();
         this.queryParams = new FilterMethods().getFilterQueryParams();
         this.articlePreviewBuilder = new ArticlePreviewBuilder();
-        this.caller = new ArticleRESTAPICaller(this.urlProvider.getBaseArticleURL());
+        this.caller = new ArticleRESTAPICaller();
         this.latestArticlesNumber = 6;
         this.componentAdder = new ComponentAdder();
         this.elementProvider = new ElementProvider();
@@ -22,8 +22,7 @@ class ArticlePreviewDisplayer {
     }
 
     async getArticles(queryParams = {}) {
-        let response = await this.caller.sendGETAllRequest(queryParams);
-        return response.payload;
+        return await this.caller.getAllArticles(queryParams);
     }
 
     async displayAllArticles() {

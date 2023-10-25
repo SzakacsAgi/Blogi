@@ -12,8 +12,7 @@ class ComponentInitializer{
      async #initCategoriesInputField(){
          const categoriesInputField = this.elementProvider.getElementById('categories');
          const autocompleteList = this.elementProvider.getElementById('autocomplete-list');
-         let apiResponse = await this.articleRESTAPICaller.getAllCategories();
-         let categories = apiResponse.payload;
+         let categories = await this.articleRESTAPICaller.getAllCategories();
 
          categoriesInputField.addEventListener('input', function () {
          autocompleteList.innerHTML = '';
