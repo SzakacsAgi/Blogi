@@ -27,6 +27,9 @@ class ArticlePreviewBuilder {
         this.storedDataProvider = new StoredDataProvider();
         this.articlePart = this.elementProvider.getComponent('article-part');
         this.mainParent = this.elementProvider.getSubComponent(this.articlePart, "#article-row");
+         this.homePageEventListeners = new HomePageEventListeners();
+         this.userPermissionVerifier = new UserPermissionVerifier();
+         this.adminUserViewDisplayer = new AdminUserViewDisplayer();
     }
 
     async build(article) {
@@ -35,6 +38,7 @@ class ArticlePreviewBuilder {
         await this.getArticleElement();
         this.setElementsToModify();
         this.setArticlePreviewData();
+
         return this.articleElement;
     }
 

@@ -66,11 +66,15 @@ class HomePageEventListeners {
     addSearchBarListener(){
         let articleSearcher = new ArticleSearcher();
         let searchBar = articleSearcher.searchBar;
+        let timeout = null;
 
         searchBar.addEventListener('keyup', (event) => {
+            if(timeout){
+                clearTimeout(timeout);
+            }
             articleSearcher.currentSearchText = articleSearcher.getCurrentSearchText(event);
-            setTimeout(() => {
-                articleSearcher.search(articleSearcher.currentSearchText);
+            timeout = setTimeout(async () => {
+                await articleSearcher.search();
             }, articleSearcher.waitTimeInMilliseconds);
         });
     }
