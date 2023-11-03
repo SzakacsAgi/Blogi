@@ -15,8 +15,7 @@ class HomePageDynamicComponentsDisplayer {
     }
 
     async displayCategoriesInFilterBody() {
-        let apiResponse = await this.articleRESTAPICaller.getAllCategories();
-        let categories = apiResponse.payload;
+        let categories = await this.articleRESTAPICaller.getAllCategories();
         let filterBuilder = new FilterBuilder();
 
         for (const categoryIndex in categories) {

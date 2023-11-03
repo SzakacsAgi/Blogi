@@ -4,7 +4,7 @@ class NewArticlePageEventListeners{
         this.elementProvider = new ElementProvider();
         this.elementModifier = new ElementModifier();
         this.fileRESTAPICaller = new FileRESTAPICaller();
-        this.adminOperationRESTAPICaller = new AdminOperationRESTAPICaller();
+        this.articleRESTAPICaller = new ArticleRESTAPICaller();
         this.requestBodyMaker = new RequestBodyMaker();
         this.articleExceptionHandler = new ArticleExceptionHandler();
         this.globalErrorMessageField = this.elementProvider.getElementById("errorMessage");
@@ -104,7 +104,7 @@ class NewArticlePageEventListeners{
             ArticleData.minutesToRead = this.estimateReadingTime();
 
             let body = this.requestBodyMaker.makeRequestBodyToCreateArticle();
-            await this.adminOperationRESTAPICaller.createArticle(body);
+            await this.articleRESTAPICaller.createArticle(body);
         })
     }
 

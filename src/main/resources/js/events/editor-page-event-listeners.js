@@ -4,7 +4,7 @@ class EditorPageEventListeners{
         this.elementProvider = new ElementProvider();
         this.elementModifier = new ElementModifier();
         this.fileRESTAPICaller = new FileRESTAPICaller();
-        this.adminOperationRESTAPICaller = new AdminOperationRESTAPICaller();
+        this.articleRESTAPICaller = new ArticleRESTAPICaller();
         this.requestBodyMaker = new RequestBodyMaker();
         this.articleExceptionHandler = new ArticleExceptionHandler();
         this.globalErrorMessageField = this.elementProvider.getElementById("errorMessage");
@@ -106,7 +106,7 @@ class EditorPageEventListeners{
 
             let body = this.requestBodyMaker.makeRequestBodyToUpdateArticle();
             let articleId = this.storedDataProvider.getItemFromSessionStorage("articleId");
-            await this.adminOperationRESTAPICaller.updateArticle(articleId, body);
+            await this.articleRESTAPICaller.updateArticle(articleId, body);
         })
     }
 
