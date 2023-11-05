@@ -8,7 +8,7 @@ class SingleArticleDataProvider {
         this.caller = new ArticleRESTAPICaller(this.urlProvider.getBaseArticleURL());
       }
 
-      async createArticle(articleId) {
+      async getArticleInfo(articleId) {
         const articleData = await this.fetchArticleData(articleId);
         return new ArticleInfo(articleData);
       }

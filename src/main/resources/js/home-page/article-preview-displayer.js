@@ -19,9 +19,7 @@ class ArticlePreviewDisplayer {
         this.elementProvider = new ElementProvider();
         let articlePart = this.elementProvider.getComponent('article-part');
         this.articleParent = this.elementProvider.getSubComponent(articlePart, '#article-row');
-        this.homePageEventListeners = new HomePageEventListeners();
-        this.userPermissionVerifier = new UserPermissionVerifier();
-        this.adminUserViewDisplayer = new AdminUserViewDisplayer();
+        this.articlePreviewEventListeners = new ArticlePreviewEventListeners();
     }
 
     async getArticles(queryParams = {}) {
@@ -33,7 +31,7 @@ class ArticlePreviewDisplayer {
         for(let article of allArticles){
             let articlePreview = await this.articlePreviewBuilder.build(article);
             this.componentAdder.add(this.articleParent, articlePreview);
-            this.addEventListeners();
+            this.articlePreviewEventListeners.registerEventListeners();
         }
     }
 
@@ -44,7 +42,7 @@ class ArticlePreviewDisplayer {
                 for(let i=0; i<this.latestArticlesNumber; i++){
                     let articlePreview = await this.articlePreviewBuilder.build(allArticles[i]);
                     this.componentAdder.add(this.articleParent, articlePreview);
-                    this.addEventListeners();
+                    this.articlePreviewEventListeners.registerEventListeners();
                 }
             }
             else{
@@ -62,7 +60,7 @@ class ArticlePreviewDisplayer {
         for(let article of filteredArticles){
             let articlePreview = await this.articlePreviewBuilder.build(article);
             this.componentAdder.add(this.articleParent, articlePreview);
-            this.addEventListeners();
+            this.articlePreviewEventListeners.registerEventListeners();
         }
     }
 
@@ -70,15 +68,7 @@ class ArticlePreviewDisplayer {
         for(let i=0; i<searchResults.length; i++){
             let articlePreview = await this.articlePreviewBuilder.build(searchResults[i]);
             this.componentAdder.add(this.articleParent, articlePreview);
-            this.addEventListeners();
-        }
-    }
-
-    addEventListeners(){
-        this.homePageEventListeners.copyArticleIdForSingleArticlePage();
-        if (this.userPermissionVerifier.hasAdminRole()) {
-            this.adminUserViewDisplayer.displayArticleModifierButtons();
-            this.homePageEventListeners.addDeleteButtonListener();
+            this.articlePreviewEventListeners.registerEventListeners();
         }
     }
 
