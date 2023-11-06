@@ -49,65 +49,74 @@ class EditorPageEventListeners{
         }
     }
 
-    async addSendContentListener(){
+    async addSendContentListener() {
         let form = this.elementProvider.getElementById("update-article-form");
         form.addEventListener('submit', async (event) => {
             event.preventDefault();
-            let titleIsNull = this.elementProvider.getInputFieldContentById('title') === '';
-            if(titleIsNull){
-                this.articleExceptionHandler.handleTitleIsNullException();
-                return;
+            if(this.isFormValid()) {
+                this.setArticleData();
+                let body = this.requestBodyMaker.makeRequestBodyToUpdateArticle();
+                let articleId = this.storedDataProvider.getItemFromSessionStorage("articleId");
+                await this.articleRESTAPICaller.updateArticle(articleId, body);
             }
-            let currentImageURL = this.storedDataProvider.getItemFromSessionStorage("currentImageURL");
-            let fileWasChanged = this.filePreview.src !== currentImageURL;
-            if(fileWasChanged){
-                let isFileNull = typeof this.file === 'undefined';
-                if(isFileNull){
-                    this.articleExceptionHandler.handleFileIsNullException();
-                    return;
-                }
-                let acceptedFileFormat = ["image/jpeg", "image/jpg", "image/png", "image/gif"];
-                let fileFormatIsNotSupported = !acceptedFileFormat.includes(this.file.type);
-                if(fileFormatIsNotSupported){
-                    this.articleExceptionHandler.handleFileFormatIsNotSupported();
-                    this.elementModifier.setElementText(this.globalErrorMessageField, "A megadott fájl formátum nem támogatott!<br> A támogatott formátumok: jpeg, jpg, png, gif");
-                    this.elementModifier.displayElement(this.globalErrorMessageField);
-                    return;
-                }
-                else{
-                    this.elementModifier.hideElement(this.globalErrorMessageField);
-                }
-                let isFileTooBig = this.file.size > 5000000;
-                if(isFileTooBig){
-                    this.articleExceptionHandler.handleFileIsTooBigException();
-                    this.elementModifier.setElementText(this.globalErrorMessageField, "A megadott fájl túl nagy, maximum 5MB lehet!");
-                    this.elementModifier.displayElement(this.globalErrorMessageField);
-                    return;
-                }
-                else{
-                    this.elementModifier.hideElement(this.globalErrorMessageField);
-                }
-            }
-            else{
-                ArticleData.imageURL = currentImageURL;
-            }
-            let isContentEmpty = tinymce.activeEditor.getContent() === '';
-            if(isContentEmpty){
-                 this.articleExceptionHandler.handelContentIsNullException();
-                 return;
+        });
+    }
+
+    isFormValid() {
+        let titleIsNull = this.elementProvider.getInputFieldContentById('title') === '';
+        if (titleIsNull) {
+            this.articleExceptionHandler.handleTitleIsNullException();
+            return false;
+        }
+
+        let currentImageURL = this.storedDataProvider.getItemFromSessionStorage("currentImageURL");
+        let fileWasChanged = this.filePreview.src !== currentImageURL;
+        if(fileWasChanged){
+            let isFileNull = typeof this.file === 'undefined';
+            if (isFileNull) {
+                this.articleExceptionHandler.handleFileIsNullException();
+                return false;
             }
 
-            ArticleData.title = this.elementProvider.getInputFieldContentById('title');
-            ArticleData.author = AuthenticatedUserInfo.name;
-            let categories = this.elementProvider.getInputFieldContentById('categories');
-            ArticleData.categories = Array.from(new Set(categories.split('\n').filter(category => category !== "")));
-            ArticleData.content = tinymce.activeEditor.getContent();
-            ArticleData.minutesToRead = this.estimateReadingTime();
+            let acceptedFileFormat = ["image/jpeg", "image/jpg", "image/png", "image/gif"];
+            let fileFormatIsNotSupported = !acceptedFileFormat.includes(this.file.type);
+            if (fileFormatIsNotSupported) {
+                this.articleExceptionHandler.handleFileFormatIsNotSupported();
+                this.elementModifier.setElementText(this.globalErrorMessageField, "A megadott fájl formátum nem támogatott!<br> A támogatott formátumok: jpeg, jpg, png, gif");
+                this.elementModifier.displayElement(this.globalErrorMessageField);
+                return false;
+            }
 
-            let body = this.requestBodyMaker.makeRequestBodyToUpdateArticle();
-            let articleId = this.storedDataProvider.getItemFromSessionStorage("articleId");
-            await this.articleRESTAPICaller.updateArticle(articleId, body);
-        })
+            let isFileTooBig = this.file.size > 5000000;
+            if (isFileTooBig) {
+                this.articleExceptionHandler.handleFileIsTooBigException();
+                this.elementModifier.setElementText(this.globalErrorMessageField, "A megadott fájl túl nagy, maximum 5MB lehet!");
+                this.elementModifier.displayElement(this.globalErrorMessageField);
+                return false;
+            }
+        }
+        else{
+            ArticleData.imageURL = currentImageURL;
+        }
+
+        let isContentEmpty = tinymce.activeEditor.getContent() === '';
+        if (isContentEmpty) {
+             this.articleExceptionHandler.handelContentIsNullException();
+             return false;
+        }
+
+        this.elementModifier.hideElement(this.globalErrorMessageField);
+
+        return true;
+    }
+
+    setArticleData(){
+        ArticleData.title = this.elementProvider.getInputFieldContentById('title');
+        ArticleData.author = AuthenticatedUserInfo.name;
+        let categories = this.elementProvider.getInputFieldContentById('categories');
+        ArticleData.categories = Array.from(new Set(categories.split('\n').filter(category => category !== "")));
+        ArticleData.content = tinymce.activeEditor.getContent();
+        ArticleData.minutesToRead = this.estimateReadingTime();
     }
 
     estimateReadingTime() {
