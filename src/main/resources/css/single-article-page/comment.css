@@ -56,13 +56,13 @@
     color:#CB849C;
 }
 
-.dropdown-menu li, .dropdown-menu a{
+.edit-buttons li, .edit-buttons a{
     padding:10px;
     display:inline-block;
     width:100%;
 }
 
-.dropdown-menu a{
+#delete-comment{
     color: red !important;
     font-weight:600;
 }
@@ -97,7 +97,7 @@
     font-size:20px;
 }
 
-.submit-comment-edit-buttons{
+#submit-comment-edit-buttons{
     margin-top:10px;
 }
 
