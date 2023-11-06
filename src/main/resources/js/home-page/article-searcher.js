@@ -1,19 +1,8 @@
 class ArticleSearcher {
 
-    searchBar;
-    articleSection;
-    timer;
-    waitTimeInMilliseconds;
-    currentSearchResult;
-    previousSearchResult;
-    articlePreviewDisplayer;
-    elementModifier = new ElementModifier();
-    componentAdder;
-    elementProvider;
-    articleParent;
-
     constructor(){
         this.searchBar = document.getElementById('input-search');
+        this.elementModifier = new ElementModifier();
         this.articleSection = document.getElementById('article-row');
         this.waitTimeInMilliseconds = 800;
         this.articlePreviewDisplayer = new ArticlePreviewDisplayer();
@@ -21,19 +10,26 @@ class ArticleSearcher {
         this.elementProvider = new ElementProvider();
         let articlePart = this.elementProvider.getComponent('article-part');
         this.articleParent = this.elementProvider.getSubComponent(articlePart, '#article-row');
+        this.previousSearchResult = [null];
     }
 
     async search() {
         this.currentSearchResult = await this.articlePreviewDisplayer.getArticles({filterByTitle:this.currentSearchText, orderField:"LAST_MODIFICATION_DATE"});
         if(!this.isEqual(this.previousSearchResult, this.currentSearchResult)){
             this.deleteArticleSection();
-            this.thereIsNoMatchingArticle() ? this.handleThereIsNoMatchingArticle() : await this.handleThereIsMatchingArticle(this.currentSearchResult);
+            this.thereIsNoMatchingArticle() ? this.handleThereIsNoMatchingArticle() : await this.handleThereIsMatchingArticle();
         }
         this.previousSearchResult = this.currentSearchResult;
     }
 
     isEqual(first, second){
-        return first === second;
+        if(first.length !== second.length){
+            return false;
+        }
+        else if(first[0] !== null){
+            first.every((article, index) => article.id === second[index].id);
+        }
+        else return false;
     }
 
     thereIsNoMatchingArticle(){
@@ -47,7 +43,7 @@ class ArticleSearcher {
 
     async handleThereIsMatchingArticle(){
         this.removeChangesFromArticleSectionAppearance();
-        await this.displayMatchedArticle();
+        await this.articlePreviewDisplayer.displaySearchedArticle(this.currentSearchResult);
     }
 
     displayNoMatchingArticleText(){
@@ -61,13 +57,6 @@ class ArticleSearcher {
 
     removeChangesFromArticleSectionAppearance(){
         this.elementModifier.removeElementClass(this.articleSection, ["fs-5", "fw-medium", "py-5"]);
-    }
-
-    async displayMatchedArticle(){
-        for(let i=0; i<this.currentSearchResult.length; i++){
-            let articlePreview = await this.articlePreviewDisplayer.articlePreviewBuilder.build(this.currentSearchResult[i]);
-            this.componentAdder.add(this.articleParent, articlePreview);
-        }
     }
 
     getCurrentSearchText(event){
