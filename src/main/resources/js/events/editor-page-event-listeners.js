@@ -22,6 +22,7 @@ class EditorPageEventListeners{
         this.filePreview = this.elementProvider.getElementById('file-preview');
         let fileIsNotValidMessageElement = this.elementProvider.getElementById("fileIsNotValidMessage");
         let file = null;
+        this.maxSize = 5 * 1024 * 1024;
 
         fileInput.onchange =  async () =>{
             this.file = fileInput.files[0];
@@ -35,7 +36,7 @@ class EditorPageEventListeners{
                     this.filePreview.src = "";
                     return;
                 }
-                let isFileTooBig = this.file.size > 5000000;
+                let isFileTooBig = this.file.size > this.maxSize;
                 if(isFileTooBig){
                     this.articleExceptionHandler.handleFileIsTooBigException();
                     this.filePreview.src = "";
@@ -87,7 +88,7 @@ class EditorPageEventListeners{
                 return false;
             }
 
-            let isFileTooBig = this.file.size > 5000000;
+            let isFileTooBig = this.file.size > this.maxSize;
             if (isFileTooBig) {
                 this.articleExceptionHandler.handleFileIsTooBigException();
                 this.elementModifier.setElementText(this.globalErrorMessageField, "A megadott fájl túl nagy, maximum 5MB lehet!");
