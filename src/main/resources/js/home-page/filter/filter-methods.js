@@ -38,11 +38,11 @@ class FilterMethods {
 
     getFilterQueryParams() {
         this.setFilterQueryParams();
-        this.getPropertyWithValueOnly();
+        this.deleteUnnecessaryFields();
         return this.filterQueryParams;
     }
 
-    getPropertyWithValueOnly(){
+    deleteUnnecessaryFields(){
         Object.entries(this.filterQueryParams).forEach(([key,value]) => {
             if(value == '' || value == []){
                 delete this.filterQueryParams[key];

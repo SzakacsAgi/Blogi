@@ -10,7 +10,7 @@ class SingleArticleLoader {
 
     async loadArticleToSingleArticlePage(){
         let browserDataModifier = new BrowserDataModifier();
-        let articleInfo = await this.singleArticleDataProvider.createArticle(this.articleId);
+        let articleInfo = await this.singleArticleDataProvider.getArticleInfo(this.articleId);
         this.loadArticleTitle(articleInfo.getTitle(), '#article-title');
         this.loadArticleImage(articleInfo.getImageURL(), '#article-image');
         this.loadArticleContent(articleInfo.getContent(), '#article-content');
@@ -18,7 +18,7 @@ class SingleArticleLoader {
     }
 
     async loadArticleToArticleEditorPage(){
-        let articleInfo = await this.singleArticleDataProvider.createArticle(this.articleId);
+        let articleInfo = await this.singleArticleDataProvider.getArticleInfo(this.articleId);
         let titleElement = this.elementProvider.getElementById('title');
         titleElement.value = articleInfo.getTitle();
         let filePreviewElement = this.elementProvider.getElementById('file-preview');
