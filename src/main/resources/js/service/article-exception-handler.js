@@ -45,7 +45,7 @@ class ArticleExceptionHandler{
     handelContentIsNullException(){
         let editor = this.elementProvider.getElementByClassName("tox-tinymce");
         let contentIsNullError = this.elementProvider.getElementById('contentIsNullMessage');
-        this.elementModifier.setElementText(contentIsNullError, "A cikk tartalma nem lehet üres!!");
+        this.elementModifier.setElementText(contentIsNullError, "A cikk tartalma nem lehet üres!");
         this.elementModifier.setElementText(this.globalErrorMessageField, "A cikk tartalma nem lehet üres!");
         this.elementModifier.addElementClass(editor, ['invalid']);
         this.elementModifier.displayElement(contentIsNullError);

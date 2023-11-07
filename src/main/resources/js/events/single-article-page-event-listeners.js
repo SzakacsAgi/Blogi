@@ -29,7 +29,7 @@ class SingleArticlePageEventListeners{
             let authenticatedUser = await this.getAuthenticatedUser();
             let commentElement = await this.commentBuilder.build(createdComment, authenticatedUser);
             this.elementModifier.displayElement(this.elementProvider.getSubComponent(commentElement, "#edit-comment"));
-            this.componentAdder.addAfterOtherComponent(commentElement, this.firstComment);
+            this.componentAdder.addAfterOtherComponent(commentElement, this.beforeFirstCommentElement);
             this.elementModifier.clearInputField(this.inputField);
             this.elementModifier.hideElement(this.noCommentElement);
         });
@@ -67,7 +67,7 @@ class SingleArticlePageEventListeners{
         this.writeCommentSubmitButton = this.elementProvider.getElementById('submit-write-comment');
         this.articleId = this.storedDataProvider.getItemFromSessionStorage('articleId');
         this.inputField = this.elementProvider.getElementById("write-comment-input");
-        this.firstComment = this.elementProvider.getSubComponent(document, "#comments div");
+        this.beforeFirstCommentElement = this.elementProvider.getSubComponent(document, "#comments div");
         this.noCommentElement = this.elementProvider.getElementById("no-comment");
     }
 
