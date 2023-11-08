@@ -8,7 +8,6 @@ class LogInPageEvents {
 
     registerEvents(){
         window.addEventListener('load', () => {
-            //this.addSocialButtonEventListener("facebook");
             this.addSocialButtonEventListener("google");
             this.addSocialButtonEventListener("github");
         })
