@@ -4,7 +4,7 @@ The project is an application that simulates a blog.
 
 # Features: 
 1. Sign in:
-   1. Via Facebook
+   1. Via GitHub
    2. Via Google
 2. Admin user can: 
    1. Create a new article 
@@ -24,17 +24,11 @@ The project is an application that simulates a blog.
 1. Backend uses Spring-Boot, Java 17, Maven, and Docker
 2. Frontend uses HTML, CSS, JavaScript, and Bootstrap framework
 
-# How to build the application (via Maven command line):
-``mvn clean install`` 
-
-# How to start the application (via Maven command line):
-``mvn spring-boot:run``
-
-# How to build the application (via Docker compose, command line):
+# How to build the application:
 ``sudo docker compose build``
 
-# How to start the application (via Docker compose, command line):
+# How to start the application:
 ``sudo docker compose up``
 
-# After you start the application with one of the command above, you can reach it at:
+# After you start the application, you can reach it at:
 ``http://localhost:8080/blogi/home``

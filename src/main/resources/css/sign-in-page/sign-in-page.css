@@ -100,11 +100,6 @@ main{
     margin-right: 0.56rem;
 }
 
-#facebook-log-in{
-    background-color: #1877F2;
-    color: white;
-}
-
 main #sign-in-form #social-media-buttons #github-log-in{
     background-color: #24292f;
     color: white;
